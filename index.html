@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIFE 相場正一郎 × TORCH「Dinner in Camp Night」</title>
+  <meta name="description" content="日光のキャンプ場TORCHと代々木八幡のイタリアンLIFEオーナー相場正一郎氏によるコラボイベント。山の料理と山の時間を。2025年7月12日〜13日開催。" />
+
+  <!-- OGP -->
+  <meta property="og:title" content="LIFE 相場正一郎 × TORCH「Dinner in Camp Night」" />
+  <meta property="og:description" content="山の料理と山の時間を。日光・TORCHにて2025年7月12日〜13日開催。" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Yellowtail&family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #f7f4ee;          /* warm ivory */
+      --color-text: #2b2a26;        /* deep ink */
+      --color-muted: #6b6860;       /* soft taupe */
+      --color-accent: #4a5240;      /* forest moss */
+      --color-earth: #8a6f4f;       /* earth brown */
+      --color-line: rgba(43, 42, 38, 0.15);
+      --color-riso-green: #2f7a4a;  /* zine-green accent */
+      --font-display: "Jost", "Futura", "Noto Sans JP", sans-serif; /* geometric sans — LIFE-style */
+      --font-script: "Yellowtail", cursive;                          /* brushy — Daily Meals-style */
+      --font-serif-jp: "Noto Serif JP", serif;
+      --font-sans: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Global Nav ---------- */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+    .site-header .brand {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+    .site-header .brand span { opacity: 0.7; margin: 0 8px; }
+    .site-header nav a {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      margin-left: 28px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .site-header nav a span {
+      font-family: var(--font-serif-jp);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      margin-top: 4px;
+      opacity: 0.75;
+      text-transform: none;
+    }
+    @media (max-width: 720px) {
+      .site-header { padding: 16px 20px; }
+      .site-header nav { display: none; }
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      color: #fff;
+    }
+    .hero__media {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(20,22,18,0.45) 0%, rgba(20,22,18,0.6) 60%, rgba(20,22,18,0.8) 100%),
+        url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+      filter: saturate(0.85) contrast(1.02);
+      transform: scale(1.04);
+      animation: slowZoom 18s ease-out forwards;
+    }
+
+    /* Kraft-paper / riso-print texture overlay */
+    .hero__paper {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.28;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.45  0 0 0 0 0.32  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+    /* Halftone dots — print feel */
+    .hero__dots {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.14;
+      background-image: radial-gradient(rgba(240,229,199,0.9) 1px, transparent 1.2px);
+      background-size: 6px 6px;
+      mask-image: radial-gradient(ellipse at 80% 20%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 55%);
+      -webkit-mask-image: radial-gradient(ellipse at 80% 20%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 55%);
+    }
+
+    /* Hand-drawn illustrations layer */
+    .hero__graphics {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      color: #f0e5c7; /* cream ink on dark */
+    }
+    .g-illust { position: absolute; }
+    .g-illust path,
+    .g-illust line,
+    .g-illust circle,
+    .g-illust ellipse,
+    .g-illust polyline,
+    .g-illust text {
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .g-illust text {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .g-kettle {
+      top: 110px;
+      right: 8%;
+      width: 130px;
+      transform: rotate(-6deg);
+      opacity: 0.85;
+    }
+    .g-mountains {
+      right: 5%;
+      top: 40%;
+      width: 220px;
+      opacity: 0.6;
+      color: #e9d58a;
+    }
+    .g-bottle {
+      left: 4%;
+      bottom: 18%;
+      width: 70px;
+      opacity: 0.55;
+      transform: rotate(6deg);
+    }
+    .g-badge {
+      position: absolute;
+      right: 6%;
+      bottom: 96px;
+      width: 128px;
+      height: 128px;
+      opacity: 0.9;
+      color: #e9d58a;
+      animation: badgeSpin 40s linear infinite;
+    }
+    @keyframes badgeSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .g-badge-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: #e9d58a;
+      text-transform: uppercase;
+      animation: badgeSpin 40s linear infinite reverse;
+    }
+
+    @media (max-width: 720px) {
+      .g-kettle   { width: 80px; top: 80px; right: 6%; }
+      .g-mountains{ width: 140px; top: 38%; right: 3%; }
+      .g-bottle   { display: none; }
+      .g-badge    { width: 84px; bottom: 72px; right: 5%; }
+      .g-badge-inner { font-size: 9px; }
+      .hero__dots { opacity: 0.1; }
+    }
+    @keyframes slowZoom {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.00); }
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+    .hero__eyebrow::before {
+      content: "";
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+    .hero__eyebrow-jp {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      opacity: 0.85;
+      margin-bottom: 26px;
+    }
+
+    .hero__collab {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(13px, 1.5vw, 16px);
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      opacity: 0.95;
+      margin-bottom: 10px;
+    }
+    .hero__collab .x {
+      display: inline-block;
+      margin: 0 12px;
+      font-family: var(--font-script);
+      font-size: 1.5em;
+      color: #e9d58a;
+      letter-spacing: 0;
+      transform: translateY(6px) rotate(-6deg);
+    }
+    .hero__collab-jp {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: clamp(13px, 1.3vw, 15px);
+      letter-spacing: 0.24em;
+      opacity: 0.88;
+      margin-bottom: 22px;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(48px, 9.4vw, 148px);
+      line-height: 1.02;
+      letter-spacing: 0.16em;
+      margin-bottom: 32px;
+      margin-left: -0.08em; /* optical alignment with wide tracking */
+      text-transform: uppercase;
+    }
+    .hero__title em {
+      display: inline-block;
+      font-family: var(--font-script);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.05em;
+      line-height: 0.9;
+      color: #e9d58a;
+      letter-spacing: 0;
+      transform: rotate(-6deg);
+      margin: 0.1em 0.08em 0;
+      text-transform: none;
+    }
+
+    .hero__tagline {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: clamp(16px, 1.9vw, 22px);
+      letter-spacing: 0.18em;
+      line-height: 1.8;
+      margin-bottom: 38px;
+      max-width: 640px;
+    }
+    .hero__tagline small {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 40px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.35);
+      max-width: 720px;
+    }
+    .hero__meta dl { display: flex; gap: 14px; align-items: baseline; }
+    .hero__meta dt {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      opacity: 0.85;
+      text-transform: uppercase;
+      color: #d9c87a;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .hero__meta dt .jp {
+      font-family: var(--font-serif-jp);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.7);
+      text-transform: none;
+    }
+    .hero__meta dd {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+    .hero__meta dd .jp {
+      display: block;
+      font-family: var(--font-serif-jp);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      font-weight: 400;
+      opacity: 0.78;
+      margin-top: 2px;
+    }
+
+    .hero__cta {
+      margin-top: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 30px;
+      border: 2px solid #fff;
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(4px);
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      width: fit-content;
+    }
+    .hero__cta .jp {
+      font-family: var(--font-serif-jp);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      margin-right: 6px;
+      text-transform: none;
+    }
+    .hero__cta .sep {
+      display: inline-block;
+      width: 1px;
+      height: 14px;
+      background: currentColor;
+      opacity: 0.5;
+      margin: 0 4px;
+    }
+    .hero__cta:hover {
+      background: #fff;
+      color: var(--color-text);
+      border-color: #fff;
+    }
+    .hero__cta .arrow {
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: currentColor;
+      position: relative;
+    }
+    .hero__cta .arrow::after {
+      content: "";
+      position: absolute;
+      right: 0; top: -3px;
+      width: 8px; height: 8px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    /* Scroll hint */
+    .hero__scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero__scroll::after {
+      content: "";
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0));
+      animation: scrollLine 2.4s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0.2); transform-origin: top; opacity: 0.2; }
+      50%  { transform: scaleY(1);   transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(0.2); transform-origin: bottom; opacity: 0.2; }
+    }
+
+    /* Corner marks — subtle editorial detail */
+    .hero__corner {
+      position: absolute;
+      z-index: 2;
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .hero__corner--tr { top: 24px; right: 32px; }
+    .hero__corner--bl { bottom: 28px; left: 32px; writing-mode: vertical-rl; }
+
+    @media (max-width: 720px) {
+      .hero__meta { gap: 10px 24px; padding-top: 22px; }
+      .hero__meta dl { width: 100%; }
+      .hero__corner--tr { display: none; }
+      .hero__corner--bl { display: none; }
+      .hero__scroll { display: none; }
+      .site-header .brand { font-size: 14px; }
+    }
+
+    /* ================================================== */
+    /* ---------- SECTION 02 : STORY / 物語 -------------- */
+    /* ================================================== */
+    .story {
+      position: relative;
+      padding: 140px 32px 160px;
+      background: #f5f1e8;
+      color: var(--color-text);
+      overflow: hidden;
+    }
+    /* Paper noise on light ground */
+    .story__paper {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      z-index: 1;
+    }
+    .story__wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* ----- Shared section header (reused in later sections) ----- */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 72px;
+      flex-wrap: wrap;
+    }
+    .section-head .num {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--color-earth);
+    }
+    .section-head .line {
+      flex-shrink: 0;
+      width: 56px; height: 1px;
+      background: var(--color-text);
+      opacity: 0.35;
+    }
+    .section-head .en {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+    .section-head .jp {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.28em;
+      opacity: 0.72;
+    }
+
+    /* ----- Story copy ----- */
+    .story__headline {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: clamp(30px, 5vw, 60px);
+      line-height: 1.45;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      max-width: 900px;
+    }
+    .story__headline em {
+      font-family: var(--font-script);
+      font-style: normal;
+      font-size: 1em;
+      color: var(--color-earth);
+      letter-spacing: 0;
+    }
+    .story__headline-en {
+      font-family: var(--font-script);
+      font-weight: 400;
+      font-size: clamp(24px, 3.2vw, 40px);
+      color: var(--color-earth);
+      margin-bottom: 56px;
+      transform: rotate(-2deg);
+      display: inline-block;
+    }
+
+    .story__lead {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: clamp(15px, 1.3vw, 17px);
+      line-height: 2.15;
+      letter-spacing: 0.08em;
+      max-width: 720px;
+      margin-bottom: 130px;
+      color: #3d3a33;
+    }
+
+    /* ----- Feature block (image + body) ----- */
+    .story__feature {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 80px;
+      margin-bottom: 130px;
+      align-items: center;
+    }
+    .story__feature.reverse {
+      grid-template-columns: 1fr 1.05fr;
+    }
+    .story__photo {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: #d8cdb1 center/cover no-repeat;
+      overflow: hidden;
+      margin: 0;
+    }
+    .story__photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.35));
+      pointer-events: none;
+    }
+    .story__photo figcaption {
+      position: absolute;
+      left: 20px; bottom: 18px;
+      z-index: 2;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: #f0e5c7;
+      text-transform: uppercase;
+    }
+    .story__photo-tag {
+      position: absolute;
+      top: 16px; left: 16px;
+      z-index: 2;
+      padding: 4px 10px;
+      background: rgba(240,229,199,0.92);
+      color: var(--color-text);
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .story__body h3 {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: clamp(22px, 2.2vw, 30px);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .story__body h3 em {
+      display: block;
+      font-family: var(--font-script);
+      font-style: normal;
+      font-size: 0.7em;
+      color: var(--color-earth);
+      letter-spacing: 0;
+      margin-top: 6px;
+    }
+    .story__body p {
+      font-family: var(--font-serif-jp);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 2.05;
+      letter-spacing: 0.06em;
+      margin-top: 22px;
+      color: #3d3a33;
+    }
+    .story__quote {
+      margin: 36px 0 0;
+      padding: 20px 0 20px 26px;
+      border-left: 2px solid var(--color-earth);
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 1.9;
+      letter-spacing: 0.06em;
+      color: var(--color-accent);
+    }
+    .story__quote cite {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--color-earth);
+    }
+
+    /* ----- Exhibition banner (dark panel) ----- */
+    .story__exhibition {
+      position: relative;
+      padding: 64px 56px;
+      background: #2b2a26;
+      color: #f0e5c7;
+      max-width: 960px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .story__exhibition::before {
+      content: "同時開催 / SIMULTANEOUSLY";
+      position: absolute;
+      top: -12px; left: 40px;
+      padding: 5px 14px;
+      background: #d9c87a;
+      color: #2b2a26;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+    .story__exhibition h3 {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: clamp(22px, 2.6vw, 32px);
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .story__exhibition .sub {
+      font-family: var(--font-script);
+      font-size: clamp(18px, 2vw, 24px);
+      color: #d9c87a;
+      margin-bottom: 24px;
+      transform: rotate(-2deg);
+      display: inline-block;
+    }
+    .story__exhibition p {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 2.05;
+      letter-spacing: 0.06em;
+      max-width: 680px;
+      color: rgba(240,229,199,0.82);
+    }
+    .story__exhibition .exh-badge {
+      position: absolute;
+      top: 50%; right: -30px;
+      transform: translateY(-50%) rotate(8deg);
+      width: 130px; height: 130px;
+      border: 1.5px dashed rgba(217,200,122,0.6);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #d9c87a;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      padding: 10px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .story__exhibition .exh-badge b {
+      font-family: var(--font-serif-jp);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    /* Decorative elements */
+    .story__deco-mountain {
+      position: absolute;
+      right: -60px; top: 120px;
+      width: 340px;
+      opacity: 0.16;
+      color: var(--color-earth);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .story__deco-plate {
+      position: absolute;
+      left: -40px; bottom: 280px;
+      width: 140px;
+      opacity: 0.18;
+      color: var(--color-earth);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .story__feature { grid-template-columns: 1fr; gap: 36px; margin-bottom: 80px; }
+      .story__feature.reverse { grid-template-columns: 1fr; }
+      .story__feature.reverse .story__photo { order: -1; }
+      .story__photo { aspect-ratio: 4/3; }
+    }
+    @media (max-width: 720px) {
+      .story { padding: 90px 20px 100px; }
+      .section-head { margin-bottom: 48px; gap: 14px; }
+      .section-head .line { width: 40px; }
+      .story__headline { margin-bottom: 8px; }
+      .story__headline-en { margin-bottom: 36px; }
+      .story__lead { margin-bottom: 70px; }
+      .story__exhibition { padding: 52px 24px 40px; }
+      .story__exhibition::before { left: 20px; font-size: 9px; }
+      .story__exhibition .exh-badge { display: none; }
+      .story__deco-mountain { width: 200px; right: -80px; top: 80px; }
+      .story__deco-plate { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="brand">LIFE <span>×</span> TORCH</div>
+    <nav>
+      <a href="#story">Story<span>物語</span></a>
+      <a href="#menu">Menu<span>料理</span></a>
+      <a href="#schedule">Schedule<span>当日の流れ</span></a>
+      <a href="#plan">Plan<span>ご予約</span></a>
+      <a href="#info">Info<span>ご案内</span></a>
+    </nav>
+  </header>
+
+  <!-- SECTION 1 : HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__paper" aria-hidden="true"></div>
+    <div class="hero__dots" aria-hidden="true"></div>
+
+    <!-- Hand-drawn illustrations (zine-style, PARK LIFE inspired) -->
+    <div class="hero__graphics" aria-hidden="true">
+
+      <!-- Kettle over fire -->
+      <svg class="g-illust g-kettle" viewBox="0 0 120 140" stroke-width="2">
+        <!-- steam -->
+        <path d="M48 8 C52 2, 58 2, 60 10 C62 18, 54 20, 58 28" />
+        <path d="M66 16 C70 10, 76 10, 78 18 C80 26, 72 28, 76 36" />
+        <!-- lid -->
+        <ellipse cx="60" cy="40" rx="18" ry="4" />
+        <line x1="60" y1="34" x2="60" y2="40" stroke-width="2.5" />
+        <!-- body -->
+        <path d="M32 48 Q28 70 34 88 Q40 100 60 100 Q80 100 86 88 Q92 70 88 48 Z" />
+        <!-- spout -->
+        <path d="M32 58 Q20 52 16 44 Q20 46 28 50" stroke-width="2" />
+        <!-- handle -->
+        <path d="M46 44 Q58 22 78 28 Q92 34 84 50" stroke-width="2" />
+        <!-- logs under -->
+        <line x1="22" y1="112" x2="98" y2="112" stroke-width="3" />
+        <line x1="30" y1="120" x2="90" y2="120" stroke-width="3" />
+        <!-- flame hints -->
+        <path d="M44 108 Q48 100 52 108" stroke-width="1.5" />
+        <path d="M58 108 Q62 98 66 108" stroke-width="1.5" />
+        <path d="M72 108 Q76 102 80 108" stroke-width="1.5" />
+      </svg>
+
+      <!-- Mountain range -->
+      <svg class="g-illust g-mountains" viewBox="0 0 240 90" stroke-width="1.8">
+        <path d="M0 82 L34 36 L58 54 L92 18 L124 48 L154 28 L186 56 L214 40 L240 58 L240 82 Z" />
+        <polyline points="18,82 48,58 78,64 108,46 138,58 168,50 198,60 228,52 240,62" stroke-width="1.2" opacity="0.7" />
+      </svg>
+
+      <!-- Wine bottle (natural wine nod) -->
+      <svg class="g-illust g-bottle" viewBox="0 0 60 160" stroke-width="1.8">
+        <path d="M24 4 L24 28 Q18 32 18 44 L18 148 Q18 156 22 156 L38 156 Q42 156 42 148 L42 44 Q42 32 36 28 L36 4 Z" />
+        <rect x="20" y="72" width="20" height="34" />
+        <line x1="24" y1="14" x2="36" y2="14" stroke-width="2" />
+      </svg>
+
+      <!-- Rotating circular badge (#01 inspired) -->
+      <div class="g-badge">
+        <svg viewBox="0 0 140 140" stroke-width="1.4" style="width:100%;height:100%;">
+          <circle cx="70" cy="70" r="64" />
+          <circle cx="70" cy="70" r="56" stroke-dasharray="2 4" opacity="0.7" />
+          <!-- curved text path -->
+          <defs>
+            <path id="badgeArc" d="M 70,70 m -48,0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0" />
+          </defs>
+          <text font-family="Jost" font-size="10" letter-spacing="3" style="fill:currentColor;stroke:none;">
+            <textPath href="#badgeArc" startOffset="0">VOL.01 · NIKKO · DINNER IN CAMP · VOL.01 · NIKKO · </textPath>
+          </text>
+          <!-- center star -->
+          <path d="M70 58 L74 68 L84 68 L76 74 L79 84 L70 78 L61 84 L64 74 L56 68 L66 68 Z" fill="currentColor" stroke="none" opacity="0.9" />
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="hero__corner hero__corner--tr">栃木・日光 / N 36.75 E 139.59</div>
+    <div class="hero__corner hero__corner--bl">焚き火 × 晩餐 × 自然派ワイン</div>
+
+    <div class="hero__inner">
+      <div class="hero__eyebrow">A Special Collaboration Night</div>
+      <div class="hero__eyebrow-jp">一夜限りのコラボレーション・イベント</div>
+
+      <div class="hero__collab">
+        LIFE · Shoichiro Aiba <span class="x">×</span> TORCH
+      </div>
+      <div class="hero__collab-jp">LIFE 相場正一郎　×　TORCH</div>
+
+      <h1 class="hero__title">
+        Dinner<br />
+        <em>in Camp</em> Night.
+      </h1>
+
+      <p class="hero__tagline">
+        山の料理と、山の時間を。<br />
+        日光の森で、一夜限りの晩餐を。
+        <small>Mountain Food, Mountain Time — A Night in Nikko.</small>
+      </p>
+
+      <div class="hero__meta">
+        <dl>
+          <dt>Date <span class="jp">開催日</span></dt>
+          <dd>
+            2025.07.12 SAT — 07.13 SUN
+            <span class="jp">2025年7月12日（土）〜 13日（日）</span>
+          </dd>
+        </dl>
+        <dl>
+          <dt>Venue <span class="jp">会場</span></dt>
+          <dd>
+            TORCH Camping &amp; Coworking Space
+            <span class="jp">栃木県日光市久次良町242</span>
+          </dd>
+        </dl>
+      </div>
+
+      <a class="hero__cta" href="#plan">
+        <span class="jp">ご予約</span>
+        <span class="sep"></span>
+        Reserve Your Night
+        <span class="arrow"></span>
+      </a>
+    </div>
+
+    <div class="hero__scroll">Scroll / 続きを見る</div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- SECTION 2 : STORY / 物語                     -->
+  <!-- ============================================ -->
+  <section class="story" id="story">
+    <div class="story__paper" aria-hidden="true"></div>
+
+    <!-- Decorative mountain line (echoes hero illustration) -->
+    <svg class="story__deco-mountain" viewBox="0 0 420 130" aria-hidden="true">
+      <path d="M0 118 L58 40 L108 72 L160 22 L212 62 L266 30 L320 68 L368 42 L420 58 L420 118 Z"
+            fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+      <polyline points="30,118 80,72 130,82 182,56 232,76 282,60 332,78 382,66"
+                fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+    </svg>
+
+    <!-- Decorative plate / pan icon -->
+    <svg class="story__deco-plate" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="60" cy="60" r="40" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+      <path d="M40 50 Q50 40 60 50 T80 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M42 66 Q52 56 62 66 T82 66" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+
+    <div class="story__wrap">
+
+      <!-- Section header -->
+      <div class="section-head">
+        <span class="num">01</span>
+        <span class="line"></span>
+        <span class="en">Story</span>
+        <span class="jp">物語</span>
+      </div>
+
+      <!-- Intro headline + lead -->
+      <h2 class="story__headline">
+        山の料理と、山の<em>memory</em>。
+      </h2>
+      <div class="story__headline-en">Mountain food, mountain time.</div>
+
+      <p class="story__lead">
+        イタリア北部、ドロミテ山塊。山肌に抱かれ、湯気の立つ鍋と、<br>
+        ワインのグラスを囲んで過ごした夜。<br>
+        代々木八幡のイタリアン〈LIFE〉オーナー・相場正一郎氏が、<br>
+        その土地で受け取った記憶を、日光の森でもう一度。
+      </p>
+
+      <!-- Feature 1 : Dolomite memory -->
+      <div class="story__feature">
+        <figure class="story__photo"
+                style="background-image:url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e?auto=format&fit=crop&w=1200&q=80');">
+          <span class="story__photo-tag">Dolomiti, Italia</span>
+          <figcaption>Photo · Shoichiro Aiba</figcaption>
+        </figure>
+        <div class="story__body">
+          <h3>
+            ドロミテの記憶
+            <em>A table on the mountain.</em>
+          </h3>
+          <p>
+            飾らない。土地のものを、火で、シンプルに仕上げる。
+            ドロミテの小さな山小屋で出会った料理は、
+            いつまでも残る温度と、静かな力強さを持っていた。
+          </p>
+          <p>
+            標高の高い空気、窓越しの岩肌、炭と煙の匂い。
+            料理はその土地の言葉であり、人が過ごした時間そのものが、味わいへと変わっていく。
+          </p>
+          <blockquote class="story__quote">
+            「山の料理は、その場所と、人の時間から生まれる。」
+            <cite>— Shoichiro Aiba / LIFE</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Feature 2 : TORCH × LIFE -->
+      <div class="story__feature reverse">
+        <div class="story__body">
+          <h3>
+            二つの山が、重なる夜
+            <em>TORCH × LIFE in Nikko.</em>
+          </h3>
+          <p>
+            日光・TORCHの森と焚き火。LIFEの火と味わい。
+            遠く離れた二つの土地の風景が、ひとつのテーブルに重なる。
+          </p>
+          <p>
+            都市の喧騒から少しだけ離れて、ドロミテの山々と、日光の森。
+            料理と火、そして長い夜の時間で、その距離を静かに繋ぐ。
+            それが〈Dinner in Camp Night〉の想いです。
+          </p>
+        </div>
+        <figure class="story__photo"
+                style="background-image:url('https://images.unsplash.com/photo-1504281623087-1a6b74f19085?auto=format&fit=crop&w=1200&q=80');">
+          <span class="story__photo-tag">TORCH, Nikko</span>
+          <figcaption>Camp &amp; Fire</figcaption>
+        </figure>
+      </div>
+
+      <!-- Exhibition panel -->
+      <div class="story__exhibition">
+        <h3>『山の料理と山、の写真展』</h3>
+        <span class="sub">Mountain Dishes &amp; Mountains — Photo Exhibition</span>
+        <p>
+          会期中、会場では相場正一郎氏がドロミテで撮影した山と暮らしの写真、
+          そしてLIFEの料理にまつわる記録を並べた、小さな写真展を同時開催します。
+          フィールドの空気とその記憶を持ち帰る、一夜限りの展示をお楽しみください。
+        </p>
+        <div class="exh-badge" aria-hidden="true">
+          <b>写真展</b>
+          Free<br>Entry
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
