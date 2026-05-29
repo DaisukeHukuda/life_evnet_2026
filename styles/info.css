@@ -466,39 +466,36 @@
   color: var(--color-near-black);
   letter-spacing: 0.01em;
 }
-.info-access__cta {
+/* Map text link — mirrors the Talk-section profile links (dark variant) */
+.info-access__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+.info-access__link {
   display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.04em;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-near-black);
   text-decoration: none;
-  padding: 12px 22px;
-  border: 1px solid rgba(29,26,22,0.30);
-  border-radius: 999px;
-  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  border-bottom: 1px solid rgba(29,26,22,0.30);
+  padding-bottom: 3px;
+  transition: opacity .2s ease, border-color .2s ease;
 }
-.info-access__cta-pin {
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: var(--color-ember);
-  box-shadow: 0 0 0 4px rgba(196,129,74,0.18);
+.info-access__link span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
-.info-access__cta-arrow {
-  font-size: 13px;
-  transition: transform .2s ease;
-}
-.info-access__cta:hover {
-  background: var(--color-near-black);
-  color: var(--color-cream-soft, #f4efe4);
-  border-color: var(--color-near-black);
-}
-.info-access__cta:hover .info-access__cta-arrow {
-  transform: translate(2px, -2px);
+.info-access__link:hover {
+  opacity: 0.72;
+  border-bottom-color: var(--color-near-black);
 }
 .info-access__transport {
   display: flex;
