@@ -1,0 +1,914 @@
+/* ============================================================
+   PLANS — Plan A / Plan B + food-only add-ons
+   Editorial pricing cards on warm canvas.
+   ============================================================ */
+
+.plans {
+  background: var(--bg-canvas);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.plans__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: grid;
+  gap: var(--space-16);
+}
+
+/* ---- Section header ---- */
+.plans__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.plans__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.plans__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.plans__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.6;
+}
+.plans__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-3);
+  max-width: 820px;
+  text-wrap: pretty;
+}
+.plans__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+.plans__lead {
+  font-family: var(--font-jp);
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+  max-width: 720px;
+}
+
+/* ---- Plan card pair ---- */
+.plans__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.plan {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid rgba(29,26,22,0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  overflow: hidden;
+}
+.plan--featured {
+  background: var(--color-charcoal);
+  color: var(--color-on-dark);
+  border-color: transparent;
+}
+.plan--featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 15%, rgba(196,129,74,0.18), transparent 55%);
+  pointer-events: none;
+}
+.plan > * { position: relative; z-index: 1; }
+
+/* Plan header — code + title + price */
+.plan__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+}
+.plan--featured .plan__head { border-bottom-color: rgba(236,230,216,0.14); }
+
+.plan__code {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+.plan--featured .plan__code { color: var(--color-ember); }
+.plan__code .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.plan__code .badge {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  background: var(--color-ember);
+  color: var(--color-cream);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.plan__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.plan--featured .plan__title { color: var(--color-on-dark); }
+.plan__title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin-top: 6px;
+}
+.plan--featured .plan__title .en { color: var(--color-on-dark-secondary); }
+
+/* Price block */
+.plan__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: var(--space-2);
+}
+.plan__price-amount {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 4.6vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black);
+}
+.plan--featured .plan__price-amount { color: var(--color-on-dark); }
+.plan__price-currency {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--color-gray-50);
+}
+.plan--featured .plan__price-currency { color: var(--color-on-dark-secondary); }
+.plan__price-unit {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-50);
+  margin-left: 4px;
+}
+.plan--featured .plan__price-unit { color: var(--color-on-dark-tertiary); }
+.plan__price-note {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  color: var(--color-gray-50);
+  margin: 4px 0 0;
+}
+.plan--featured .plan__price-note { color: var(--color-on-dark-tertiary); }
+
+/* Feature list */
+.plan__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.plan__features li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+}
+.plan--featured .plan__features li { color: var(--color-on-dark-secondary); }
+.plan__features li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: 9px;
+  background: var(--color-ember);
+  border-radius: 50%;
+  display: block;
+  justify-self: center;
+}
+
+/* Pricing detail (adult / child) */
+.plan__pricing {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px dashed rgba(29,26,22,0.18);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4);
+}
+.plan--featured .plan__pricing { border-top-color: rgba(236,230,216,0.18); }
+.plan__pricing-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.plan__pricing-item .k {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+.plan--featured .plan__pricing-item .k { color: var(--color-on-dark-tertiary); }
+.plan__pricing-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--color-near-black);
+  letter-spacing: 0.005em;
+}
+.plan--featured .plan__pricing-item .v { color: var(--color-on-dark); }
+.plan__pricing-item .v small {
+  display: block;
+  font-family: var(--font-jp);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-gray-50);
+  letter-spacing: 0;
+}
+.plan--featured .plan__pricing-item .v small { color: var(--color-on-dark-tertiary); }
+
+/* CTA */
+.plan__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--color-near-black);
+  color: var(--color-cream);
+  text-decoration: none;
+  border: 1px solid transparent;
+  margin-top: var(--space-3);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple);
+}
+.plan__cta:hover { transform: translateY(-1px); background: #000; }
+.plan--featured .plan__cta {
+  background: var(--color-cream);
+  color: var(--color-near-black);
+}
+.plan--featured .plan__cta:hover { background: #fff; }
+
+/* ---- In-card reservation CTA (each plan has its own) ---- */
+.plan__cta-card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 14px 22px 14px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(196,129,74,0.20);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+  align-self: stretch;
+}
+.plan__cta-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.plan__cta-card-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  position: relative;
+  z-index: 1;
+}
+.plan__cta-card-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.plan__cta-card-arrow {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.plan__cta-card:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(196,129,74,0.32);
+}
+.plan__cta-card:hover .plan__cta-card-arrow {
+  transform: translateX(2px);
+}
+/* Featured (Plan A / dark card) variant — cream button against dark */
+.plan--featured .plan__cta-card {
+  background: var(--color-cream);
+  color: var(--color-near-black);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.32);
+}
+.plan--featured .plan__cta-card-dot {
+  background: var(--color-ember);
+}
+.plan--featured .plan__cta-card:hover {
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.42);
+}
+
+/* ---- Unified Reserva CTA — single entry to external reservation system ---- */
+.plans__reserve {
+  margin-top: var(--space-4);
+  background: #6b4f35;
+  color: var(--color-on-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-12);
+  display: grid;
+  grid-template-columns: 1.4fr auto;
+  gap: var(--space-10);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.plans__reserve::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 50%, rgba(196,129,74,0.18), transparent 60%);
+  pointer-events: none;
+}
+.plans__reserve > * { position: relative; z-index: 1; }
+
+.plans__reserve-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 560px;
+}
+.plans__reserve-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+.plans__reserve-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.45;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.plans__reserve-body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-on-dark-secondary);
+  margin: 0;
+}
+
+.plans__reserve-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 28px 18px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.plans__reserve-cta::before {
+  /* same top highlight as nav__cta */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.plans__reserve-cta-dot {
+  position: relative;
+  z-index: 1;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+}
+.plans__reserve-cta-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+}
+.plans__reserve-cta-en {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 12px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+}
+.plans__reserve-cta-arrow {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.plans__reserve-cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(196,129,74,0.36);
+}
+.plans__reserve-cta:hover .plans__reserve-cta-arrow {
+  transform: translateX(2px);
+}
+
+/* ---- Food-only add-on strip ---- */
+.plans__addon {
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.plans__addon-head {
+  max-width: 780px;
+}
+.plans__addon-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: var(--space-3);
+}
+.plans__addon-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.45;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-3);
+  text-wrap: pretty;
+}
+.plans__addon-body {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+.plans__addon-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+.plans__addon-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-7, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border: 1px solid rgba(29,26,22,0.06);
+}
+.plans__addon-item-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed rgba(29,26,22,0.18);
+}
+.plans__addon-item .day {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black);
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.plans__addon-item .day small {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-gray-50);
+  letter-spacing: 0.04em;
+}
+.plans__addon-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+  margin-left: auto;
+}
+.plans__addon-item .v {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 19px;
+  color: var(--color-near-black);
+  line-height: 1.4;
+}
+.plans__addon-item-desc {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+.plans__addon-item-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(29,26,22,0.08);
+}
+.plans__addon-item .price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--color-near-black);
+  letter-spacing: -0.01em;
+}
+.plans__addon-item .price small {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--color-gray-50);
+  margin-left: 4px;
+  letter-spacing: 0;
+}
+.plans__addon-item .when {
+  font-family: var(--font-jp);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-gray-50);
+  text-align: right;
+}
+
+/* CTA for Food Only — same family as plans__reserve-cta but a touch lighter */
+.plans__addon-cta {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px 14px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-near-black);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(29,26,22,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.plans__addon-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), transparent);
+  pointer-events: none;
+}
+.plans__addon-cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  position: relative;
+  z-index: 1;
+}
+.plans__addon-cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.plans__addon-cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  padding-left: 10px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.plans__addon-cta-arrow {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.plans__addon-cta:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(29,26,22,0.28);
+}
+.plans__addon-cta:hover .plans__addon-cta-arrow {
+  transform: translateX(2px);
+}
+
+/* ---- Notes ---- */
+.plans__notes {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(29,26,22,0.08);
+}
+.plans__notes li {
+  list-style: none;
+  padding-left: 14px;
+  position: relative;
+}
+.plans__notes li::before {
+  content: "※";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-ember);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .plans__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-10); }
+  .plans__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .plans__eyebrow { padding-top: 0; }
+  .plans__pair { grid-template-columns: 1fr; gap: var(--space-5); }
+  .plan { padding: var(--space-8); }
+  .plan__pricing { grid-template-columns: 1fr; gap: var(--space-3); }
+  .plans__reserve {
+    grid-template-columns: 1fr;
+    padding: var(--space-8);
+    gap: var(--space-6);
+    text-align: left;
+  }
+  .plans__reserve-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 22px;
+  }
+  .plans__reserve-cta-en { display: none; }
+  .plans__addon { padding: var(--space-8); gap: var(--space-6); }
+  .plans__addon-list { grid-template-columns: 1fr; gap: var(--space-4); }
+  .plans__addon-item { padding: var(--space-5); }
+  .plans__addon-cta { align-self: stretch; justify-content: center; padding: 14px 20px; }
+  .plans__addon-cta-en { display: none; }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .plans__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Section title */
+  .plans__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+  .plans__lead {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  /* Plan A / B cards */
+  .plans__pair { gap: var(--space-4); }
+  .plan {
+    padding: var(--space-6);
+    gap: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .plan__code {
+    font-size: 11px;
+    gap: 8px;
+  }
+  .plan__code .num {
+    font-size: 22px;
+  }
+  .plan__title {
+    font-size: 21px;
+    line-height: 1.45;
+  }
+  .plan__title .en {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .plan__price-amount {
+    font-size: 38px;
+  }
+  .plan__price-currency {
+    font-size: 14px;
+  }
+  .plan__price-unit {
+    font-size: 12px;
+  }
+  .plan__price-note {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .plan__features {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .plan__features li { padding-left: 22px; }
+  .plan__pricing { gap: var(--space-3); }
+  .plan__pricing-item {
+    padding: var(--space-3) var(--space-4);
+  }
+  .plan__pricing-item .v {
+    font-size: 15px;
+  }
+
+  /* Reservation CTA */
+  .plans__reserve {
+    padding: var(--space-6);
+    gap: var(--space-5);
+  }
+  .plans__reserve-title {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .plans__reserve-body {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .plans__reserve-cta-label {
+    font-size: 14px;
+  }
+
+  /* Food-only add-on */
+  .plans__addon {
+    padding: var(--space-6);
+    gap: var(--space-5);
+  }
+  .plans__addon-title {
+    font-size: 22px;
+    line-height: 1.5;
+  }
+  .plans__addon-body {
+    font-size: 13.5px !important;
+    line-height: 1.85;
+  }
+  .plans__addon-item {
+    padding: var(--space-5);
+    gap: var(--space-3);
+  }
+  .plans__addon-item-head {
+    gap: var(--space-3);
+    padding-bottom: var(--space-2);
+  }
+  .plans__addon-item .day {
+    font-size: 19px;
+  }
+  .plans__addon-item .day small {
+    font-size: 12px;
+  }
+  .plans__addon-item .k {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  .plans__addon-item .v {
+    font-size: 17px;
+  }
+  .plans__addon-item-desc {
+    font-size: 13px !important;
+    line-height: 1.75;
+  }
+  .plans__addon-item .price {
+    font-size: 22px;
+  }
+  .plans__addon-item .when {
+    font-size: 12px;
+  }
+  .plans__addon-cta-label {
+    font-size: 14px;
+  }
+
+  /* Notes */
+  .plans__notes {
+    font-size: 12.5px;
+    line-height: 1.85;
+    gap: var(--space-2);
+  }
+}
