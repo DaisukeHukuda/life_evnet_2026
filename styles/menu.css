@@ -510,6 +510,11 @@
     gap: var(--space-3);
     padding: var(--space-3) 0;
   }
+  /* Solo items have no number column — keep them full-width so the
+     text doesn't get squeezed into the 32px column on mobile. */
+  .menu__item--solo {
+    grid-template-columns: 1fr;
+  }
   .menu__item-num {
     font-size: 15px;
   }
