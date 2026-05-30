@@ -58,7 +58,7 @@
   color: var(--color-near-black);
   margin: 0;
   max-width: 780px;
-  text-wrap: pretty;
+  white-space: nowrap;
 }
 .story__title .it {
   font-family: var(--font-display);
@@ -320,9 +320,9 @@
     gap: var(--space-10);
   }
 
-  /* Section title — fit comfortably */
+  /* Section title — single line, scaled to the viewport so it never wraps */
   .story__title {
-    font-size: clamp(28px, 7vw, 38px);
+    font-size: clamp(16px, 6vw, 38px);
     line-height: 1.4;
   }
   .story__title .br { display: inline; }
