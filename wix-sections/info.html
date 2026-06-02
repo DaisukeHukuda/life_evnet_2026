@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== main.css (shared tokens & base) ===== */
+/* ============================================================
+   LIFE × TORCH "Dinner in Camp Night" — Shared styles
+   Built on Apple JP Design System, with earth-tone overlay.
+   ============================================================ */
+
+/* Bricolage Grotesque — refined-but-imperfect display sans (casual, warm).
+   Zen Kaku Gothic Antique — warm humanist JP gothic (friendlier than mincho).
+   Inter + Noto Sans JP — clean body. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,400;10..48,500;10..48,600;10..48,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- Neutrals — pulled from LIFE interior:
+         concrete, warm wood, cream wall, charcoal hardware ---- */
+  --color-white:      #ffffff;
+  --color-cream:      #ece6d8;          /* cream wall — warm off-white */
+  --color-cream-soft: #f4efe4;          /* lighter cream, page bg */
+  --color-paper:      #e3dccb;          /* warm paper accent */
+  --color-concrete:   #b8b1a3;          /* the打ちっぱなし grey, slightly warm */
+  --color-concrete-d: #8e887b;
+  --color-charcoal:   #2a2620;          /* the pendant-lamp / frame black */
+  --color-near-black: #1d1a16;          /* primary text — warm near-black */
+  --color-pure-black: #000000;
+
+  /* Warm grays for hierarchy */
+  --color-gray-90: #1d1a16;
+  --color-gray-70: #4a443b;
+  --color-gray-50: #756d60;
+  --color-gray-30: #9a9286;
+  --color-gray-15: #cfc8b8;
+  --color-gray-08: #e3dccb;
+
+  --color-on-dark:           rgba(236,230,216,0.94);
+  --color-on-dark-secondary: rgba(236,230,216,0.70);
+  --color-on-dark-tertiary:  rgba(236,230,216,0.50);
+
+  /* ---- Wood / firelight accents (warm earth) ---- */
+  --color-wood:        #8a6a4a;         /* worn oak — chair/table tone */
+  --color-wood-d:      #6b4f35;         /* darker walnut */
+  --color-wood-l:      #a88562;         /* sun-on-wood */
+  --color-ember:       #c4814a;         /* firelight glow */
+  --color-ember-d:     #8a4f28;         /* charred ember */
+  --color-olive:       #5e6443;         /* the plant-leaf green outside the window */
+  --color-moss:        #767a52;
+  --color-bone:        #d8cfb8;
+
+  /* ---- Semantic surface ---- */
+  --bg-canvas:      var(--color-cream-soft);
+  --bg-section-alt: var(--color-cream);
+  --bg-section-warm:var(--color-paper);
+  --bg-hero-dark:   #1a1610;            /* warm charcoal — firelit room */
+
+  --fg-primary:   var(--color-near-black);
+  --fg-secondary: var(--color-gray-70);
+  --fg-tertiary:  var(--color-gray-50);
+  --fg-on-dark:   var(--color-on-dark);
+
+  --hairline-light: 1px solid rgba(29,29,31,0.10);
+  --hairline-warm:  1px solid rgba(107,58,31,0.18);
+  --hairline-dark:  1px solid rgba(255,255,255,0.14);
+
+  --bg-nav-translucent: rgba(245,241,234,0.78);
+  --bg-nav-dark:        rgba(20,17,13,0.55);
+
+  /* ---- Type ---- */
+  /* Display: Bricolage Grotesque — soft, slightly imperfect, refined sans.
+     JP display: Zen Kaku Gothic Antique — humanist gothic, warm and friendly.
+     Body: Inter + Noto Sans JP. */
+  --font-display:    "Bricolage Grotesque", "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-display-jp: "Noto Sans JP", "Bricolage Grotesque", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-sans:       "Inter", "Noto Sans JP", -apple-system, "Hiragino Kaku Gothic ProN", "Helvetica Neue", sans-serif;
+  --font-jp:         "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  /* legacy aliases (kept so old selectors still resolve) */
+  --font-serif:    var(--font-display);
+  --font-serif-jp: var(--font-display-jp);
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px; --space-40: 160px;
+
+  --content-max:      1180px;
+  --content-max-narrow: 880px;
+  --content-gutter:    24px;
+
+  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px;
+  --radius-lg: 18px; --radius-xl: 28px; --radius-pill: 980px;
+
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  --z-nav: 100;
+  --z-modal: 1000;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  background: var(--bg-canvas);
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[lang="ja"], .lang-ja { font-family: var(--font-jp); line-height: 1.7; }
+
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV — fixed, translucent, switches modes via .is-on-dark
+   ============================================================ */
+
+/* ---- Hamburger button (mobile only) ---- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--duration-fast) var(--ease-apple),
+              border-color var(--duration-fast) var(--ease-apple);
+}
+.nav.is-light .nav__burger {
+  border-color: rgba(29,26,22,0.18);
+}
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: transform var(--duration-base) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple),
+              top var(--duration-base) var(--ease-apple);
+}
+.nav__burger span:nth-child(1) { top: 13px; }
+.nav__burger span:nth-child(2) { top: 19px; }
+.nav__burger span:nth-child(3) { top: 25px; }
+.nav__burger[aria-expanded="true"] span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+
+/* ---- Mobile drawer (full-screen overlay) ---- */
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #14110d;
+  color: var(--color-on-dark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear var(--duration-base);
+  pointer-events: none;
+}
+.nav__drawer[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear 0s;
+}
+.nav__drawer-inner {
+  position: absolute;
+  inset: 0;
+  padding: 96px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.nav__drawer a {
+  display: block;
+  width: 100%;
+  padding: 18px 4px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(236,230,216,0.10);
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__drawer a:active { opacity: 0.6; }
+body.nav-drawer-open {
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bg-nav-dark);
+  color: var(--color-on-dark);
+  transition: background var(--duration-base) var(--ease-apple),
+              color var(--duration-base) var(--ease-apple);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav.is-light {
+  background: var(--bg-nav-translucent);
+  color: var(--fg-primary);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.nav__brand .x {
+  opacity: 0.5;
+  font-style: italic;
+  font-size: 14px;
+  margin: 0 2px;
+}
+.nav__menu {
+  display: flex;
+  gap: var(--space-6);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav__menu a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__menu a:hover { opacity: 1; }
+
+.nav__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(196,129,74,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.nav__cta::before {
+  /* subtle inner highlight, top-half */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.nav__cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+@keyframes navCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,241,234,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(245,241,234,0); }
+}
+.nav__cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 8px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-arrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.nav__cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+}
+.nav__cta:hover .nav__cta-arrow {
+  transform: translateX(2px);
+}
+/* light nav (after hero) keeps the same ember treatment */
+.nav.is-light .nav__cta { background: var(--color-ember); color: var(--color-cream); }
+.nav.is-light .nav__cta:hover { background: var(--color-ember-d); }
+
+@media (max-width: 720px) {
+  .nav__cta { padding: 8px 14px 8px 12px; gap: 8px; }
+  .nav__cta-en { display: none; }
+}
+
+@media (max-width: 720px) {
+  .nav__menu { display: none; }
+  .nav__spacer { display: none; }
+  .nav__burger { display: block; }
+}
+
+/* ---- Nav "Back to top" — same style as menu links ---- */
+.nav__spacer {
+  /* invisible placeholder on the left, balancing the right-side CTA so the menu sits centered */
+  width: 1px;
+  height: 1px;
+}
+.nav__menu-top {
+  /* same style as sibling menu links; no italic, no special styling */
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple);
+}
+.btn--primary {
+  background: var(--color-near-black);
+  color: var(--color-cream);
+}
+.btn--primary:hover { background: #000; transform: translateY(-1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+  border-color: rgba(255,255,255,0.4);
+}
+.btn--ghost:hover { background: rgba(255,255,255,0.08); }
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-near-black);
+  border-color: rgba(29,29,31,0.25);
+}
+.btn--ghost-dark:hover { background: rgba(29,29,31,0.05); }
+
+/* ============================================================
+   COMMON UTILITIES
+   ============================================================ */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+.serif    { font-family: var(--font-display); }     /* legacy class — now display sans */
+.serif-jp { font-family: var(--font-display-jp); }
+.display    { font-family: var(--font-display); }
+.display-jp { font-family: var(--font-display-jp); }
+.italic   { font-style: italic; }
+
+.divider {
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  margin: 0;
+}
+
+/* fade-in on scroll (set by js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 700ms var(--ease-apple), transform 700ms var(--ease-apple);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+
+/* ===== info.css (this section) ===== */
+/* ============================================================
+   INFO — Bring / Shower / awesometoday / Access / Cancellation
+   ============================================================ */
+
+.info {
+  background: var(--bg-canvas);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.info__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.info__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+.info__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.info__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.info__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.7;
+}
+.info__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.info__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+
+/* ---- Subsection title ---- */
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.info-block__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(29,26,22,0.12);
+}
+.info-block__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+}
+.info-block__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.4;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.info-block__title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin-top: 4px;
+}
+
+/* ---- Bring + Shower: two-column on warm paper ---- */
+.info__essentials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+.info-card {
+  position: relative;
+  background:
+    linear-gradient(180deg, var(--color-cream-soft) 0%, var(--color-cream) 100%);
+  border: 1px solid rgba(29,26,22,0.10);
+  border-radius: 2px;
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.info-card::before {
+  /* left accent rail — like a notebook spine */
+  content: "";
+  position: absolute;
+  top: var(--space-5);
+  bottom: var(--space-5);
+  left: 0;
+  width: 3px;
+  background: var(--color-ember);
+  border-radius: 0 2px 2px 0;
+}
+.info-card__kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed rgba(29,26,22,0.20);
+}
+.info-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(196,129,74,0.10);
+  color: var(--color-ember);
+  flex-shrink: 0;
+}
+.info-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
+.info-card__kicker .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  color: var(--color-ember);
+  line-height: 1;
+}
+.info-card__kicker .label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+.info-card__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.info-card__title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin-top: 4px;
+}
+
+/* Plain editorial list */
+.info-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.info-checklist li {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+}
+.info-checklist li:last-child { border-bottom: none; }
+.info-checklist li strong:first-child {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-near-black);
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
+.info-card__note {
+  margin-top: auto;
+  padding: var(--space-4) var(--space-5);
+  background: rgba(196,129,74,0.08);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+  border-left: 2px solid var(--color-ember);
+}
+
+/* ---- awesometoday — feature row ---- */
+.info-feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  background: var(--color-paper);
+  border-radius: var(--radius-lg);
+}
+.info-feature__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(94,100,67,0.18), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 30% 60%, rgba(216,207,184,0.4), transparent 60%),
+    var(--color-bone);
+  isolation: isolate;
+}
+.info-feature__media::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(29,26,22,0.20);
+  border-radius: var(--radius-sm);
+}
+.info-feature__media-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.55);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.info-feature__media-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-jp);
+  font-size: 14px;
+  color: var(--color-gray-50);
+  letter-spacing: 0.02em;
+  padding: 24px;
+}
+.info-feature__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.info-feature__tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+.info-feature__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.info-feature__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray-50);
+  margin: 0;
+}
+.info-feature__body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+.info-feature__addr {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.005em;
+  color: var(--color-near-black);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(29,26,22,0.12);
+}
+.info-feature__addr small {
+  display: block;
+  font-family: var(--font-jp);
+  font-size: 13px;
+  color: var(--color-gray-50);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.info-feature__links {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.info-feature__link {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-near-black);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(29,26,22,0.2);
+  transition: background var(--duration-fast) var(--ease-apple);
+}
+.info-feature__link:hover { background: rgba(29,26,22,0.05); }
+
+/* ---- Access ---- */
+.info-access {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.info-access__map {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    /* faux topo lines */
+    repeating-linear-gradient(45deg, rgba(29,26,22,0.04) 0 1px, transparent 1px 8px),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(94,100,67,0.18), transparent 65%),
+    var(--color-bone);
+  border: 1px solid rgba(29,26,22,0.10);
+}
+.info-access__map::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(29,26,22,0.18);
+  border-radius: var(--radius-md);
+}
+/* Live embedded map: fill the frame, drop the faux placeholder styling */
+.info-access__map--live {
+  background: none;
+}
+.info-access__map--live::before { display: none; }
+.info-access__map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.info-access__map-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.7);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.info-access__pin {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.info-access__pin-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  box-shadow: 0 0 0 5px rgba(196,129,74,0.18),
+              0 6px 14px rgba(0,0,0,0.18);
+}
+.info-access__pin-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  background: rgba(255,255,255,0.85);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.info-access__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.info-access__addr {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(29,26,22,0.12);
+}
+.info-access__addr .name {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 19px;
+  color: var(--color-near-black);
+}
+.info-access__addr .line {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--color-gray-70);
+}
+.info-access__addr .tel {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-near-black);
+  letter-spacing: 0.01em;
+}
+/* Map text link — mirrors the Talk-section profile links (dark variant) */
+.info-access__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+.info-access__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-near-black);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(29,26,22,0.30);
+  padding-bottom: 3px;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.info-access__link span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.info-access__link:hover {
+  opacity: 0.72;
+  border-bottom-color: var(--color-near-black);
+}
+.info-access__transport {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.info-access__transport-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+}
+.info-access__transport-item .k {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+.info-access__transport-item .v {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+}
+.info-access__transport-item .v strong {
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+/* ---- Cancellation policy — plain text ---- */
+.info-cancel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 760px;
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+}
+.info-cancel__text {
+  margin: 0;
+}
+.info-cancel__dl {
+  margin: 0;
+  padding: 0;
+}
+.info-cancel__dl-row {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-1) 0;
+}
+.info-cancel__dl-row dt,
+.info-cancel__dl-row dd {
+  margin: 0;
+  padding: 2px 0;
+  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+}
+.info-cancel__dl-row dt {
+  flex: 0 0 220px;
+}
+.info-cancel__dl-row dd {
+  flex: 1;
+}
+@media (max-width: 720px) {
+  .info-cancel__dl-row dt { flex: 0 0 auto; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .info__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-12); }
+  .info__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .info__eyebrow { padding-top: 0; }
+  .info__essentials { grid-template-columns: 1fr; gap: var(--space-5); }
+  .info-card { padding: var(--space-8); }
+  .info-feature { padding: var(--space-8); gap: var(--space-6); }
+  .info-feature__media { aspect-ratio: 4/3; }
+  .info-access__map { aspect-ratio: 4/3; }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .info__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Section title */
+  .info__title {
+    font-size: clamp(26px, 6.5vw, 34px);
+    line-height: 1.4;
+  }
+
+  /* Block headers (01 持ち物… / 02 アクセス / 03 キャンセル) */
+  .info-block { gap: var(--space-5); }
+  .info-block__head {
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+  .info-block__num {
+    font-size: 19px;
+  }
+  .info-block__title {
+    font-size: 19px;
+    line-height: 1.45;
+  }
+  .info-block__title .en {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* Bring / Bath cards */
+  .info__essentials { gap: var(--space-4); }
+  .info-card {
+    padding: var(--space-5);
+    gap: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  .info-card__kicker {
+    padding-bottom: var(--space-3);
+  }
+  .info-card__icon {
+    width: 28px;
+    height: 28px;
+  }
+  .info-card__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .info-card__title {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .info-card__title .en {
+    font-size: 12.5px;
+    margin-top: 4px;
+  }
+
+  /* Checklist items */
+  .info-checklist li {
+    padding: var(--space-3) 0;
+    font-size: 13.5px;
+    line-height: 1.85;
+  }
+  .info-checklist li strong:first-child {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  /* Bring/Bath note */
+  .info-card__note {
+    padding: var(--space-3) var(--space-4);
+    font-size: 12.5px !important;
+    line-height: 1.85;
+  }
+
+  /* Access */
+  .info-access { gap: var(--space-5); }
+  .info-access__map {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+  .info-access__map-tag {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+  .info-access__pin-label {
+    font-size: 13px;
+  }
+  .info-access__details { gap: var(--space-5); }
+  .info-access__addr .name {
+    font-size: 16px;
+  }
+  .info-access__addr .line {
+    font-size: 14px !important;
+  }
+  .info-access__addr .tel {
+    font-size: 14px;
+  }
+  .info-access__transport-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .info-access__transport-item .k {
+    min-width: 52px;
+    font-size: 10px;
+  }
+  .info-access__transport-item .v {
+    flex: 1;
+    font-size: 14px !important;
+    line-height: 1.85;
+  }
+
+  /* Cancellation Policy */
+  .info-cancel { gap: var(--space-4); }
+  .info-cancel__text {
+    font-size: 13.5px;
+    line-height: 1.9;
+  }
+  .info-cancel__dl {
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .info-cancel__dl-row {
+    padding: var(--space-3) 0;
+    gap: var(--space-3);
+  }
+  .info-cancel__dl-row dt {
+    font-size: 13.5px;
+  }
+  .info-cancel__dl-row dd {
+    font-size: 15px;
+  }
+}
+
+</style>
+</head>
+<body style="font-family:&quot;Noto Sans JP&quot;">
+<section class="info" id="info">
+  <div class="info__inner">
+
+    <header class="info__header reveal">
+      <div class="info__eyebrow">
+        <span class="num">07</span>
+        <span class="rule"></span>
+        <span>Information</span>
+      </div>
+      <h2 class="info__title" lang="ja">Information</h2>
+    </header>
+
+    <!-- ===== Bring + Shower ===== -->
+    <div class="info-block reveal">
+      <header class="info-block__head">
+        <span class="info-block__num">01</span>
+        <h3 class="info-block__title" lang="ja">持ち物・シャワー・入浴</h3>
+      </header>
+
+      <div class="info__essentials">
+        <!-- Bring -->
+        <article class="info-card">
+          <div class="info-card__kicker">
+            <span class="info-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V5a4 4 0 0 1 8 0v2"/><rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 12h6"/></svg>
+            </span>
+            <span class="label">Bring</span>
+          </div>
+          <h4 class="info-card__title" lang="ja">持ち物に関して<span class="en">What to bring.</span></h4>
+          <ul class="info-checklist" lang="ja">
+            <li><span><strong>キャンプ泊の道具</strong>レンタルをご希望の方は上記 Rental セクションをご確認ください</span></li>
+            <li><span><strong>メインディッシュ用のプレート・お皿</strong>ディナーとモーニングを受け取る際に使用します</span></li>
+            <li><span><strong>モーニングコーヒー用のカップ</strong>ご自身のお気に入りをどうぞ</span></li>
+          </ul>
+          <p class="info-card__note" lang="ja" style="font-size: 14px">その他、タオル・換えの服・虫よけなど、夜間は森の住人たちも雑始も多いので、長袖や長ズボンもおすすめします。</p>
+        </article>
+
+        <!-- Shower -->
+        <article class="info-card">
+          <div class="info-card__kicker">
+            <span class="info-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 4-5 6.5-5 9.5a5 5 0 0 0 10 0C17 9.5 15 7 12 3z"/></svg>
+            </span>
+            <span class="label">Bath</span>
+          </div>
+          <h4 class="info-card__title" lang="ja">シャワーや入浴に関して<span class="en">Shower & bathing.</span></h4>
+          <ul class="info-checklist" lang="ja">
+            <li><span>施設内にシャワーブース 4つシャワーブース 4つ
+（ご利用料金に含まれます）</span></li>
+            <li><span><strong>バスタブ付きユニット 1つ</strong>（1,000円 / 回のご予約貸切制・1回1時間）</span></li>
+            <li><span>ご予約希望の場合は到着後スタッフにお声がけください</span></li>
+            <li><span>車で 10 分以内に「温泉 やしおの湯」もございます。
+日光和の代温泉 やしおの湯
+」もござい</span></li>
+          </ul>
+          <p class="info-card__note" lang="ja" style="font-size: 14px">チェックイン後、夜の焚き火の前にひと風呂、という過ごし方もおすすめです。</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== Access ===== -->
+    <div class="info-block reveal">
+      <header class="info-block__head">
+        <span class="info-block__num">02</span>
+        <h3 class="info-block__title" lang="ja">アクセス<span class="en">How to get to TORCH, Nikko.</span></h3>
+      </header>
+
+      <div class="info-access">
+        <figure class="info-access__map info-access__map--live" aria-label="TORCH Camping &amp; Coworking Space の地図">
+          <iframe
+            src="https://www.google.com/maps?q=%E6%A0%83%E6%9C%A8%E7%9C%8C%E6%97%A5%E5%85%89%E5%B8%82%E4%B9%85%E6%AC%A1%E8%89%AF%E7%94%BA242&z=15&output=embed"
+            title="TORCH Camping &amp; Coworking Space — Google Map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </figure>
+
+        <div class="info-access__details">
+          <div class="info-access__addr">
+            <span class="name" lang="ja">TORCH Camping &amp; Coworking Space</span>
+            <span class="line" lang="ja" style="font-size: 14px">〒321-1436 栃木県日光市久次良町 242</span>
+            <span class="tel">TEL : 050-6869-4561</span>
+          </div>
+
+          <div class="info-access__links">
+            <a href="https://share.google/9shxoOkYMCzBehPVC" target="_blank" rel="noopener" class="info-access__link">Map <span>Google マップで開く</span> ↗</a>
+          </div>
+          <div class="info-access__transport">
+            <div class="info-access__transport-item">
+              <span class="k">Car</span>
+              <span class="v" lang="ja" style="font-size: 14px"><strong>敷地内に広い駐車場あり</strong>。首都高・東北高で宇都宮インターを経由して約 2.5 時間。</span>
+            </div>
+            <div class="info-access__transport-item">
+              <span class="k">Train</span>
+              <span class="v" lang="ja" style="font-size: 14px">JR / 東武「<strong>日光駅</strong>」下車、車で約 5 分。ご希望に応じて送迎もご相談ください。</span>
+            </div>
+            <div class="info-access__transport-item">
+              <span class="k">Bus</span>
+              <span class="v" lang="ja" style="font-size: 14px">日光駅から奥日光方面バス、「<strong>植物園前</strong>」付近下車徒歩り。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Cancellation Policy ===== -->
+    <div class="info-block reveal">
+      <header class="info-block__head">
+        <span class="info-block__num">03</span>
+        <h3 class="info-block__title" lang="ja">キャンセルポリシー<span class="en">Cancellation policy.</span></h3>
+      </header>
+
+      <div class="info-cancel">
+        <p class="info-cancel__text" lang="ja">Dinner in Camp Night のご予約をキャンセルされる場合、下記のキャンセル料金が発生いたします。雨天の場合もキャンセル料は発生いたしますのでご注意ください。</p>
+
+        <dl class="info-cancel__dl" lang="ja">
+          <div class="info-cancel__dl-row">
+            <dt>ご利用日の 3 日前から</dt>
+            <dd>料金の 30%</dd>
+          </div>
+          <div class="info-cancel__dl-row">
+            <dt>ご利用日の前日</dt>
+            <dd>料金の 50%</dd>
+          </div>
+          <div class="info-cancel__dl-row">
+            <dt>ご利用日の当日</dt>
+            <dd>料金の 100%</dd>
+          </div>
+        </dl>
+
+        <p class="info-cancel__text" lang="ja">ただし、台風や警報発令時など、安全にご利用いただけないと判断した場合はキャンセル料は発生いたしません。気象状況の影響が心配される場合は、7月1日 15:00 までに実施の可否、及びキャンセル料の有無を判断させていただきます。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)||!els.length){els.forEach(function(e){e.classList.add('is-in');});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:0.12});
+els.forEach(function(e){io.observe(e);});})();
+</script>
+</body>
+</html>

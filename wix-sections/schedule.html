@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== main.css (shared tokens & base) ===== */
+/* ============================================================
+   LIFE × TORCH "Dinner in Camp Night" — Shared styles
+   Built on Apple JP Design System, with earth-tone overlay.
+   ============================================================ */
+
+/* Bricolage Grotesque — refined-but-imperfect display sans (casual, warm).
+   Zen Kaku Gothic Antique — warm humanist JP gothic (friendlier than mincho).
+   Inter + Noto Sans JP — clean body. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,400;10..48,500;10..48,600;10..48,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- Neutrals — pulled from LIFE interior:
+         concrete, warm wood, cream wall, charcoal hardware ---- */
+  --color-white:      #ffffff;
+  --color-cream:      #ece6d8;          /* cream wall — warm off-white */
+  --color-cream-soft: #f4efe4;          /* lighter cream, page bg */
+  --color-paper:      #e3dccb;          /* warm paper accent */
+  --color-concrete:   #b8b1a3;          /* the打ちっぱなし grey, slightly warm */
+  --color-concrete-d: #8e887b;
+  --color-charcoal:   #2a2620;          /* the pendant-lamp / frame black */
+  --color-near-black: #1d1a16;          /* primary text — warm near-black */
+  --color-pure-black: #000000;
+
+  /* Warm grays for hierarchy */
+  --color-gray-90: #1d1a16;
+  --color-gray-70: #4a443b;
+  --color-gray-50: #756d60;
+  --color-gray-30: #9a9286;
+  --color-gray-15: #cfc8b8;
+  --color-gray-08: #e3dccb;
+
+  --color-on-dark:           rgba(236,230,216,0.94);
+  --color-on-dark-secondary: rgba(236,230,216,0.70);
+  --color-on-dark-tertiary:  rgba(236,230,216,0.50);
+
+  /* ---- Wood / firelight accents (warm earth) ---- */
+  --color-wood:        #8a6a4a;         /* worn oak — chair/table tone */
+  --color-wood-d:      #6b4f35;         /* darker walnut */
+  --color-wood-l:      #a88562;         /* sun-on-wood */
+  --color-ember:       #c4814a;         /* firelight glow */
+  --color-ember-d:     #8a4f28;         /* charred ember */
+  --color-olive:       #5e6443;         /* the plant-leaf green outside the window */
+  --color-moss:        #767a52;
+  --color-bone:        #d8cfb8;
+
+  /* ---- Semantic surface ---- */
+  --bg-canvas:      var(--color-cream-soft);
+  --bg-section-alt: var(--color-cream);
+  --bg-section-warm:var(--color-paper);
+  --bg-hero-dark:   #1a1610;            /* warm charcoal — firelit room */
+
+  --fg-primary:   var(--color-near-black);
+  --fg-secondary: var(--color-gray-70);
+  --fg-tertiary:  var(--color-gray-50);
+  --fg-on-dark:   var(--color-on-dark);
+
+  --hairline-light: 1px solid rgba(29,29,31,0.10);
+  --hairline-warm:  1px solid rgba(107,58,31,0.18);
+  --hairline-dark:  1px solid rgba(255,255,255,0.14);
+
+  --bg-nav-translucent: rgba(245,241,234,0.78);
+  --bg-nav-dark:        rgba(20,17,13,0.55);
+
+  /* ---- Type ---- */
+  /* Display: Bricolage Grotesque — soft, slightly imperfect, refined sans.
+     JP display: Zen Kaku Gothic Antique — humanist gothic, warm and friendly.
+     Body: Inter + Noto Sans JP. */
+  --font-display:    "Bricolage Grotesque", "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-display-jp: "Noto Sans JP", "Bricolage Grotesque", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-sans:       "Inter", "Noto Sans JP", -apple-system, "Hiragino Kaku Gothic ProN", "Helvetica Neue", sans-serif;
+  --font-jp:         "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  /* legacy aliases (kept so old selectors still resolve) */
+  --font-serif:    var(--font-display);
+  --font-serif-jp: var(--font-display-jp);
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px; --space-40: 160px;
+
+  --content-max:      1180px;
+  --content-max-narrow: 880px;
+  --content-gutter:    24px;
+
+  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px;
+  --radius-lg: 18px; --radius-xl: 28px; --radius-pill: 980px;
+
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  --z-nav: 100;
+  --z-modal: 1000;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  background: var(--bg-canvas);
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[lang="ja"], .lang-ja { font-family: var(--font-jp); line-height: 1.7; }
+
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV — fixed, translucent, switches modes via .is-on-dark
+   ============================================================ */
+
+/* ---- Hamburger button (mobile only) ---- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--duration-fast) var(--ease-apple),
+              border-color var(--duration-fast) var(--ease-apple);
+}
+.nav.is-light .nav__burger {
+  border-color: rgba(29,26,22,0.18);
+}
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: transform var(--duration-base) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple),
+              top var(--duration-base) var(--ease-apple);
+}
+.nav__burger span:nth-child(1) { top: 13px; }
+.nav__burger span:nth-child(2) { top: 19px; }
+.nav__burger span:nth-child(3) { top: 25px; }
+.nav__burger[aria-expanded="true"] span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+
+/* ---- Mobile drawer (full-screen overlay) ---- */
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #14110d;
+  color: var(--color-on-dark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear var(--duration-base);
+  pointer-events: none;
+}
+.nav__drawer[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear 0s;
+}
+.nav__drawer-inner {
+  position: absolute;
+  inset: 0;
+  padding: 96px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.nav__drawer a {
+  display: block;
+  width: 100%;
+  padding: 18px 4px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(236,230,216,0.10);
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__drawer a:active { opacity: 0.6; }
+body.nav-drawer-open {
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bg-nav-dark);
+  color: var(--color-on-dark);
+  transition: background var(--duration-base) var(--ease-apple),
+              color var(--duration-base) var(--ease-apple);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav.is-light {
+  background: var(--bg-nav-translucent);
+  color: var(--fg-primary);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.nav__brand .x {
+  opacity: 0.5;
+  font-style: italic;
+  font-size: 14px;
+  margin: 0 2px;
+}
+.nav__menu {
+  display: flex;
+  gap: var(--space-6);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav__menu a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__menu a:hover { opacity: 1; }
+
+.nav__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(196,129,74,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.nav__cta::before {
+  /* subtle inner highlight, top-half */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.nav__cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+@keyframes navCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,241,234,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(245,241,234,0); }
+}
+.nav__cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 8px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-arrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.nav__cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+}
+.nav__cta:hover .nav__cta-arrow {
+  transform: translateX(2px);
+}
+/* light nav (after hero) keeps the same ember treatment */
+.nav.is-light .nav__cta { background: var(--color-ember); color: var(--color-cream); }
+.nav.is-light .nav__cta:hover { background: var(--color-ember-d); }
+
+@media (max-width: 720px) {
+  .nav__cta { padding: 8px 14px 8px 12px; gap: 8px; }
+  .nav__cta-en { display: none; }
+}
+
+@media (max-width: 720px) {
+  .nav__menu { display: none; }
+  .nav__spacer { display: none; }
+  .nav__burger { display: block; }
+}
+
+/* ---- Nav "Back to top" — same style as menu links ---- */
+.nav__spacer {
+  /* invisible placeholder on the left, balancing the right-side CTA so the menu sits centered */
+  width: 1px;
+  height: 1px;
+}
+.nav__menu-top {
+  /* same style as sibling menu links; no italic, no special styling */
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple);
+}
+.btn--primary {
+  background: var(--color-near-black);
+  color: var(--color-cream);
+}
+.btn--primary:hover { background: #000; transform: translateY(-1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+  border-color: rgba(255,255,255,0.4);
+}
+.btn--ghost:hover { background: rgba(255,255,255,0.08); }
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-near-black);
+  border-color: rgba(29,29,31,0.25);
+}
+.btn--ghost-dark:hover { background: rgba(29,29,31,0.05); }
+
+/* ============================================================
+   COMMON UTILITIES
+   ============================================================ */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+.serif    { font-family: var(--font-display); }     /* legacy class — now display sans */
+.serif-jp { font-family: var(--font-display-jp); }
+.display    { font-family: var(--font-display); }
+.display-jp { font-family: var(--font-display-jp); }
+.italic   { font-style: italic; }
+
+.divider {
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  margin: 0;
+}
+
+/* fade-in on scroll (set by js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 700ms var(--ease-apple), transform 700ms var(--ease-apple);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+
+/* ===== schedule.css (this section) ===== */
+/* ============================================================
+   SCHEDULE — Compact two-column timeline
+   Day 01 (Sat / Dinner) | Day 02 (Sun / Morning) side-by-side.
+   ============================================================ */
+
+.schedule {
+  background: var(--color-charcoal);
+  color: var(--color-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+.schedule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 15%,  rgba(196,129,74,0.10), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 15% 85%,  rgba(216,207,184,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.schedule__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-24) var(--content-gutter) var(--space-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.schedule__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  text-align: left;
+}
+.schedule__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.schedule__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.schedule__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.7;
+}
+.schedule__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.schedule__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+
+/* ---- Two-column day grid ---- */
+.schedule__days {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+/* Subtle vertical divider between days on desktop */
+.schedule__days::before {
+  content: "";
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: none;
+}
+
+.schedule__day {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-6) var(--space-2);
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(236,230,216,0.08);
+  border-radius: var(--radius-lg);
+}
+
+/* ---- Day header — compact horizontal layout ---- */
+.schedule__day-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: center;
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(236,230,216,0.14);
+}
+.schedule__day-date {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 4.4vw, 56px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-on-dark);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  grid-row: 1 / span 2;
+}
+.schedule__day-date .sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 18px);
+  letter-spacing: 0.01em;
+  color: var(--color-on-dark-secondary);
+}
+.schedule__day-tagline {
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--color-on-dark-secondary);
+  letter-spacing: 0.04em;
+  align-self: end;
+}
+.schedule__day-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  align-self: start;
+}
+
+/* Hide the day media placeholders entirely — saves vertical space */
+.schedule__day-media { display: none; }
+
+/* ---- Items list ---- */
+.schedule__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule__item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  align-items: start;
+  border-bottom: 1px solid rgba(236,230,216,0.08);
+}
+.schedule__item:last-child { border-bottom: none; }
+
+.schedule__item-time {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 2px;
+}
+.schedule__item-time .ampm {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-tertiary);
+}
+
+.schedule__item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.schedule__item-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.45;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.schedule__item-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-on-dark-secondary);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.schedule__item-desc {
+  font-family: var(--font-jp);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--color-on-dark-tertiary);
+  margin: 2px 0 0;
+}
+
+/* Featured row — slightly more prominent */
+.schedule__item--key .schedule__item-title {
+  color: var(--color-on-dark);
+}
+.schedule__item--key {
+  background:
+    linear-gradient(90deg, rgba(196,129,74,0.06), transparent 60%);
+  margin: 0 calc(-1 * var(--space-4));
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  border-radius: var(--radius-sm);
+}
+
+/* Spacer no longer needed */
+.schedule__gap { display: none; }
+
+/* ---- Footnote at bottom ---- */
+.schedule__footnote {
+  margin-top: 0;
+  padding: var(--space-5) var(--space-6);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-md);
+  font-family: var(--font-jp);
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--color-on-dark-secondary);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+.schedule__footnote-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 3px;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .schedule__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-8); }
+  .schedule__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .schedule__eyebrow { padding-top: 0; }
+  .schedule__days { grid-template-columns: 1fr; gap: var(--space-6); }
+  .schedule__day { padding: var(--space-5); }
+  .schedule__day-head {
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+  }
+  .schedule__item {
+    grid-template-columns: 72px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .schedule__item-time { font-size: 23px; }
+  .schedule__item--key {
+    margin: 0 calc(-1 * var(--space-3));
+    padding: var(--space-3);
+  }
+  .schedule__footnote { grid-template-columns: 1fr; gap: var(--space-2); padding: var(--space-5); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .schedule__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-6);
+  }
+
+  /* Section title */
+  .schedule__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+
+  /* Day card */
+  .schedule__days { gap: var(--space-5); }
+  .schedule__day {
+    padding: var(--space-5) var(--space-4);
+    gap: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  /* Day header */
+  .schedule__day-head {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--space-3);
+    row-gap: 4px;
+    padding-bottom: var(--space-3);
+  }
+  .schedule__day-date {
+    font-size: 36px;
+    grid-row: 1 / span 2;
+  }
+  .schedule__day-date .sub {
+    font-size: 13px;
+  }
+  .schedule__day-tagline {
+    font-size: 13px;
+    align-self: end;
+  }
+  .schedule__day-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+
+  /* Timeline items */
+  .schedule__item {
+    grid-template-columns: 64px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .schedule__item-time {
+    font-size: 21px;
+  }
+  .schedule__item-time .ampm {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  .schedule__item-title {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .schedule__item-en {
+    font-size: 11.5px;
+  }
+  .schedule__item-desc {
+    font-size: 13px !important;
+    line-height: 1.85;
+  }
+
+  .schedule__item--key {
+    margin: 0 calc(-1 * var(--space-3));
+    padding: var(--space-3);
+  }
+}
+
+</style>
+</head>
+<body style="font-family:&quot;Noto Sans JP&quot;">
+<section class="schedule" id="schedule">
+  <div class="schedule__inner">
+
+    <header class="schedule__header reveal">
+      <div class="schedule__eyebrow">
+        <span class="num">03</span>
+        <span class="rule"></span>
+        <span>Schedule</span>
+      </div>
+      <h2 class="schedule__title" lang="ja">Schedule</h2>
+    </header>
+
+    <div class="schedule__days">
+
+    <!-- ===== Day 1 — 7.4 Saturday / Dinner ===== -->
+    <article class="schedule__day reveal">
+      <header class="schedule__day-head">
+        <h3 class="schedule__day-date">7.4<span class="sub">Sat</span></h3>
+        <span class="schedule__day-tagline" lang="ja">
+</span>
+        <span class="schedule__day-label">Day 01 / Dinner</span>
+      </header>
+
+      <figure class="schedule__day-media" aria-label="Day 1 photo — to be supplied">
+        <span class="schedule__day-media-tag">Photo · 2025 / Day 1</span>
+        <span class="schedule__day-media-hint" lang="ja">7.4 ディナーの写真<br>後日差し替え</span>
+      </figure>
+
+      <ol class="schedule__items">
+
+        <li class="schedule__item">
+          <div class="schedule__item-time">12:00<span class="ampm">Noon</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">チェックイン / テントの設営</h4>
+            <p class="schedule__item-en">Check-in &amp; pitch your tent.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">12時からチェックイン時間スタート。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">17:30<span class="ampm">Evening</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">LIFEマウンテンディッシュ × ナチュラルワインバー</h4>
+            <p class="schedule__item-en">Mountain Dish, served by chef Aiba.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">メインディッシュをその場でご自身のお気に入りのプレートで受け取ってください。みなさんのテント、または屋根付きウッドデッキでどうぞ。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">19:30<span class="ampm">Night</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">トークショー</h4>
+            <p class="schedule__item-en">Talk show.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">川上恵美氏によるトークショー「環島、だいたい迷子 — 余白だらけの台湾自転車一周旅 —」。屋根付きウッドデッキにて自由参加でお楽しみいただけます。ワインバーもオープンしています。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item">
+          <div class="schedule__item-time">22:00<span class="ampm">Late</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">バー営業終了 / ダウンライトタイム</h4>
+            <p class="schedule__item-en">Quiet hours · sleep under the stars.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">周りのキャンプ泊の方のためにもだんだんと静かに。虫の音と一緒におやすみなさい。</p>
+          </div>
+        </li>
+
+      </ol>
+    </article>
+
+    <div class="schedule__gap" aria-hidden="true"></div>
+
+    <!-- ===== Day 2 — 7.5 Sunday / Morning ===== -->
+    <article class="schedule__day reveal">
+      <header class="schedule__day-head">
+        <h3 class="schedule__day-date">7.5<span class="sub">Sun</span></h3>
+        <span class="schedule__day-tagline" lang="ja">
+</span>
+        <span class="schedule__day-label">Day 02 / Morning</span>
+      </header>
+
+      <figure class="schedule__day-media schedule__day-media--morning" aria-label="Day 2 photo — to be supplied">
+        <span class="schedule__day-media-tag">Photo · 2025 / Day 2</span>
+        <span class="schedule__day-media-hint" lang="ja">7.5 モーニングの写真<br>後日差し替え</span>
+      </figure>
+
+      <ol class="schedule__items">
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">08:00<span class="ampm">Morning</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">Girouette のモーニングスタート</h4>
+            <p class="schedule__item-en">Breakfast by Girouette.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">朝ごはんは、日光市下鉢石町のGirouette（ジルエット）によるサンドイッチ・スープ・サラダ。ご自身のマグをお持ちいただいて、セルフドリップコーヒーもどうぞ。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item">
+          <div class="schedule__item-time">09:30<span class="ampm">Late Morning</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">モーニング終了</h4>
+            <p class="schedule__item-en">Slow time, in your own pace.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">チェックアウトまではまだ余裕があります。テントや屋根の下のスペースでゆっくり過ごしていってください。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">11:00<span class="ampm">Noon</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">チェックアウト</h4>
+            <p class="schedule__item-en">Off to Nikko, Lake Chuzenji, or home.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">チェックアウト後は、日光市内の観光や奥日光・中禅寺湖での SUP（サップ）などもお楽しみいただけます。SUPご参加の場合はご予約時にご連絡ください。</p>
+          </div>
+        </li>
+
+      </ol>
+    </article>
+
+    </div><!-- /.schedule__days -->
+
+  </div>
+</section>
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)||!els.length){els.forEach(function(e){e.classList.add('is-in');});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:0.12});
+els.forEach(function(e){io.observe(e);});})();
+</script>
+</body>
+</html>

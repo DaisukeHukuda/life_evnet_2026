@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== main.css (shared tokens & base) ===== */
+/* ============================================================
+   LIFE × TORCH "Dinner in Camp Night" — Shared styles
+   Built on Apple JP Design System, with earth-tone overlay.
+   ============================================================ */
+
+/* Bricolage Grotesque — refined-but-imperfect display sans (casual, warm).
+   Zen Kaku Gothic Antique — warm humanist JP gothic (friendlier than mincho).
+   Inter + Noto Sans JP — clean body. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,400;10..48,500;10..48,600;10..48,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- Neutrals — pulled from LIFE interior:
+         concrete, warm wood, cream wall, charcoal hardware ---- */
+  --color-white:      #ffffff;
+  --color-cream:      #ece6d8;          /* cream wall — warm off-white */
+  --color-cream-soft: #f4efe4;          /* lighter cream, page bg */
+  --color-paper:      #e3dccb;          /* warm paper accent */
+  --color-concrete:   #b8b1a3;          /* the打ちっぱなし grey, slightly warm */
+  --color-concrete-d: #8e887b;
+  --color-charcoal:   #2a2620;          /* the pendant-lamp / frame black */
+  --color-near-black: #1d1a16;          /* primary text — warm near-black */
+  --color-pure-black: #000000;
+
+  /* Warm grays for hierarchy */
+  --color-gray-90: #1d1a16;
+  --color-gray-70: #4a443b;
+  --color-gray-50: #756d60;
+  --color-gray-30: #9a9286;
+  --color-gray-15: #cfc8b8;
+  --color-gray-08: #e3dccb;
+
+  --color-on-dark:           rgba(236,230,216,0.94);
+  --color-on-dark-secondary: rgba(236,230,216,0.70);
+  --color-on-dark-tertiary:  rgba(236,230,216,0.50);
+
+  /* ---- Wood / firelight accents (warm earth) ---- */
+  --color-wood:        #8a6a4a;         /* worn oak — chair/table tone */
+  --color-wood-d:      #6b4f35;         /* darker walnut */
+  --color-wood-l:      #a88562;         /* sun-on-wood */
+  --color-ember:       #c4814a;         /* firelight glow */
+  --color-ember-d:     #8a4f28;         /* charred ember */
+  --color-olive:       #5e6443;         /* the plant-leaf green outside the window */
+  --color-moss:        #767a52;
+  --color-bone:        #d8cfb8;
+
+  /* ---- Semantic surface ---- */
+  --bg-canvas:      var(--color-cream-soft);
+  --bg-section-alt: var(--color-cream);
+  --bg-section-warm:var(--color-paper);
+  --bg-hero-dark:   #1a1610;            /* warm charcoal — firelit room */
+
+  --fg-primary:   var(--color-near-black);
+  --fg-secondary: var(--color-gray-70);
+  --fg-tertiary:  var(--color-gray-50);
+  --fg-on-dark:   var(--color-on-dark);
+
+  --hairline-light: 1px solid rgba(29,29,31,0.10);
+  --hairline-warm:  1px solid rgba(107,58,31,0.18);
+  --hairline-dark:  1px solid rgba(255,255,255,0.14);
+
+  --bg-nav-translucent: rgba(245,241,234,0.78);
+  --bg-nav-dark:        rgba(20,17,13,0.55);
+
+  /* ---- Type ---- */
+  /* Display: Bricolage Grotesque — soft, slightly imperfect, refined sans.
+     JP display: Zen Kaku Gothic Antique — humanist gothic, warm and friendly.
+     Body: Inter + Noto Sans JP. */
+  --font-display:    "Bricolage Grotesque", "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-display-jp: "Noto Sans JP", "Bricolage Grotesque", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-sans:       "Inter", "Noto Sans JP", -apple-system, "Hiragino Kaku Gothic ProN", "Helvetica Neue", sans-serif;
+  --font-jp:         "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  /* legacy aliases (kept so old selectors still resolve) */
+  --font-serif:    var(--font-display);
+  --font-serif-jp: var(--font-display-jp);
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px; --space-40: 160px;
+
+  --content-max:      1180px;
+  --content-max-narrow: 880px;
+  --content-gutter:    24px;
+
+  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px;
+  --radius-lg: 18px; --radius-xl: 28px; --radius-pill: 980px;
+
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  --z-nav: 100;
+  --z-modal: 1000;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  background: var(--bg-canvas);
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[lang="ja"], .lang-ja { font-family: var(--font-jp); line-height: 1.7; }
+
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV — fixed, translucent, switches modes via .is-on-dark
+   ============================================================ */
+
+/* ---- Hamburger button (mobile only) ---- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--duration-fast) var(--ease-apple),
+              border-color var(--duration-fast) var(--ease-apple);
+}
+.nav.is-light .nav__burger {
+  border-color: rgba(29,26,22,0.18);
+}
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: transform var(--duration-base) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple),
+              top var(--duration-base) var(--ease-apple);
+}
+.nav__burger span:nth-child(1) { top: 13px; }
+.nav__burger span:nth-child(2) { top: 19px; }
+.nav__burger span:nth-child(3) { top: 25px; }
+.nav__burger[aria-expanded="true"] span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+
+/* ---- Mobile drawer (full-screen overlay) ---- */
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #14110d;
+  color: var(--color-on-dark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear var(--duration-base);
+  pointer-events: none;
+}
+.nav__drawer[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear 0s;
+}
+.nav__drawer-inner {
+  position: absolute;
+  inset: 0;
+  padding: 96px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.nav__drawer a {
+  display: block;
+  width: 100%;
+  padding: 18px 4px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(236,230,216,0.10);
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__drawer a:active { opacity: 0.6; }
+body.nav-drawer-open {
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bg-nav-dark);
+  color: var(--color-on-dark);
+  transition: background var(--duration-base) var(--ease-apple),
+              color var(--duration-base) var(--ease-apple);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav.is-light {
+  background: var(--bg-nav-translucent);
+  color: var(--fg-primary);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.nav__brand .x {
+  opacity: 0.5;
+  font-style: italic;
+  font-size: 14px;
+  margin: 0 2px;
+}
+.nav__menu {
+  display: flex;
+  gap: var(--space-6);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav__menu a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__menu a:hover { opacity: 1; }
+
+.nav__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(196,129,74,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.nav__cta::before {
+  /* subtle inner highlight, top-half */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.nav__cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+@keyframes navCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,241,234,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(245,241,234,0); }
+}
+.nav__cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 8px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-arrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.nav__cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+}
+.nav__cta:hover .nav__cta-arrow {
+  transform: translateX(2px);
+}
+/* light nav (after hero) keeps the same ember treatment */
+.nav.is-light .nav__cta { background: var(--color-ember); color: var(--color-cream); }
+.nav.is-light .nav__cta:hover { background: var(--color-ember-d); }
+
+@media (max-width: 720px) {
+  .nav__cta { padding: 8px 14px 8px 12px; gap: 8px; }
+  .nav__cta-en { display: none; }
+}
+
+@media (max-width: 720px) {
+  .nav__menu { display: none; }
+  .nav__spacer { display: none; }
+  .nav__burger { display: block; }
+}
+
+/* ---- Nav "Back to top" — same style as menu links ---- */
+.nav__spacer {
+  /* invisible placeholder on the left, balancing the right-side CTA so the menu sits centered */
+  width: 1px;
+  height: 1px;
+}
+.nav__menu-top {
+  /* same style as sibling menu links; no italic, no special styling */
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple);
+}
+.btn--primary {
+  background: var(--color-near-black);
+  color: var(--color-cream);
+}
+.btn--primary:hover { background: #000; transform: translateY(-1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+  border-color: rgba(255,255,255,0.4);
+}
+.btn--ghost:hover { background: rgba(255,255,255,0.08); }
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-near-black);
+  border-color: rgba(29,29,31,0.25);
+}
+.btn--ghost-dark:hover { background: rgba(29,29,31,0.05); }
+
+/* ============================================================
+   COMMON UTILITIES
+   ============================================================ */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+.serif    { font-family: var(--font-display); }     /* legacy class — now display sans */
+.serif-jp { font-family: var(--font-display-jp); }
+.display    { font-family: var(--font-display); }
+.display-jp { font-family: var(--font-display-jp); }
+.italic   { font-style: italic; }
+
+.divider {
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  margin: 0;
+}
+
+/* fade-in on scroll (set by js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 700ms var(--ease-apple), transform 700ms var(--ease-apple);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+
+/* ===== rental.css (this section) ===== */
+/* ============================================================
+   RENTAL — re-base camp + Campify
+   Two service cards on warm canvas.
+   ============================================================ */
+
+.rental {
+  background: var(--color-white);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.rental__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.rental__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+.rental__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.rental__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.rental__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.7;
+}
+.rental__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.rental__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+.rental__header-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.rental__lead {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.rental__lead p {
+  margin: 0;
+}
+.rental__lead-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-6);
+}
+.rental__lead-bullets li {
+  padding: var(--space-4) var(--space-5);
+  background: rgba(196,129,74,0.06);
+  border-left: 2px solid var(--color-ember);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-gray-70);
+}
+.rental__lead-bullets strong {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-near-black);
+  margin-bottom: 2px;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Service card pair ---- */
+.rental__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.rental-card {
+  position: relative;
+  background: var(--color-cream-soft);
+  border: 1px solid rgba(29,26,22,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  overflow: hidden;
+}
+
+/* Photo placeholder at top of card */
+.rental-card__media {
+  position: relative;
+  margin: calc(-1 * var(--space-10)) calc(-1 * var(--space-10)) 0;
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(135deg, rgba(29,26,22,0.04), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 70% 60%, rgba(196,129,74,0.10), transparent 60%),
+    linear-gradient(180deg, var(--color-bone) 0%, var(--color-paper) 100%);
+  isolation: isolate;
+  overflow: hidden;
+}
+.rental-card__media--alt {
+  background:
+    linear-gradient(135deg, rgba(29,26,22,0.04), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 30% 50%, rgba(94,100,67,0.10), transparent 60%),
+    linear-gradient(180deg, var(--color-paper) 0%, var(--color-bone) 100%);
+}
+.rental-card__media::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(29,26,22,0.20);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+.rental-card__media-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.55);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.rental-card__media-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--color-gray-50);
+  letter-spacing: 0.02em;
+  padding: 24px;
+}
+
+.rental-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+}
+
+.rental-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+.rental-card__tag .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--color-ember);
+}
+
+.rental-card__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.rental-card__brand .ja {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--color-gray-50);
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+
+/* Body */
+.rental-card__body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+
+/* Steps list */
+.rental-card__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.rental-card__step {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+}
+.rental-card__step-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-ember);
+  border-top: 1px solid rgba(196,129,74,0.45);
+  padding-top: 6px;
+}
+.rental-card__step-body {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+  border-top: 1px solid rgba(29,26,22,0.08);
+  padding-top: 6px;
+}
+.rental-card__step-body strong {
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+/* Address / contact block (re-base only) */
+.rental-card__addr {
+  background: var(--color-paper);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.rental-card__addr-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rental-card__addr-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+.rental-card__addr-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-near-black);
+  letter-spacing: 0;
+}
+.rental-card__addr-item .v small {
+  display: block;
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--color-gray-50);
+  margin-top: 2px;
+}
+
+/* CTA */
+.rental-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--color-near-black);
+  color: var(--color-cream);
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple);
+}
+.rental-card__cta:hover { transform: translateY(-1px); background: #000; }
+.rental-card__cta--ghost {
+  background: transparent;
+  color: var(--color-near-black);
+  border: 1px solid rgba(29,26,22,0.25);
+}
+.rental-card__cta--ghost:hover {
+  background: rgba(29,26,22,0.05);
+}
+
+/* ---- Notes ---- */
+.rental__notes {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(29,26,22,0.08);
+}
+.rental__notes li {
+  list-style: none;
+  padding-left: 14px;
+  position: relative;
+}
+.rental__notes li::before {
+  content: "※";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-ember);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .rental__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-10); }
+  .rental__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .rental__eyebrow { padding-top: 0; }
+  .rental__pair { grid-template-columns: 1fr; gap: var(--space-5); }
+  .rental-card { padding: var(--space-8); }
+  .rental-card__media {
+    margin: calc(-1 * var(--space-8)) calc(-1 * var(--space-8)) 0;
+    aspect-ratio: 4 / 3;
+  }
+  .rental-card__addr { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .rental__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-6);
+  }
+
+  /* Section title */
+  .rental__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+
+  /* Service cards */
+  .rental__pair { gap: var(--space-5); }
+  .rental-card {
+    padding: var(--space-6);
+    gap: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .rental-card__media {
+    margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) 0;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+  .rental-card__media-tag {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+  .rental-card__media-hint {
+    font-size: 13px;
+  }
+  .rental-card__tag {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+  .rental-card__brand {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  .rental-card__brand .ja {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+  .rental-card__body {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  /* Steps */
+  .rental-card__steps { gap: var(--space-3); }
+  .rental-card__step {
+    grid-template-columns: 28px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .rental-card__step-num {
+    font-size: 13px;
+  }
+  .rental-card__step-body {
+    font-size: 13.5px !important;
+    line-height: 1.85;
+  }
+
+  /* Address block */
+  .rental-card__addr { gap: var(--space-3); }
+  .rental-card__addr-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+  .rental-card__addr-item .k {
+    min-width: 64px;
+    font-size: 10px;
+  }
+  .rental-card__addr-item .v {
+    flex: 1;
+    font-size: 14px;
+  }
+  .rental-card__addr-item .v small {
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .rental-card__cta {
+    padding: 14px 22px;
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+</style>
+</head>
+<body style="font-family:&quot;Noto Sans JP&quot;">
+<section class="rental" id="rental">
+  <div class="rental__inner">
+
+    <header class="rental__header reveal">
+      <div class="rental__eyebrow">
+        <span class="num">06</span>
+        <span class="rule"></span>
+        <span>Rental</span>
+      </div>
+      <div class="rental__header-body">
+        <h2 class="rental__title" lang="ja">Gear Rental</h2>
+      </div>
+    </header>
+
+    <!-- Service pair -->
+    <div class="rental__pair reveal">
+
+      <!-- re-base camp -->
+      <article class="rental-card">
+        <figure class="rental-card__media" aria-label="re-base camp レンタル道具">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/rental-rebase.jpg" alt="re-base camp のレンタル道具" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="rental-card__head">
+          <span class="rental-card__tag"><span class="dot"></span>Gear Only · Online Rental</span>
+          <h3 class="rental-card__brand">re-base camp<span class="ja" lang="ja">オンラインで注文して現地にお届け</span></h3>
+        </div>
+
+        <p class="rental-card__body" lang="ja">TORCH と提携のレンタルサービス。オンラインで道具をご注文いただき、お届け先を TORCH にご指定ください。撤収後は箱に戻していただき、こちらで返送の手配をいたします。
+
+</p>
+
+        <ol class="rental-card__steps">
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">01</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">re-base camp のサイトよりオンラインでご注文。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">02</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">お届け先を <strong>TORCH</strong> にご指定ください。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">03</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">返送は、届いた段ボールに道具を入れていただき、こちらで発送手配をいたします。</div>
+          </li>
+        </ol>
+
+        <div class="rental-card__addr">
+          <div class="rental-card__addr-item">
+            <span class="k">送り先住所</span>
+            <span class="v">TORCH<small lang="ja" style="font-size: 14px"><span style="color: rgb(12, 12, 11)">〒321-1436 栃木県日光市久次良町 242</span></small></span>
+          </div>
+          <div class="rental-card__addr-item">
+            <span class="k">電話場号</span>
+            <span class="v">050-6869-4561<small lang="ja" style="font-size: 14px">
+</small></span>
+          </div>
+        </div>
+
+        <a href="https://www.re-base.camp/" target="_blank" rel="noopener" class="rental-card__cta">re-base camp 公式サイトで注文 ↗</a>
+      </article>
+
+      <!-- Campify -->
+      <article class="rental-card">
+        <figure class="rental-card__media rental-card__media--alt" aria-label="Campify 手ぶらキャンプ">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/rental-campify.jpg" alt="Campify の手ぶらキャンプ" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="rental-card__head">
+          <span class="rental-card__tag">SETUP INCLUDED</span>
+          <h3 class="rental-card__brand">Campify<span class="ja" lang="ja">完全な手ぶらキャンプ。設営と片付けがすべて不要に</span></h3>
+        </div>
+
+        <p class="rental-card__body" lang="ja">初めてのキャンプで気になる設営と撤収作業を、すべてスタッフにお任せ。持ち物は食材のみでキャンプの夜をそのまま楽しめるサービスです。テントはグランピングでも使われるNordisk（ノルディスク）。寝具や椅子、テーブル、キッチン周りなど必要な全てが揃っています。</p>
+
+        <ol class="rental-card__steps">
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">01</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">まずは <strong>Plan A / Plan B</strong> からご希望のサイトをご予約ください。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">02</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">予約備考欄に <strong>「Campify 希望」</strong> とご記入ください。ご案内の連絡をさせていただきます。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">03</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">別途 Campify よりご予約。TORCH 予約サイトのご泊泊料を、当日チェックイン時に現金にてご返金いたします。</div>
+          </li>
+        </ol>
+
+        <a href="https://campify.jp/" target="_blank" rel="noopener" class="rental-card__cta">Campify 公式サイトを見る ↗</a>
+      </article>
+
+    </div>
+
+    <!-- Notes removed -->
+
+  </div>
+</section>
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)||!els.length){els.forEach(function(e){e.classList.add('is-in');});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:0.12});
+els.forEach(function(e){io.observe(e);});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== main.css (shared tokens & base) ===== */
+/* ============================================================
+   LIFE × TORCH "Dinner in Camp Night" — Shared styles
+   Built on Apple JP Design System, with earth-tone overlay.
+   ============================================================ */
+
+/* Bricolage Grotesque — refined-but-imperfect display sans (casual, warm).
+   Zen Kaku Gothic Antique — warm humanist JP gothic (friendlier than mincho).
+   Inter + Noto Sans JP — clean body. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,400;10..48,500;10..48,600;10..48,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- Neutrals — pulled from LIFE interior:
+         concrete, warm wood, cream wall, charcoal hardware ---- */
+  --color-white:      #ffffff;
+  --color-cream:      #ece6d8;          /* cream wall — warm off-white */
+  --color-cream-soft: #f4efe4;          /* lighter cream, page bg */
+  --color-paper:      #e3dccb;          /* warm paper accent */
+  --color-concrete:   #b8b1a3;          /* the打ちっぱなし grey, slightly warm */
+  --color-concrete-d: #8e887b;
+  --color-charcoal:   #2a2620;          /* the pendant-lamp / frame black */
+  --color-near-black: #1d1a16;          /* primary text — warm near-black */
+  --color-pure-black: #000000;
+
+  /* Warm grays for hierarchy */
+  --color-gray-90: #1d1a16;
+  --color-gray-70: #4a443b;
+  --color-gray-50: #756d60;
+  --color-gray-30: #9a9286;
+  --color-gray-15: #cfc8b8;
+  --color-gray-08: #e3dccb;
+
+  --color-on-dark:           rgba(236,230,216,0.94);
+  --color-on-dark-secondary: rgba(236,230,216,0.70);
+  --color-on-dark-tertiary:  rgba(236,230,216,0.50);
+
+  /* ---- Wood / firelight accents (warm earth) ---- */
+  --color-wood:        #8a6a4a;         /* worn oak — chair/table tone */
+  --color-wood-d:      #6b4f35;         /* darker walnut */
+  --color-wood-l:      #a88562;         /* sun-on-wood */
+  --color-ember:       #c4814a;         /* firelight glow */
+  --color-ember-d:     #8a4f28;         /* charred ember */
+  --color-olive:       #5e6443;         /* the plant-leaf green outside the window */
+  --color-moss:        #767a52;
+  --color-bone:        #d8cfb8;
+
+  /* ---- Semantic surface ---- */
+  --bg-canvas:      var(--color-cream-soft);
+  --bg-section-alt: var(--color-cream);
+  --bg-section-warm:var(--color-paper);
+  --bg-hero-dark:   #1a1610;            /* warm charcoal — firelit room */
+
+  --fg-primary:   var(--color-near-black);
+  --fg-secondary: var(--color-gray-70);
+  --fg-tertiary:  var(--color-gray-50);
+  --fg-on-dark:   var(--color-on-dark);
+
+  --hairline-light: 1px solid rgba(29,29,31,0.10);
+  --hairline-warm:  1px solid rgba(107,58,31,0.18);
+  --hairline-dark:  1px solid rgba(255,255,255,0.14);
+
+  --bg-nav-translucent: rgba(245,241,234,0.78);
+  --bg-nav-dark:        rgba(20,17,13,0.55);
+
+  /* ---- Type ---- */
+  /* Display: Bricolage Grotesque — soft, slightly imperfect, refined sans.
+     JP display: Zen Kaku Gothic Antique — humanist gothic, warm and friendly.
+     Body: Inter + Noto Sans JP. */
+  --font-display:    "Bricolage Grotesque", "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-display-jp: "Noto Sans JP", "Bricolage Grotesque", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-sans:       "Inter", "Noto Sans JP", -apple-system, "Hiragino Kaku Gothic ProN", "Helvetica Neue", sans-serif;
+  --font-jp:         "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  /* legacy aliases (kept so old selectors still resolve) */
+  --font-serif:    var(--font-display);
+  --font-serif-jp: var(--font-display-jp);
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px; --space-40: 160px;
+
+  --content-max:      1180px;
+  --content-max-narrow: 880px;
+  --content-gutter:    24px;
+
+  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px;
+  --radius-lg: 18px; --radius-xl: 28px; --radius-pill: 980px;
+
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  --z-nav: 100;
+  --z-modal: 1000;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  background: var(--bg-canvas);
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[lang="ja"], .lang-ja { font-family: var(--font-jp); line-height: 1.7; }
+
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV — fixed, translucent, switches modes via .is-on-dark
+   ============================================================ */
+
+/* ---- Hamburger button (mobile only) ---- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--duration-fast) var(--ease-apple),
+              border-color var(--duration-fast) var(--ease-apple);
+}
+.nav.is-light .nav__burger {
+  border-color: rgba(29,26,22,0.18);
+}
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: transform var(--duration-base) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple),
+              top var(--duration-base) var(--ease-apple);
+}
+.nav__burger span:nth-child(1) { top: 13px; }
+.nav__burger span:nth-child(2) { top: 19px; }
+.nav__burger span:nth-child(3) { top: 25px; }
+.nav__burger[aria-expanded="true"] span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+
+/* ---- Mobile drawer (full-screen overlay) ---- */
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #14110d;
+  color: var(--color-on-dark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear var(--duration-base);
+  pointer-events: none;
+}
+.nav__drawer[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear 0s;
+}
+.nav__drawer-inner {
+  position: absolute;
+  inset: 0;
+  padding: 96px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.nav__drawer a {
+  display: block;
+  width: 100%;
+  padding: 18px 4px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(236,230,216,0.10);
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__drawer a:active { opacity: 0.6; }
+body.nav-drawer-open {
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bg-nav-dark);
+  color: var(--color-on-dark);
+  transition: background var(--duration-base) var(--ease-apple),
+              color var(--duration-base) var(--ease-apple);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav.is-light {
+  background: var(--bg-nav-translucent);
+  color: var(--fg-primary);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.nav__brand .x {
+  opacity: 0.5;
+  font-style: italic;
+  font-size: 14px;
+  margin: 0 2px;
+}
+.nav__menu {
+  display: flex;
+  gap: var(--space-6);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav__menu a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__menu a:hover { opacity: 1; }
+
+.nav__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(196,129,74,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.nav__cta::before {
+  /* subtle inner highlight, top-half */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.nav__cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+@keyframes navCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,241,234,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(245,241,234,0); }
+}
+.nav__cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 8px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-arrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.nav__cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+}
+.nav__cta:hover .nav__cta-arrow {
+  transform: translateX(2px);
+}
+/* light nav (after hero) keeps the same ember treatment */
+.nav.is-light .nav__cta { background: var(--color-ember); color: var(--color-cream); }
+.nav.is-light .nav__cta:hover { background: var(--color-ember-d); }
+
+@media (max-width: 720px) {
+  .nav__cta { padding: 8px 14px 8px 12px; gap: 8px; }
+  .nav__cta-en { display: none; }
+}
+
+@media (max-width: 720px) {
+  .nav__menu { display: none; }
+  .nav__spacer { display: none; }
+  .nav__burger { display: block; }
+}
+
+/* ---- Nav "Back to top" — same style as menu links ---- */
+.nav__spacer {
+  /* invisible placeholder on the left, balancing the right-side CTA so the menu sits centered */
+  width: 1px;
+  height: 1px;
+}
+.nav__menu-top {
+  /* same style as sibling menu links; no italic, no special styling */
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple);
+}
+.btn--primary {
+  background: var(--color-near-black);
+  color: var(--color-cream);
+}
+.btn--primary:hover { background: #000; transform: translateY(-1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+  border-color: rgba(255,255,255,0.4);
+}
+.btn--ghost:hover { background: rgba(255,255,255,0.08); }
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-near-black);
+  border-color: rgba(29,29,31,0.25);
+}
+.btn--ghost-dark:hover { background: rgba(29,29,31,0.05); }
+
+/* ============================================================
+   COMMON UTILITIES
+   ============================================================ */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+.serif    { font-family: var(--font-display); }     /* legacy class — now display sans */
+.serif-jp { font-family: var(--font-display-jp); }
+.display    { font-family: var(--font-display); }
+.display-jp { font-family: var(--font-display-jp); }
+.italic   { font-style: italic; }
+
+.divider {
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  margin: 0;
+}
+
+/* fade-in on scroll (set by js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 700ms var(--ease-apple), transform 700ms var(--ease-apple);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+
+/* ===== talk.css (this section) ===== */
+/* ============================================================
+   TALK — Special Talk Show by Emi Kawakami
+   Editorial spread on warm dark surface — frames it as a marquee feature.
+   ============================================================ */
+
+.talk {
+  background: #4a5036;
+  color: var(--color-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+.talk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 85% 10%, rgba(244,231,180,0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 95%, rgba(236,230,216,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.talk__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.talk__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.talk__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+  padding-top: 18px;
+}
+.talk__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: #f0e6b6;
+  text-transform: none;
+}
+.talk__eyebrow .rule {
+  width: 28px; height: 1px; background: #f0e6b6; opacity: 0.7;
+}
+.talk__eyebrow .pill {
+  margin-left: 4px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(240,230,182,0.18);
+  color: #f4ebc4;
+}
+.talk__header-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.talk__kicker {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: #f0e6b6;
+  margin: 0;
+}
+.talk__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.talk__title .sub {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 19px);
+  letter-spacing: 0.04em;
+  color: var(--color-on-dark-secondary);
+  margin-top: 8px;
+}
+.talk__intro {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-on-dark-secondary);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* ---- Meta info bar — Time / Venue / Entry ---- */
+.talk__meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(240,230,182,0.20);
+}
+.talk__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.talk__meta-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+}
+.talk__meta-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 0;
+  color: var(--color-on-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.talk__meta-item .v small {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-on-dark-secondary);
+  margin-top: 2px;
+}
+
+/* ---- Feature: Portrait + Profile ---- */
+.talk__feature {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-12);
+  align-items: stretch;
+}
+
+.talk__portrait {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  background: var(--color-charcoal);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+.talk__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+.talk__portrait-cap {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-sans);
+  color: rgba(236,230,216,0.92);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border-radius: 4px;
+}
+.talk__portrait-cap .ja {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.talk__portrait-cap .en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.talk__profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.talk__profile-name {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--color-on-dark);
+  margin: 0;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(236,230,216,0.18);
+}
+.talk__profile-name .role {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+  margin-bottom: 8px;
+}
+.talk__profile-name .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--color-on-dark-secondary);
+  margin-top: 6px;
+}
+.talk__profile-bio {
+  font-family: var(--font-jp);
+  font-size: 14px;
+  line-height: 2;
+  color: var(--color-on-dark-secondary);
+  margin: 0;
+}
+.talk__profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+.talk__profile-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,230,182,0.35);
+  padding-bottom: 3px;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.talk__profile-link span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.talk__profile-link:hover {
+  opacity: 0.82;
+  border-bottom-color: #f0e6b6;
+}
+
+/* ---- Works gallery ---- */
+.talk__works {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.talk__works-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-tertiary);
+}
+.talk__works-label .rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(236,230,216,0.18);
+}
+.talk__works-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+}
+.talk__works-item {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.talk__works-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.talk__works-credit {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-on-dark-tertiary);
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-align: right;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .talk__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-8); }
+  .talk__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .talk__eyebrow { padding-top: 0; }
+  .talk__feature { grid-template-columns: 1fr; gap: var(--space-8); }
+  .talk__portrait { aspect-ratio: 4 / 3; }
+  .talk__portrait img { object-position: center 25%; }
+  .talk__works-grid { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .talk__works-item { aspect-ratio: 4 / 5; }
+  .talk__meta { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .talk__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Header */
+  .talk__title {
+    font-size: clamp(24px, 6.5vw, 32px);
+    line-height: 1.4;
+  }
+  .talk__title .sub {
+    font-size: 14px;
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .talk__kicker {
+    font-size: 14px;
+  }
+
+  /* Meta (Time / Venue / Entry) — stack, with tighter spacing */
+  .talk__meta {
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    margin-top: var(--space-4);
+  }
+  .talk__meta-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid rgba(240,230,182,0.10);
+  }
+  .talk__meta-item:last-child { border-bottom: none; }
+  .talk__meta-item .k {
+    min-width: 60px;
+    font-size: 10px;
+  }
+  .talk__meta-item .v {
+    font-size: 15px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .talk__meta-item .v small {
+    font-size: 12px;
+    margin-top: 0;
+  }
+
+  /* Portrait + Profile */
+  .talk__feature {
+    gap: var(--space-6);
+  }
+  .talk__portrait {
+    aspect-ratio: 4 / 5;
+  }
+  .talk__portrait img {
+    object-position: center 30%;
+  }
+  .talk__profile {
+    gap: var(--space-5);
+  }
+  .talk__profile-name {
+    font-size: 24px;
+    line-height: 1.35;
+    padding-bottom: var(--space-3);
+  }
+  .talk__profile-name .role {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+  }
+  .talk__profile-name .en {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .talk__profile-bio {
+    font-size: 14px;
+    line-height: 1.95;
+  }
+
+  /* Works gallery — 2-column grid stays readable */
+  .talk__works {
+    gap: var(--space-4);
+  }
+  .talk__works-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+  .talk__works-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+  .talk__works-item {
+    aspect-ratio: 3 / 4;
+  }
+  .talk__works-credit {
+    font-size: 12px;
+    text-align: left;
+  }
+}
+
+</style>
+</head>
+<body style="font-family:&quot;Noto Sans JP&quot;">
+<section class="talk" id="talk">
+  <div class="talk__inner">
+
+    <header class="talk__header reveal">
+      <div class="talk__eyebrow">
+        <span class="num">02</span>
+        <span class="rule"></span>
+        <span>Talk Show</span>
+      </div>
+      <div class="talk__header-body">
+        <p class="talk__kicker">A talk by LIFE's longtime graphic designer.</p>
+        <h2 class="talk__title" lang="ja">環島、だいたい迷子<span class="sub">— 余白だらけの台湾自転車一周旅 —</span></h2>
+
+        <p class="talk__intro" lang="ja">LIFEのクリエイティブを長年支えてきた川上恵美さん。これまでの制作の背景、そして直近で数ヶ月にわたり旅と滞在をしてきた台湾でのお話し。</p>
+
+        <div class="talk__meta" aria-label="開催情報">
+          <div class="talk__meta-item">
+            <span class="k">Time</span>
+            <span class="v" style="font-size: 16px">19:30 –<small lang="ja">ディナーのあとに</small></span>
+          </div>
+          <div class="talk__meta-item">
+            <span class="k">Venue</span>
+            <span class="v" style="font-size: 16px">Wooden Deck<small lang="ja">屋根付きウッドデッキ</small></span>
+          </div>
+          <div class="talk__meta-item">
+            <span class="k">Entry</span>
+            <span class="v" style="font-size: 16px">Open to All<small lang="ja">自由参加・申込み不要</small></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Portrait + profile -->
+    <div class="talk__feature reveal">
+      <figure class="talk__portrait">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-kawakami.png" alt="川上恵美 ポートレート" loading="lazy" decoding="async">
+      </figure>
+
+      <div class="talk__profile">
+        <h3 class="talk__profile-name" lang="ja">
+          <span class="role">Speaker · Graphic Designer</span>
+          川上 恵美
+          <span class="en">Megumi Kawakami</span>
+        </h3>
+        <p class="talk__profile-bio" lang="ja" style="font-size: 15px">東京都出身。幼少期を米国ロサンゼルスで過ごす。楽しかった思い出しかない米国にまた行きたい、と大学卒業後今度は真逆のニューヨークへ。Pratt Institute Communications Design 修士課程卒。NY のデザイン事務所、東京の広告写真制作会社でのデザイナーを経て 2010 年よりフリーランスデザイナー。<br>2014年からSomewhere Studioの屋号で活動。近年は屋号の通り、ときどき海外のどこか(Somewhere)に滞在しながらノマドワークをしている。</p>
+        <div class="talk__profile-links">
+          <a href="https://www.instagram.com/megumik_ss/" target="_blank" rel="noopener" class="talk__profile-link">Instagram <span>@megumik_ss</span> ↗</a>
+          <a href="http://somewherestudio.jp/" target="_blank" rel="noopener" class="talk__profile-link">Web <span>somewherestudio.jp</span> ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Works gallery -->
+    <div class="talk__works reveal">
+      <div class="talk__works-label">
+        <span>WORKS FOR LIFE</span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="talk__works-grid">
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-poster.png" alt="Taste of the Mountain — exhibition poster for LIFE" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-01.jpg" alt="LIFE 年表ブックレット" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-02.jpg" alt="PARK LIFE — Life of the Mind with Green" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-03.jpg" alt="LIFE Company Limited papers" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-04.png" alt="PARK LIFE — Cycling Holidays Issue" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-05.jpg" alt="LIFE Timeline — 年表" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <p class="talk__works-credit">Designed by Emi Kawakami / Somewhere Studio</p>
+    </div>
+
+  </div>
+</section>
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)||!els.length){els.forEach(function(e){e.classList.add('is-in');});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:0.12});
+els.forEach(function(e){io.observe(e);});})();
+</script>
+</body>
+</html>
