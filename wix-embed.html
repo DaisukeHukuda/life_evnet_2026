@@ -1,0 +1,5739 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFE × TORCH — Dinner in Camp Night</title>
+<meta name="description" content="2026年7月4日(土)ディナー・7月5日(日)モーニング。TORCH Camping & Coworking Spaceにて、LIFE 相場正一郎氏によるイタリアンと、川上恵美氏のトークショー。">
+<style>
+/* ===== main.css ===== */
+/* ============================================================
+   LIFE × TORCH "Dinner in Camp Night" — Shared styles
+   Built on Apple JP Design System, with earth-tone overlay.
+   ============================================================ */
+
+/* Bricolage Grotesque — refined-but-imperfect display sans (casual, warm).
+   Zen Kaku Gothic Antique — warm humanist JP gothic (friendlier than mincho).
+   Inter + Noto Sans JP — clean body. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,400;10..48,500;10..48,600;10..48,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&display=swap');
+
+:root {
+  /* ---- Neutrals — pulled from LIFE interior:
+         concrete, warm wood, cream wall, charcoal hardware ---- */
+  --color-white:      #ffffff;
+  --color-cream:      #ece6d8;          /* cream wall — warm off-white */
+  --color-cream-soft: #f4efe4;          /* lighter cream, page bg */
+  --color-paper:      #e3dccb;          /* warm paper accent */
+  --color-concrete:   #b8b1a3;          /* the打ちっぱなし grey, slightly warm */
+  --color-concrete-d: #8e887b;
+  --color-charcoal:   #2a2620;          /* the pendant-lamp / frame black */
+  --color-near-black: #1d1a16;          /* primary text — warm near-black */
+  --color-pure-black: #000000;
+
+  /* Warm grays for hierarchy */
+  --color-gray-90: #1d1a16;
+  --color-gray-70: #4a443b;
+  --color-gray-50: #756d60;
+  --color-gray-30: #9a9286;
+  --color-gray-15: #cfc8b8;
+  --color-gray-08: #e3dccb;
+
+  --color-on-dark:           rgba(236,230,216,0.94);
+  --color-on-dark-secondary: rgba(236,230,216,0.70);
+  --color-on-dark-tertiary:  rgba(236,230,216,0.50);
+
+  /* ---- Wood / firelight accents (warm earth) ---- */
+  --color-wood:        #8a6a4a;         /* worn oak — chair/table tone */
+  --color-wood-d:      #6b4f35;         /* darker walnut */
+  --color-wood-l:      #a88562;         /* sun-on-wood */
+  --color-ember:       #c4814a;         /* firelight glow */
+  --color-ember-d:     #8a4f28;         /* charred ember */
+  --color-olive:       #5e6443;         /* the plant-leaf green outside the window */
+  --color-moss:        #767a52;
+  --color-bone:        #d8cfb8;
+
+  /* ---- Semantic surface ---- */
+  --bg-canvas:      var(--color-cream-soft);
+  --bg-section-alt: var(--color-cream);
+  --bg-section-warm:var(--color-paper);
+  --bg-hero-dark:   #1a1610;            /* warm charcoal — firelit room */
+
+  --fg-primary:   var(--color-near-black);
+  --fg-secondary: var(--color-gray-70);
+  --fg-tertiary:  var(--color-gray-50);
+  --fg-on-dark:   var(--color-on-dark);
+
+  --hairline-light: 1px solid rgba(29,29,31,0.10);
+  --hairline-warm:  1px solid rgba(107,58,31,0.18);
+  --hairline-dark:  1px solid rgba(255,255,255,0.14);
+
+  --bg-nav-translucent: rgba(245,241,234,0.78);
+  --bg-nav-dark:        rgba(20,17,13,0.55);
+
+  /* ---- Type ---- */
+  /* Display: Bricolage Grotesque — soft, slightly imperfect, refined sans.
+     JP display: Zen Kaku Gothic Antique — humanist gothic, warm and friendly.
+     Body: Inter + Noto Sans JP. */
+  --font-display:    "Bricolage Grotesque", "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-display-jp: "Noto Sans JP", "Bricolage Grotesque", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-sans:       "Inter", "Noto Sans JP", -apple-system, "Hiragino Kaku Gothic ProN", "Helvetica Neue", sans-serif;
+  --font-jp:         "Noto Sans JP", "Inter", -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  /* legacy aliases (kept so old selectors still resolve) */
+  --font-serif:    var(--font-display);
+  --font-serif-jp: var(--font-display-jp);
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* ---- Spacing ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-32: 128px; --space-40: 160px;
+
+  --content-max:      1180px;
+  --content-max-narrow: 880px;
+  --content-gutter:    24px;
+
+  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px;
+  --radius-lg: 18px; --radius-xl: 28px; --radius-pill: 980px;
+
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  --z-nav: 100;
+  --z-modal: 1000;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  background: var(--bg-canvas);
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[lang="ja"], .lang-ja { font-family: var(--font-jp); line-height: 1.7; }
+
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV — fixed, translucent, switches modes via .is-on-dark
+   ============================================================ */
+
+/* ---- Hamburger button (mobile only) ---- */
+.nav__burger {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--duration-fast) var(--ease-apple),
+              border-color var(--duration-fast) var(--ease-apple);
+}
+.nav.is-light .nav__burger {
+  border-color: rgba(29,26,22,0.18);
+}
+.nav__burger span {
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translateX(-50%);
+  transition: transform var(--duration-base) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple),
+              top var(--duration-base) var(--ease-apple);
+}
+.nav__burger span:nth-child(1) { top: 13px; }
+.nav__burger span:nth-child(2) { top: 19px; }
+.nav__burger span:nth-child(3) { top: 25px; }
+.nav__burger[aria-expanded="true"] span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); }
+.nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded="true"] span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+
+/* ---- Mobile drawer (full-screen overlay) ---- */
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: #14110d;
+  color: var(--color-on-dark);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear var(--duration-base);
+  pointer-events: none;
+}
+.nav__drawer[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity var(--duration-base) var(--ease-apple),
+              transform var(--duration-base) var(--ease-apple),
+              visibility 0s linear 0s;
+}
+.nav__drawer-inner {
+  position: absolute;
+  inset: 0;
+  padding: 96px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.nav__drawer a {
+  display: block;
+  width: 100%;
+  padding: 18px 4px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-cream);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(236,230,216,0.10);
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__drawer a:active { opacity: 0.6; }
+body.nav-drawer-open {
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--bg-nav-dark);
+  color: var(--color-on-dark);
+  transition: background var(--duration-base) var(--ease-apple),
+              color var(--duration-base) var(--ease-apple);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav.is-light {
+  background: var(--bg-nav-translucent);
+  color: var(--fg-primary);
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.nav__brand .x {
+  opacity: 0.5;
+  font-style: italic;
+  font-size: 14px;
+  margin: 0 2px;
+}
+.nav__menu {
+  display: flex;
+  gap: var(--space-6);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav__menu a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) var(--ease-apple);
+}
+.nav__menu a:hover { opacity: 1; }
+
+.nav__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(196,129,74,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.nav__cta::before {
+  /* subtle inner highlight, top-half */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.nav__cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+@keyframes navCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,241,234,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(245,241,234,0); }
+}
+.nav__cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 8px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.nav__cta-arrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.nav__cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+}
+.nav__cta:hover .nav__cta-arrow {
+  transform: translateX(2px);
+}
+/* light nav (after hero) keeps the same ember treatment */
+.nav.is-light .nav__cta { background: var(--color-ember); color: var(--color-cream); }
+.nav.is-light .nav__cta:hover { background: var(--color-ember-d); }
+
+@media (max-width: 720px) {
+  .nav__cta { padding: 8px 14px 8px 12px; gap: 8px; }
+  .nav__cta-en { display: none; }
+}
+
+@media (max-width: 720px) {
+  .nav__menu { display: none; }
+  .nav__spacer { display: none; }
+  .nav__burger { display: block; }
+}
+
+/* ---- Nav "Back to top" — same style as menu links ---- */
+.nav__spacer {
+  /* invisible placeholder on the left, balancing the right-side CTA so the menu sits centered */
+  width: 1px;
+  height: 1px;
+}
+.nav__menu-top {
+  /* same style as sibling menu links; no italic, no special styling */
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              opacity var(--duration-fast) var(--ease-apple);
+}
+.btn--primary {
+  background: var(--color-near-black);
+  color: var(--color-cream);
+}
+.btn--primary:hover { background: #000; transform: translateY(-1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+  border-color: rgba(255,255,255,0.4);
+}
+.btn--ghost:hover { background: rgba(255,255,255,0.08); }
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-near-black);
+  border-color: rgba(29,29,31,0.25);
+}
+.btn--ghost-dark:hover { background: rgba(29,29,31,0.05); }
+
+/* ============================================================
+   COMMON UTILITIES
+   ============================================================ */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+.serif    { font-family: var(--font-display); }     /* legacy class — now display sans */
+.serif-jp { font-family: var(--font-display-jp); }
+.display    { font-family: var(--font-display); }
+.display-jp { font-family: var(--font-display-jp); }
+.italic   { font-style: italic; }
+
+.divider {
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  margin: 0;
+}
+
+/* fade-in on scroll (set by js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 700ms var(--ease-apple), transform 700ms var(--ease-apple);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+
+/* ===== hero.css ===== */
+/* ============================================================
+   HERO — first viewport
+   Layout: full-bleed, dark, magazine-like.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--bg-hero-dark);
+  color: var(--color-on-dark);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Backdrop placeholder: warm earth gradient (stand-in for real photo).
+   Replace .hero__media with <img src="..." class="hero__photo"> when assets arrive. */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #14110d;
+  overflow: hidden;
+}
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  /* gentle warm bias to harmonize with palette */
+  filter: saturate(0.95) contrast(1.04) brightness(0.92);
+  /* slow ken-burns drift */
+  animation: heroDrift 24s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+@keyframes heroDrift {
+  0%   { transform: scale(1.04) translate(0, 0); }
+  100% { transform: scale(1.10) translate(-1.5%, -1%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo { animation: none; transform: scale(1.04); }
+}
+/* Color-tone overlay — warm amber over cool blue twilight */
+.hero__media::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(31,24,18,0.55), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(15,12,9,0.35),  transparent 60%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.hero__media::after {
+  /* film grain via SVG, super subtle */
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.hero__credit {
+  position: absolute;
+  bottom: 18px; right: 22px;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(236,230,216,0.45);
+}
+@media (max-width: 720px) { .hero__credit { display: none; } }
+
+/* Top scrim under nav for legibility */
+.hero__scrim-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 220px;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), transparent);
+  pointer-events: none;
+}
+/* Bottom scrim */
+.hero__scrim-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 280px;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(0,0,0,0.55), transparent);
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 120px var(--content-gutter) var(--space-16);
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-12);
+}
+.hero__inner--compact {
+  grid-template-rows: 1fr auto;
+  gap: var(--space-10);
+  padding-top: 96px;
+}
+
+/* Top bar — eyebrow + small meta */
+.hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  color: var(--color-on-dark-secondary);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.hero__eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--color-ember);
+}
+.hero__edition {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  text-transform: none;
+}
+
+/* Center stack — title block */
+.hero__title-block {
+  align-self: center;
+}
+.hero__lockup {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: var(--space-6);
+}
+.hero__lockup .x {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: 0;
+  opacity: 0.55;
+  color: var(--color-on-dark);
+}
+.hero__logo {
+  display: block;
+  width: auto;
+  opacity: 0.95;
+}
+.hero__logo--life  { height: 78px; }
+.hero__logo--torch { height: 110px; }
+@media (max-width: 720px) {
+  .hero__lockup { gap: 14px; margin-bottom: var(--space-4); }
+  .hero__lockup .x   { font-size: 21px; }
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--color-cream);
+  margin: 0;
+  font-variation-settings: "opsz" 48;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.45), 0 1px 3px rgba(0,0,0,0.35);
+}
+.hero__title .it {
+  font-style: italic;
+  font-weight: 400;
+}
+.hero__title .amp {
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.62;
+  margin: 0 0.06em;
+  letter-spacing: -0.01em;
+}
+.hero__subtitle {
+  font-family: var(--font-jp);
+  font-weight: 700;
+  font-size: clamp(15px, 1.6vw, 18px);
+  letter-spacing: 0.02em;
+  color: var(--color-on-dark);
+  margin-top: var(--space-8);
+  max-width: 560px;
+  line-height: 1.95;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.55), 0 2px 16px rgba(0,0,0,0.5);
+}
+
+/* Bottom row — meta grid + CTAs */
+.hero__bottom {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-10);
+  align-items: end;
+}
+.hero__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  gap: var(--space-10);
+}
+.hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.hero__meta-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-tertiary);
+  font-weight: 600;
+}
+.hero__meta-value {
+  font-family: var(--font-serif);
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.3;
+  color: var(--color-on-dark);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.hero__meta-value .small {
+  font-family: var(--font-jp);
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  display: block;
+  margin-top: 2px;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.hero__cta {
+  background: var(--color-cream);
+  color: var(--color-near-black);
+}
+.hero__cta:hover { background: #fff; }
+
+/* Scroll cue — pinned to the left side so it never overlaps meta/CTA */
+.hero__cue {
+  position: absolute;
+  left: 22px;
+  bottom: 28px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(236,230,216,0.55);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+}
+.hero__cue .line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(180deg, rgba(236,230,216,0.6), rgba(236,230,216,0));
+  animation: cueLine 2.4s var(--ease-apple) infinite;
+  transform-origin: top;
+}
+@media (max-width: 980px) {
+  .hero__cue { display: none; }
+}
+@keyframes cueLine {
+  0%   { transform: scaleY(0);   opacity: 0; }
+  35%  { transform: scaleY(1);   opacity: 1; }
+  100% { transform: scaleY(1);   opacity: 0; }
+}
+
+/* Decorative side rule, magazine spread feel */
+.hero__rule-left,
+.hero__rule-right {
+  position: absolute;
+  top: 56px; bottom: 0;
+  z-index: 2;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+  pointer-events: none;
+}
+.hero__rule-left  { left: max(28px, calc((100vw - var(--content-max))/2 - 8px)); }
+.hero__rule-right { right: max(28px, calc((100vw - var(--content-max))/2 - 8px)); }
+
+/* Vertical lockup labels along the rules */
+.hero__vlabel {
+  position: absolute;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+}
+.hero__vlabel--l {
+  top: 50%;
+  left: max(14px, calc((100vw - var(--content-max))/2 - 22px));
+  transform: translateY(-50%) rotate(180deg);
+}
+.hero__vlabel--r {
+  top: 50%;
+  right: max(14px, calc((100vw - var(--content-max))/2 - 22px));
+  transform: translateY(-50%);
+}
+
+/* ---- Mobile (≤720px) ---- */
+@media (max-width: 720px) {
+  .hero__inner {
+    padding: 88px 20px 40px;
+    gap: var(--space-8);
+    grid-template-rows: 1fr auto;
+  }
+
+  /* Logo lockup — keep side by side, sized to read clearly */
+  .hero__lockup {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: var(--space-5);
+  }
+  .hero__logo--life  { height: 64px !important; width: auto !important; }
+  .hero__logo--torch { height: 84px !important; width: auto !important; }
+
+  /* Title — 2-line wrap OK, readable size */
+  .hero__title {
+    font-size: clamp(44px, 13vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  /* Subtitle — readable body size */
+  .hero__subtitle {
+    font-size: 14px;
+    line-height: 1.85;
+    margin-top: var(--space-5);
+    letter-spacing: 0.02em;
+  }
+
+  /* Bottom row — stack meta over CTA */
+  .hero__bottom {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  /* Meta — single column, breathable */
+  .hero__meta {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    width: 100%;
+  }
+  .hero__meta-label { font-size: 10px; }
+  .hero__meta-value { font-size: 15px; line-height: 1.5; }
+
+  /* CTAs — stacked, each 80% width, centered */
+  .hero__ctas {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+  }
+  .hero__ctas .btn {
+    width: 80%;
+    flex: 0 0 auto;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  /* Hide editorial flourishes */
+  .hero__rule-left, .hero__rule-right,
+  .hero__vlabel { display: none; }
+  .hero__cue { display: none; }
+  .hero__credit { display: none; }
+  .hero__top { font-size: 12px; }
+  .hero__edition { font-size: 13px; }
+}
+
+
+/* ===== story.css ===== */
+/* ============================================================
+   STORY — concept + 川上恵美 talk show
+   Light cream surface, magazine-style asymmetric spread.
+   ============================================================ */
+
+.story {
+  background: var(--bg-canvas);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.story__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: grid;
+  gap: var(--space-20);
+}
+
+/* ---- Section header ---- */
+.story__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.story__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.story__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.story__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.6;
+}
+.story__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  max-width: 780px;
+  white-space: nowrap;
+}
+.story__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-ember);
+}
+.story__title .br { display: block; }
+
+/* ---- Concept block: asymmetric two-column ---- */
+.story__concept {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: var(--space-12) var(--space-16);
+  align-items: start;
+}
+.story__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--color-paper);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.story__media img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.story__media-tag {
+  position: absolute;
+  bottom: 14px; left: 14px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(236,230,216,0.85);
+  background: rgba(29,26,22,0.55);
+  backdrop-filter: blur(6px);
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.story__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  max-width: 560px;
+}
+.story__lead {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.story__body {
+  font-family: var(--font-jp);
+  font-size: 17px;
+  line-height: 2;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+
+/* ---- Pull quote ---- */
+.story__quote {
+  margin: var(--space-8) 0 0;
+  padding: var(--space-8) 0 var(--space-8) var(--space-6);
+  border-left: 2px solid var(--color-ember);
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.85;
+  color: var(--color-near-black);
+}
+.story__quote-cite {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+
+/* ---- Photo gallery: chef at work ---- */
+.story__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.story__gallery-item {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  background: var(--color-paper);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.story__gallery-item--tall {
+  aspect-ratio: 4 / 5;
+}
+.story__gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms ease;
+}
+.story__gallery-item:hover img {
+  transform: scale(1.03);
+}
+.story__gallery-cap {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(236, 230, 216, 0.92);
+  background: rgba(29, 26, 22, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+/* ---- Talk show subsection ---- */
+.story__talk {
+  margin-top: var(--space-12);
+  padding: var(--space-16) var(--space-12);
+  background: var(--color-paper);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  align-items: stretch;
+}
+.story__talk-media {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, var(--color-bone), var(--color-concrete));
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+  width: 100%;
+  margin: 0 auto;
+}
+.story__talk-media img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.story__talk-media-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(6px);
+  padding: 5px 10px;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+.story__talk-media-hint {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-gray-50);
+  text-align: right;
+  align-self: flex-end;
+}
+.story__talk-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+  margin-bottom: 14px;
+}
+.story__talk-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.45;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-3);
+  text-wrap: balance;
+}
+.story__talk-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin: 0 0 var(--space-6);
+}
+.story__talk-body {
+  font-family: var(--font-jp);
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0 0 var(--space-6);
+}
+.story__talk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(29,26,22,0.10);
+}
+.story__talk-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.story__talk-meta-item .k {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-gray-50);
+}
+.story__talk-meta-item .v {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-near-black);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .story__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-12); }
+  .story__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .story__eyebrow { padding-top: 0; }
+  .story__concept { grid-template-columns: 1fr; gap: var(--space-8); }
+  .story__media { aspect-ratio: 4/5; max-height: 70vh; }
+  .story__talk { grid-template-columns: 1fr; padding: var(--space-10) var(--space-6); gap: var(--space-8); }
+  .story__talk-media { aspect-ratio: 4/3; }
+  .story__gallery { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .story__gallery-item { aspect-ratio: 4 / 5; }
+  .story__gallery-cap { font-size: 10px; padding: 4px 8px; bottom: 10px; left: 10px; }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .story__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-10);
+  }
+
+  /* Section title — single line, scaled to the viewport so it never wraps */
+  .story__title {
+    font-size: clamp(16px, 6vw, 38px);
+    line-height: 1.4;
+  }
+  .story__title .br { display: inline; }
+
+  /* Concept block */
+  .story__concept { gap: var(--space-6); }
+  .story__media { aspect-ratio: 4 / 5; max-height: none; }
+  .story__copy { padding-top: 0; gap: var(--space-4); }
+  .story__lead { font-size: 17px; line-height: 1.7; }
+  .story__body { font-size: 15px; line-height: 1.95; }
+
+  /* Photo gallery — single column for clarity */
+  .story__gallery {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .story__gallery-item { aspect-ratio: 4 / 3; }
+
+  /* Sunday Morning block */
+  .story__talk {
+    margin-top: var(--space-6);
+    padding: var(--space-6) var(--space-5);
+    gap: var(--space-6);
+  }
+  .story__talk-media { aspect-ratio: 16 / 11; }
+  .story__talk-eyebrow { font-size: 10px; letter-spacing: 0.18em; }
+  .story__talk-title { font-size: 19px; line-height: 1.5; }
+  .story__talk-subtitle { font-size: 14px; }
+  .story__talk-body { font-size: 14.5px; line-height: 1.9; }
+  .story__talk-meta { gap: var(--space-3) var(--space-5); }
+  .story__talk-meta-item .v { font-size: 15px; }
+}
+
+
+/* ===== talk.css ===== */
+/* ============================================================
+   TALK — Special Talk Show by Emi Kawakami
+   Editorial spread on warm dark surface — frames it as a marquee feature.
+   ============================================================ */
+
+.talk {
+  background: #4a5036;
+  color: var(--color-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+.talk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 85% 10%, rgba(244,231,180,0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 95%, rgba(236,230,216,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.talk__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.talk__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.talk__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+  padding-top: 18px;
+}
+.talk__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: #f0e6b6;
+  text-transform: none;
+}
+.talk__eyebrow .rule {
+  width: 28px; height: 1px; background: #f0e6b6; opacity: 0.7;
+}
+.talk__eyebrow .pill {
+  margin-left: 4px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(240,230,182,0.18);
+  color: #f4ebc4;
+}
+.talk__header-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.talk__kicker {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: #f0e6b6;
+  margin: 0;
+}
+.talk__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.talk__title .sub {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 19px);
+  letter-spacing: 0.04em;
+  color: var(--color-on-dark-secondary);
+  margin-top: 8px;
+}
+.talk__intro {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-on-dark-secondary);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* ---- Meta info bar — Time / Venue / Entry ---- */
+.talk__meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(240,230,182,0.20);
+}
+.talk__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.talk__meta-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+}
+.talk__meta-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 0;
+  color: var(--color-on-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.talk__meta-item .v small {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-on-dark-secondary);
+  margin-top: 2px;
+}
+
+/* ---- Feature: Portrait + Profile ---- */
+.talk__feature {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-12);
+  align-items: stretch;
+}
+
+.talk__portrait {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  background: var(--color-charcoal);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+.talk__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+.talk__portrait-cap {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-sans);
+  color: rgba(236,230,216,0.92);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border-radius: 4px;
+}
+.talk__portrait-cap .ja {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.talk__portrait-cap .en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.talk__profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.talk__profile-name {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--color-on-dark);
+  margin: 0;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(236,230,216,0.18);
+}
+.talk__profile-name .role {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+  margin-bottom: 8px;
+}
+.talk__profile-name .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--color-on-dark-secondary);
+  margin-top: 6px;
+}
+.talk__profile-bio {
+  font-family: var(--font-jp);
+  font-size: 14px;
+  line-height: 2;
+  color: var(--color-on-dark-secondary);
+  margin: 0;
+}
+.talk__profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+.talk__profile-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f0e6b6;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,230,182,0.35);
+  padding-bottom: 3px;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.talk__profile-link span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.talk__profile-link:hover {
+  opacity: 0.82;
+  border-bottom-color: #f0e6b6;
+}
+
+/* ---- Works gallery ---- */
+.talk__works {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.talk__works-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-tertiary);
+}
+.talk__works-label .rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(236,230,216,0.18);
+}
+.talk__works-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+}
+.talk__works-item {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.talk__works-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.talk__works-credit {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-on-dark-tertiary);
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-align: right;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .talk__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-8); }
+  .talk__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .talk__eyebrow { padding-top: 0; }
+  .talk__feature { grid-template-columns: 1fr; gap: var(--space-8); }
+  .talk__portrait { aspect-ratio: 4 / 3; }
+  .talk__portrait img { object-position: center 25%; }
+  .talk__works-grid { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .talk__works-item { aspect-ratio: 4 / 5; }
+  .talk__meta { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .talk__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Header */
+  .talk__title {
+    font-size: clamp(24px, 6.5vw, 32px);
+    line-height: 1.4;
+  }
+  .talk__title .sub {
+    font-size: 14px;
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .talk__kicker {
+    font-size: 14px;
+  }
+
+  /* Meta (Time / Venue / Entry) — stack, with tighter spacing */
+  .talk__meta {
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    margin-top: var(--space-4);
+  }
+  .talk__meta-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid rgba(240,230,182,0.10);
+  }
+  .talk__meta-item:last-child { border-bottom: none; }
+  .talk__meta-item .k {
+    min-width: 60px;
+    font-size: 10px;
+  }
+  .talk__meta-item .v {
+    font-size: 15px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .talk__meta-item .v small {
+    font-size: 12px;
+    margin-top: 0;
+  }
+
+  /* Portrait + Profile */
+  .talk__feature {
+    gap: var(--space-6);
+  }
+  .talk__portrait {
+    aspect-ratio: 4 / 5;
+  }
+  .talk__portrait img {
+    object-position: center 30%;
+  }
+  .talk__profile {
+    gap: var(--space-5);
+  }
+  .talk__profile-name {
+    font-size: 24px;
+    line-height: 1.35;
+    padding-bottom: var(--space-3);
+  }
+  .talk__profile-name .role {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+  }
+  .talk__profile-name .en {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .talk__profile-bio {
+    font-size: 14px;
+    line-height: 1.95;
+  }
+
+  /* Works gallery — 2-column grid stays readable */
+  .talk__works {
+    gap: var(--space-4);
+  }
+  .talk__works-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+  .talk__works-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+  .talk__works-item {
+    aspect-ratio: 3 / 4;
+  }
+  .talk__works-credit {
+    font-size: 12px;
+    text-align: left;
+  }
+}
+
+
+/* ===== menu.css ===== */
+/* ============================================================
+   MENU — Dinner (LIFE) + Morning (HUT) + Natural Wine Bar
+   Editorial menu card spread on warm paper surface.
+   ============================================================ */
+
+.menu {
+  background: var(--color-white);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: grid;
+  gap: var(--space-16);
+}
+
+/* ---- Section header (parity with Story) ---- */
+.menu__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.menu__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.menu__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.menu__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.6;
+}
+.menu__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  max-width: 820px;
+  text-wrap: pretty;
+}
+.menu__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+
+/* ---- Two-up card layout ---- */
+.menu__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: stretch;
+}
+
+/* ---- Menu card ---- */
+.menu__card {
+  background: var(--color-cream-soft);
+  border: 1px solid rgba(29,26,22,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu__card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+}
+.menu__card-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu__card-tag .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--color-ember);
+}
+.menu--morning .menu__card-tag .dot { background: var(--color-olive); }
+
+.menu__card-when {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-gray-50);
+  white-space: nowrap;
+}
+
+.menu__card-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.menu__card-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray-50);
+  margin: -2px 0 0;
+}
+.menu__card-by {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-wood-d);
+  margin: 0;
+}
+
+/* ---- Dish photo placeholder ---- */
+.menu__card-media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(135deg, rgba(196,129,74,0.08), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 75% 60%, rgba(196,129,74,0.10), transparent 60%),
+    var(--color-paper);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  isolation: isolate;
+}
+.menu__card-media--morning {
+  background:
+    linear-gradient(135deg, rgba(216,207,184,0.20), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 25% 40%, rgba(216,207,184,0.32), transparent 60%),
+    var(--color-cream);
+}
+.menu__card-media::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(29,26,22,0.18);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+.menu__card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.menu__card-media-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(29,26,22,0.55);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(6px);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.menu__card-media-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.85;
+  color: rgba(29,26,22,0.40);
+  letter-spacing: 0.02em;
+  padding: 24px;
+}
+
+/* ---- Dish list ---- */
+.menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.menu__item {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: var(--space-4);
+  align-items: baseline;
+}
+.menu__item--solo {
+  grid-template-columns: 1fr;
+}
+.menu__item-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-ember);
+  letter-spacing: 0.02em;
+  border-top: 1px solid rgba(196,129,74,0.45);
+  padding-top: 6px;
+}
+.menu__item-body {
+  border-top: 1px solid rgba(29,26,22,0.08);
+  padding-top: 6px;
+}
+.menu__item-name {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-near-black);
+  margin: 0 0 4px;
+}
+.menu__item-name .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--color-gray-50);
+  margin-top: 2px;
+}
+.menu__item-desc {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+
+/* ---- Footnote inside card ---- */
+.menu__card-note {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px dashed rgba(29,26,22,0.18);
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-gray-50);
+}
+
+/* ---- Natural Wine Bar — full-width strip with photo placeholder ---- */
+.menu__wine {
+  margin-top: var(--space-6);
+  padding: 0;
+  background: var(--color-charcoal);
+  color: var(--color-on-dark);
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Long-table photo placeholder (cloth + bottles + cooler + glasses)
+   16:10 panel; replace inner contents with <img> once asset arrives. */
+.menu__wine-media {
+  position: relative;
+  margin: 0;
+  min-height: 420px;
+  aspect-ratio: 16 / 11;
+  background:
+    /* highlight on the cloth, slightly warm */
+    linear-gradient(135deg, rgba(236,230,216,0.06), transparent 55%),
+    /* table cloth tone */
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0 6px, transparent 6px 12px),
+    radial-gradient(ellipse at 65% 70%, rgba(196,129,74,0.18), transparent 60%),
+    linear-gradient(180deg, #221c14 0%, #14110d 100%);
+  overflow: hidden;
+  isolation: isolate;
+}
+.menu__wine-media::before {
+  /* dashed inset to read as "placeholder" until photo arrives */
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(236,230,216,0.18);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+/* Real photo in place — drop the placeholder styling and fill the frame */
+.menu__wine-media--live { background: none; }
+.menu__wine-media--live::before { display: none; }
+.menu__wine-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.menu__wine-media-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(236,230,216,0.55);
+  background: rgba(0,0,0,0.3);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.menu__wine-media-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(236,230,216,0.45);
+  padding: 24px;
+  letter-spacing: 0.02em;
+}
+
+.menu__wine-body-wrap {
+  position: relative;
+  padding: var(--space-12) var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  justify-content: center;
+}
+.menu__wine-body-wrap::before {
+  /* subtle warm vignette to evoke firelight */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 88% 50%, rgba(196,129,74,0.14), transparent 60%);
+  pointer-events: none;
+}
+.menu__wine-body-wrap > * { position: relative; z-index: 1; }
+
+.menu__wine-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin: 0;
+}
+.menu__wine-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.4;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.menu__wine-title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--color-on-dark-secondary);
+  margin-top: 6px;
+  letter-spacing: 0.01em;
+}
+.menu__wine-body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-on-dark-secondary);
+  margin: 0;
+}
+
+.menu__wine-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3) var(--space-5);
+  padding: var(--space-5);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-3);
+}
+.menu__wine-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.menu__wine-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+.menu__wine-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-on-dark);
+  letter-spacing: 0.005em;
+}
+.menu__wine-item .v small {
+  display: block;
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--color-on-dark-tertiary);
+  letter-spacing: 0;
+  margin-top: 2px;
+}
+
+/* ---- Mobile (≤860px) ---- */
+@media (max-width: 860px) {
+  .menu__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-10); }
+  .menu__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .menu__eyebrow { padding-top: 0; }
+  .menu__pair { grid-template-columns: 1fr; gap: var(--space-6); }
+  .menu__card { padding: var(--space-8); }
+  .menu__wine { grid-template-columns: 1fr; }
+  .menu__wine-media { min-height: 280px; aspect-ratio: 4/3; }
+  .menu__wine-body-wrap { padding: var(--space-8); gap: var(--space-4); }
+  .menu__wine-list { grid-template-columns: 1fr; padding: var(--space-5); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .menu__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Section title */
+  .menu__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+
+  /* Dinner & Morning cards */
+  .menu__pair { gap: var(--space-5); }
+  .menu__card {
+    padding: var(--space-6);
+    gap: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .menu__card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .menu__card-tag {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+  .menu__card-when {
+    font-size: 14px;
+  }
+  .menu__card-title {
+    font-size: 21px;
+    line-height: 1.45;
+  }
+  .menu__card-subtitle {
+    font-size: 14px;
+  }
+  .menu__card-by {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  /* Items list */
+  .menu__list { gap: var(--space-3); }
+  .menu__item {
+    grid-template-columns: 32px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  /* Solo items have no number column — keep them full-width so the
+     text doesn't get squeezed into the 32px column on mobile. */
+  .menu__item--solo {
+    grid-template-columns: 1fr;
+  }
+  .menu__item-num {
+    font-size: 15px;
+  }
+  .menu__item-name {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .menu__item-name .en {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    letter-spacing: 0.01em;
+  }
+  .menu__item-desc {
+    font-size: 13.5px !important;
+    line-height: 1.85;
+  }
+
+  .menu__card-note {
+    font-size: 12px;
+    line-height: 1.85;
+    padding-top: var(--space-3);
+  }
+
+  /* Wine bar — single column, full bleed */
+  .menu__wine {
+    border-radius: var(--radius-md);
+  }
+  .menu__wine-media {
+    min-height: 200px;
+    aspect-ratio: 4 / 3;
+  }
+  .menu__wine-media-tag {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+  .menu__wine-media-hint {
+    font-size: 13px;
+  }
+  .menu__wine-body-wrap {
+    padding: var(--space-6);
+    gap: var(--space-4);
+  }
+  .menu__wine-tag {
+    font-size: 10px;
+  }
+  .menu__wine-title {
+    font-size: 22px;
+    line-height: 1.5;
+  }
+  .menu__wine-title .en {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .menu__wine-body {
+    font-size: 14.5px;
+    line-height: 1.9;
+  }
+  .menu__wine-list {
+    padding: var(--space-4);
+    gap: var(--space-3);
+  }
+  .menu__wine-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+  .menu__wine-item .k {
+    min-width: 50px;
+  }
+  .menu__wine-item .v {
+    flex: 1;
+    font-size: 14px;
+  }
+  .menu__wine-item .v small {
+    display: block;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+}
+
+
+/* ===== plans.css ===== */
+/* ============================================================
+   PLANS — Plan A / Plan B + food-only add-ons
+   Editorial pricing cards on warm canvas.
+   ============================================================ */
+
+.plans {
+  background: var(--bg-canvas);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.plans__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: grid;
+  gap: var(--space-16);
+}
+
+/* ---- Section header ---- */
+.plans__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.plans__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.plans__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.plans__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.6;
+}
+.plans__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-3);
+  max-width: 820px;
+  text-wrap: pretty;
+}
+.plans__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+.plans__lead {
+  font-family: var(--font-jp);
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+  max-width: 720px;
+}
+
+/* ---- Plan card pair ---- */
+.plans__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.plan {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid rgba(29,26,22,0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  overflow: hidden;
+}
+.plan--featured {
+  background: var(--color-charcoal);
+  color: var(--color-on-dark);
+  border-color: transparent;
+}
+.plan--featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 15%, rgba(196,129,74,0.18), transparent 55%);
+  pointer-events: none;
+}
+.plan > * { position: relative; z-index: 1; }
+
+/* Plan header — code + title + price */
+.plan__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+}
+.plan--featured .plan__head { border-bottom-color: rgba(236,230,216,0.14); }
+
+.plan__code {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+.plan--featured .plan__code { color: var(--color-ember); }
+.plan__code .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.plan__code .badge {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  background: var(--color-ember);
+  color: var(--color-cream);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.plan__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.plan--featured .plan__title { color: var(--color-on-dark); }
+.plan__title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin-top: 6px;
+}
+.plan--featured .plan__title .en { color: var(--color-on-dark-secondary); }
+
+/* Price block */
+.plan__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: var(--space-2);
+}
+.plan__price-amount {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 4.6vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black);
+}
+.plan--featured .plan__price-amount { color: var(--color-on-dark); }
+.plan__price-currency {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--color-gray-50);
+}
+.plan--featured .plan__price-currency { color: var(--color-on-dark-secondary); }
+.plan__price-unit {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-50);
+  margin-left: 4px;
+}
+.plan--featured .plan__price-unit { color: var(--color-on-dark-tertiary); }
+.plan__price-note {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  color: var(--color-gray-50);
+  margin: 4px 0 0;
+}
+.plan--featured .plan__price-note { color: var(--color-on-dark-tertiary); }
+
+/* Feature list */
+.plan__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.plan__features li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+}
+.plan--featured .plan__features li { color: var(--color-on-dark-secondary); }
+.plan__features li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: 9px;
+  background: var(--color-ember);
+  border-radius: 50%;
+  display: block;
+  justify-self: center;
+}
+
+/* Pricing detail (adult / child) */
+.plan__pricing {
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px dashed rgba(29,26,22,0.18);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4);
+}
+.plan--featured .plan__pricing { border-top-color: rgba(236,230,216,0.18); }
+.plan__pricing-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.plan__pricing-item .k {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+.plan--featured .plan__pricing-item .k { color: var(--color-on-dark-tertiary); }
+.plan__pricing-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--color-near-black);
+  letter-spacing: 0.005em;
+}
+.plan--featured .plan__pricing-item .v { color: var(--color-on-dark); }
+.plan__pricing-item .v small {
+  display: block;
+  font-family: var(--font-jp);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-gray-50);
+  letter-spacing: 0;
+}
+.plan--featured .plan__pricing-item .v small { color: var(--color-on-dark-tertiary); }
+
+/* CTA */
+.plan__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--color-near-black);
+  color: var(--color-cream);
+  text-decoration: none;
+  border: 1px solid transparent;
+  margin-top: var(--space-3);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple);
+}
+.plan__cta:hover { transform: translateY(-1px); background: #000; }
+.plan--featured .plan__cta {
+  background: var(--color-cream);
+  color: var(--color-near-black);
+}
+.plan--featured .plan__cta:hover { background: #fff; }
+
+/* ---- In-card reservation CTA (each plan has its own) ---- */
+.plan__cta-card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 14px 22px 14px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(196,129,74,0.20);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+  align-self: stretch;
+}
+.plan__cta-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.plan__cta-card-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  position: relative;
+  z-index: 1;
+}
+.plan__cta-card-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.plan__cta-card-arrow {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.plan__cta-card:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(196,129,74,0.32);
+}
+.plan__cta-card:hover .plan__cta-card-arrow {
+  transform: translateX(2px);
+}
+/* Featured (Plan A / dark card) variant — cream button against dark */
+.plan--featured .plan__cta-card {
+  background: var(--color-cream);
+  color: var(--color-near-black);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.32);
+}
+.plan--featured .plan__cta-card-dot {
+  background: var(--color-ember);
+}
+.plan--featured .plan__cta-card:hover {
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.42);
+}
+
+/* ---- Unified Reserva CTA — single entry to external reservation system ---- */
+.plans__reserve {
+  margin-top: var(--space-4);
+  background: #6b4f35;
+  color: var(--color-on-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-12);
+  display: grid;
+  grid-template-columns: 1.4fr auto;
+  gap: var(--space-10);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.plans__reserve::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 50%, rgba(196,129,74,0.18), transparent 60%);
+  pointer-events: none;
+}
+.plans__reserve > * { position: relative; z-index: 1; }
+
+.plans__reserve-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 560px;
+}
+.plans__reserve-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+.plans__reserve-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.45;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.plans__reserve-body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-on-dark-secondary);
+  margin: 0;
+}
+
+.plans__reserve-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 28px 18px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ember);
+  color: var(--color-cream);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 24px rgba(196,129,74,0.28);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.plans__reserve-cta::before {
+  /* same top highlight as nav__cta */
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+.plans__reserve-cta-dot {
+  position: relative;
+  z-index: 1;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  box-shadow: 0 0 0 0 rgba(245,241,234,0.65);
+  animation: navCtaPulse 2.4s ease-in-out infinite;
+}
+.plans__reserve-cta-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+}
+.plans__reserve-cta-en {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  padding-left: 12px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+}
+.plans__reserve-cta-arrow {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.plans__reserve-cta:hover {
+  background: var(--color-ember-d);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(196,129,74,0.36);
+}
+.plans__reserve-cta:hover .plans__reserve-cta-arrow {
+  transform: translateX(2px);
+}
+
+/* ---- Food-only add-on strip ---- */
+.plans__addon {
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.plans__addon-head {
+  max-width: 780px;
+}
+.plans__addon-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: var(--space-3);
+}
+.plans__addon-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.45;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-3);
+  text-wrap: pretty;
+}
+.plans__addon-body {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+.plans__addon-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+.plans__addon-item {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-7, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border: 1px solid rgba(29,26,22,0.06);
+}
+.plans__addon-item-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed rgba(29,26,22,0.18);
+}
+.plans__addon-item .day {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black);
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.plans__addon-item .day small {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-gray-50);
+  letter-spacing: 0.04em;
+}
+.plans__addon-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+  margin-left: auto;
+}
+.plans__addon-item .v {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 19px;
+  color: var(--color-near-black);
+  line-height: 1.4;
+}
+.plans__addon-item-desc {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+.plans__addon-item-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(29,26,22,0.08);
+}
+.plans__addon-item .price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--color-near-black);
+  letter-spacing: -0.01em;
+}
+.plans__addon-item .price small {
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--color-gray-50);
+  margin-left: 4px;
+  letter-spacing: 0;
+}
+.plans__addon-item .when {
+  font-family: var(--font-jp);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-gray-50);
+  text-align: right;
+}
+
+/* CTA for Food Only — same family as plans__reserve-cta but a touch lighter */
+.plans__addon-cta {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px 14px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-near-black);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(29,26,22,0.18);
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple),
+              box-shadow var(--duration-base) var(--ease-apple);
+  overflow: hidden;
+}
+.plans__addon-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 50%;
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), transparent);
+  pointer-events: none;
+}
+.plans__addon-cta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  position: relative;
+  z-index: 1;
+}
+.plans__addon-cta-label {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+.plans__addon-cta-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  padding-left: 10px;
+  border-left: 1px solid rgba(245,241,234,0.32);
+  position: relative;
+  z-index: 1;
+}
+.plans__addon-cta-arrow {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-apple);
+}
+.plans__addon-cta:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(29,26,22,0.28);
+}
+.plans__addon-cta:hover .plans__addon-cta-arrow {
+  transform: translateX(2px);
+}
+
+/* ---- Notes ---- */
+.plans__notes {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(29,26,22,0.08);
+}
+.plans__notes li {
+  list-style: none;
+  padding-left: 14px;
+  position: relative;
+}
+.plans__notes li::before {
+  content: "※";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-ember);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .plans__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-10); }
+  .plans__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .plans__eyebrow { padding-top: 0; }
+  .plans__pair { grid-template-columns: 1fr; gap: var(--space-5); }
+  .plan { padding: var(--space-8); }
+  .plan__pricing { grid-template-columns: 1fr; gap: var(--space-3); }
+  .plans__reserve {
+    grid-template-columns: 1fr;
+    padding: var(--space-8);
+    gap: var(--space-6);
+    text-align: left;
+  }
+  .plans__reserve-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 22px;
+  }
+  .plans__reserve-cta-en { display: none; }
+  .plans__addon { padding: var(--space-8); gap: var(--space-6); }
+  .plans__addon-list { grid-template-columns: 1fr; gap: var(--space-4); }
+  .plans__addon-item { padding: var(--space-5); }
+  .plans__addon-cta { align-self: stretch; justify-content: center; padding: 14px 20px; }
+  .plans__addon-cta-en { display: none; }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .plans__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Section title */
+  .plans__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+  .plans__lead {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  /* Plan A / B cards */
+  .plans__pair { gap: var(--space-4); }
+  .plan {
+    padding: var(--space-6);
+    gap: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .plan__code {
+    font-size: 11px;
+    gap: 8px;
+  }
+  .plan__code .num {
+    font-size: 22px;
+  }
+  .plan__title {
+    font-size: 21px;
+    line-height: 1.45;
+  }
+  .plan__title .en {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .plan__price-amount {
+    font-size: 38px;
+  }
+  .plan__price-currency {
+    font-size: 14px;
+  }
+  .plan__price-unit {
+    font-size: 12px;
+  }
+  .plan__price-note {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .plan__features {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .plan__features li { padding-left: 22px; }
+  .plan__pricing { gap: var(--space-3); }
+  .plan__pricing-item {
+    padding: var(--space-3) var(--space-4);
+  }
+  .plan__pricing-item .v {
+    font-size: 15px;
+  }
+
+  /* Reservation CTA */
+  .plans__reserve {
+    padding: var(--space-6);
+    gap: var(--space-5);
+  }
+  .plans__reserve-title {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .plans__reserve-body {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .plans__reserve-cta-label {
+    font-size: 14px;
+  }
+
+  /* Food-only add-on */
+  .plans__addon {
+    padding: var(--space-6);
+    gap: var(--space-5);
+  }
+  .plans__addon-title {
+    font-size: 22px;
+    line-height: 1.5;
+  }
+  .plans__addon-body {
+    font-size: 13.5px !important;
+    line-height: 1.85;
+  }
+  .plans__addon-item {
+    padding: var(--space-5);
+    gap: var(--space-3);
+  }
+  .plans__addon-item-head {
+    gap: var(--space-3);
+    padding-bottom: var(--space-2);
+  }
+  .plans__addon-item .day {
+    font-size: 19px;
+  }
+  .plans__addon-item .day small {
+    font-size: 12px;
+  }
+  .plans__addon-item .k {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  .plans__addon-item .v {
+    font-size: 17px;
+  }
+  .plans__addon-item-desc {
+    font-size: 13px !important;
+    line-height: 1.75;
+  }
+  .plans__addon-item .price {
+    font-size: 22px;
+  }
+  .plans__addon-item .when {
+    font-size: 12px;
+  }
+  .plans__addon-cta-label {
+    font-size: 14px;
+  }
+
+  /* Notes */
+  .plans__notes {
+    font-size: 12.5px;
+    line-height: 1.85;
+    gap: var(--space-2);
+  }
+}
+
+
+/* ===== schedule.css ===== */
+/* ============================================================
+   SCHEDULE — Compact two-column timeline
+   Day 01 (Sat / Dinner) | Day 02 (Sun / Morning) side-by-side.
+   ============================================================ */
+
+.schedule {
+  background: var(--color-charcoal);
+  color: var(--color-on-dark);
+  position: relative;
+  overflow: hidden;
+}
+.schedule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 15%,  rgba(196,129,74,0.10), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 15% 85%,  rgba(216,207,184,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.schedule__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-24) var(--content-gutter) var(--space-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.schedule__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  text-align: left;
+}
+.schedule__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.schedule__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.schedule__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.7;
+}
+.schedule__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.schedule__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+
+/* ---- Two-column day grid ---- */
+.schedule__days {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+/* Subtle vertical divider between days on desktop */
+.schedule__days::before {
+  content: "";
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: none;
+}
+
+.schedule__day {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-6) var(--space-2);
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(236,230,216,0.08);
+  border-radius: var(--radius-lg);
+}
+
+/* ---- Day header — compact horizontal layout ---- */
+.schedule__day-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: center;
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(236,230,216,0.14);
+}
+.schedule__day-date {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 4.4vw, 56px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-on-dark);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  grid-row: 1 / span 2;
+}
+.schedule__day-date .sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 18px);
+  letter-spacing: 0.01em;
+  color: var(--color-on-dark-secondary);
+}
+.schedule__day-tagline {
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--color-on-dark-secondary);
+  letter-spacing: 0.04em;
+  align-self: end;
+}
+.schedule__day-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  align-self: start;
+}
+
+/* Hide the day media placeholders entirely — saves vertical space */
+.schedule__day-media { display: none; }
+
+/* ---- Items list ---- */
+.schedule__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule__item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  align-items: start;
+  border-bottom: 1px solid rgba(236,230,216,0.08);
+}
+.schedule__item:last-child { border-bottom: none; }
+
+.schedule__item-time {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 2px;
+}
+.schedule__item-time .ampm {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-tertiary);
+}
+
+.schedule__item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.schedule__item-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.45;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: pretty;
+}
+.schedule__item-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-on-dark-secondary);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+.schedule__item-desc {
+  font-family: var(--font-jp);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--color-on-dark-tertiary);
+  margin: 2px 0 0;
+}
+
+/* Featured row — slightly more prominent */
+.schedule__item--key .schedule__item-title {
+  color: var(--color-on-dark);
+}
+.schedule__item--key {
+  background:
+    linear-gradient(90deg, rgba(196,129,74,0.06), transparent 60%);
+  margin: 0 calc(-1 * var(--space-4));
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  border-radius: var(--radius-sm);
+}
+
+/* Spacer no longer needed */
+.schedule__gap { display: none; }
+
+/* ---- Footnote at bottom ---- */
+.schedule__footnote {
+  margin-top: 0;
+  padding: var(--space-5) var(--space-6);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-md);
+  font-family: var(--font-jp);
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--color-on-dark-secondary);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+.schedule__footnote-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 3px;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .schedule__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-8); }
+  .schedule__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .schedule__eyebrow { padding-top: 0; }
+  .schedule__days { grid-template-columns: 1fr; gap: var(--space-6); }
+  .schedule__day { padding: var(--space-5); }
+  .schedule__day-head {
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+  }
+  .schedule__item {
+    grid-template-columns: 72px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .schedule__item-time { font-size: 23px; }
+  .schedule__item--key {
+    margin: 0 calc(-1 * var(--space-3));
+    padding: var(--space-3);
+  }
+  .schedule__footnote { grid-template-columns: 1fr; gap: var(--space-2); padding: var(--space-5); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .schedule__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-6);
+  }
+
+  /* Section title */
+  .schedule__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+
+  /* Day card */
+  .schedule__days { gap: var(--space-5); }
+  .schedule__day {
+    padding: var(--space-5) var(--space-4);
+    gap: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  /* Day header */
+  .schedule__day-head {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--space-3);
+    row-gap: 4px;
+    padding-bottom: var(--space-3);
+  }
+  .schedule__day-date {
+    font-size: 36px;
+    grid-row: 1 / span 2;
+  }
+  .schedule__day-date .sub {
+    font-size: 13px;
+  }
+  .schedule__day-tagline {
+    font-size: 13px;
+    align-self: end;
+  }
+  .schedule__day-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+
+  /* Timeline items */
+  .schedule__item {
+    grid-template-columns: 64px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .schedule__item-time {
+    font-size: 21px;
+  }
+  .schedule__item-time .ampm {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  .schedule__item-title {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .schedule__item-en {
+    font-size: 11.5px;
+  }
+  .schedule__item-desc {
+    font-size: 13px !important;
+    line-height: 1.85;
+  }
+
+  .schedule__item--key {
+    margin: 0 calc(-1 * var(--space-3));
+    padding: var(--space-3);
+  }
+}
+
+
+/* ===== rental.css ===== */
+/* ============================================================
+   RENTAL — re-base camp + Campify
+   Two service cards on warm canvas.
+   ============================================================ */
+
+.rental {
+  background: var(--color-white);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.rental__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.rental__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+.rental__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.rental__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.rental__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.7;
+}
+.rental__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.rental__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+.rental__header-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.rental__lead {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.rental__lead p {
+  margin: 0;
+}
+.rental__lead-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-6);
+}
+.rental__lead-bullets li {
+  padding: var(--space-4) var(--space-5);
+  background: rgba(196,129,74,0.06);
+  border-left: 2px solid var(--color-ember);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-gray-70);
+}
+.rental__lead-bullets strong {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-near-black);
+  margin-bottom: 2px;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Service card pair ---- */
+.rental__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.rental-card {
+  position: relative;
+  background: var(--color-cream-soft);
+  border: 1px solid rgba(29,26,22,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  overflow: hidden;
+}
+
+/* Photo placeholder at top of card */
+.rental-card__media {
+  position: relative;
+  margin: calc(-1 * var(--space-10)) calc(-1 * var(--space-10)) 0;
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(135deg, rgba(29,26,22,0.04), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 70% 60%, rgba(196,129,74,0.10), transparent 60%),
+    linear-gradient(180deg, var(--color-bone) 0%, var(--color-paper) 100%);
+  isolation: isolate;
+  overflow: hidden;
+}
+.rental-card__media--alt {
+  background:
+    linear-gradient(135deg, rgba(29,26,22,0.04), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 30% 50%, rgba(94,100,67,0.10), transparent 60%),
+    linear-gradient(180deg, var(--color-paper) 0%, var(--color-bone) 100%);
+}
+.rental-card__media::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(29,26,22,0.20);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+.rental-card__media-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.55);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.rental-card__media-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-jp);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--color-gray-50);
+  letter-spacing: 0.02em;
+  padding: 24px;
+}
+
+.rental-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+}
+
+.rental-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+.rental-card__tag .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--color-ember);
+}
+
+.rental-card__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.rental-card__brand .ja {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--color-gray-50);
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+
+/* Body */
+.rental-card__body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+
+/* Steps list */
+.rental-card__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.rental-card__step {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+}
+.rental-card__step-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-ember);
+  border-top: 1px solid rgba(196,129,74,0.45);
+  padding-top: 6px;
+}
+.rental-card__step-body {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+  border-top: 1px solid rgba(29,26,22,0.08);
+  padding-top: 6px;
+}
+.rental-card__step-body strong {
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+/* Address / contact block (re-base only) */
+.rental-card__addr {
+  background: var(--color-paper);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.rental-card__addr-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rental-card__addr-item .k {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+.rental-card__addr-item .v {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-near-black);
+  letter-spacing: 0;
+}
+.rental-card__addr-item .v small {
+  display: block;
+  font-family: var(--font-jp);
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--color-gray-50);
+  margin-top: 2px;
+}
+
+/* CTA */
+.rental-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--color-near-black);
+  color: var(--color-cream);
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-apple),
+              background var(--duration-fast) var(--ease-apple);
+}
+.rental-card__cta:hover { transform: translateY(-1px); background: #000; }
+.rental-card__cta--ghost {
+  background: transparent;
+  color: var(--color-near-black);
+  border: 1px solid rgba(29,26,22,0.25);
+}
+.rental-card__cta--ghost:hover {
+  background: rgba(29,26,22,0.05);
+}
+
+/* ---- Notes ---- */
+.rental__notes {
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.95;
+  color: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(29,26,22,0.08);
+}
+.rental__notes li {
+  list-style: none;
+  padding-left: 14px;
+  position: relative;
+}
+.rental__notes li::before {
+  content: "※";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-ember);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .rental__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-10); }
+  .rental__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .rental__eyebrow { padding-top: 0; }
+  .rental__pair { grid-template-columns: 1fr; gap: var(--space-5); }
+  .rental-card { padding: var(--space-8); }
+  .rental-card__media {
+    margin: calc(-1 * var(--space-8)) calc(-1 * var(--space-8)) 0;
+    aspect-ratio: 4 / 3;
+  }
+  .rental-card__addr { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .rental__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-6);
+  }
+
+  /* Section title */
+  .rental__title {
+    font-size: clamp(28px, 7vw, 38px);
+    line-height: 1.4;
+  }
+
+  /* Service cards */
+  .rental__pair { gap: var(--space-5); }
+  .rental-card {
+    padding: var(--space-6);
+    gap: var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .rental-card__media {
+    margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) 0;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+  .rental-card__media-tag {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+  .rental-card__media-hint {
+    font-size: 13px;
+  }
+  .rental-card__tag {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+  .rental-card__brand {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  .rental-card__brand .ja {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+  .rental-card__body {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  /* Steps */
+  .rental-card__steps { gap: var(--space-3); }
+  .rental-card__step {
+    grid-template-columns: 28px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .rental-card__step-num {
+    font-size: 13px;
+  }
+  .rental-card__step-body {
+    font-size: 13.5px !important;
+    line-height: 1.85;
+  }
+
+  /* Address block */
+  .rental-card__addr { gap: var(--space-3); }
+  .rental-card__addr-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+  .rental-card__addr-item .k {
+    min-width: 64px;
+    font-size: 10px;
+  }
+  .rental-card__addr-item .v {
+    flex: 1;
+    font-size: 14px;
+  }
+  .rental-card__addr-item .v small {
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .rental-card__cta {
+    padding: 14px 22px;
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+
+/* ===== info.css ===== */
+/* ============================================================
+   INFO — Bring / Shower / awesometoday / Access / Cancellation
+   ============================================================ */
+
+.info {
+  background: var(--bg-canvas);
+  color: var(--fg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.info__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-32) var(--content-gutter) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+/* ---- Section header (left-aligned, matches other sections) ---- */
+.info__header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+.info__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  padding-top: 18px;
+}
+.info__eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+  text-transform: none;
+}
+.info__eyebrow .rule {
+  width: 28px; height: 1px; background: var(--color-ember); opacity: 0.7;
+}
+.info__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.info__title .it {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-ember);
+}
+
+/* ---- Subsection title ---- */
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.info-block__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(29,26,22,0.12);
+}
+.info-block__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--color-ember);
+}
+.info-block__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.4;
+  color: var(--color-near-black);
+  margin: 0;
+  text-wrap: pretty;
+}
+.info-block__title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin-top: 4px;
+}
+
+/* ---- Bring + Shower: two-column on warm paper ---- */
+.info__essentials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+.info-card {
+  position: relative;
+  background:
+    linear-gradient(180deg, var(--color-cream-soft) 0%, var(--color-cream) 100%);
+  border: 1px solid rgba(29,26,22,0.10);
+  border-radius: 2px;
+  padding: var(--space-10) var(--space-10) var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.info-card::before {
+  /* left accent rail — like a notebook spine */
+  content: "";
+  position: absolute;
+  top: var(--space-5);
+  bottom: var(--space-5);
+  left: 0;
+  width: 3px;
+  background: var(--color-ember);
+  border-radius: 0 2px 2px 0;
+}
+.info-card__kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed rgba(29,26,22,0.20);
+}
+.info-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(196,129,74,0.10);
+  color: var(--color-ember);
+  flex-shrink: 0;
+}
+.info-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
+.info-card__kicker .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  color: var(--color-ember);
+  line-height: 1;
+}
+.info-card__kicker .label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+}
+.info-card__title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.info-card__title .en {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--color-gray-50);
+  margin-top: 4px;
+}
+
+/* Plain editorial list */
+.info-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.info-checklist li {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid rgba(29,26,22,0.10);
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+}
+.info-checklist li:last-child { border-bottom: none; }
+.info-checklist li strong:first-child {
+  display: block;
+  font-family: var(--font-display-jp);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-near-black);
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
+.info-card__note {
+  margin-top: auto;
+  padding: var(--space-4) var(--space-5);
+  background: rgba(196,129,74,0.08);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-jp);
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+  border-left: 2px solid var(--color-ember);
+}
+
+/* ---- awesometoday — feature row ---- */
+.info-feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  background: var(--color-paper);
+  border-radius: var(--radius-lg);
+}
+.info-feature__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(94,100,67,0.18), transparent 55%),
+    radial-gradient(ellipse 70% 80% at 30% 60%, rgba(216,207,184,0.4), transparent 60%),
+    var(--color-bone);
+  isolation: isolate;
+}
+.info-feature__media::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(29,26,22,0.20);
+  border-radius: var(--radius-sm);
+}
+.info-feature__media-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.55);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.info-feature__media-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-jp);
+  font-size: 14px;
+  color: var(--color-gray-50);
+  letter-spacing: 0.02em;
+  padding: 24px;
+}
+.info-feature__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.info-feature__tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+.info-feature__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black);
+  margin: 0;
+}
+.info-feature__sub {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray-50);
+  margin: 0;
+}
+.info-feature__body {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--color-gray-70);
+  margin: 0;
+}
+.info-feature__addr {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.005em;
+  color: var(--color-near-black);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(29,26,22,0.12);
+}
+.info-feature__addr small {
+  display: block;
+  font-family: var(--font-jp);
+  font-size: 13px;
+  color: var(--color-gray-50);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.info-feature__links {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.info-feature__link {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-near-black);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(29,26,22,0.2);
+  transition: background var(--duration-fast) var(--ease-apple);
+}
+.info-feature__link:hover { background: rgba(29,26,22,0.05); }
+
+/* ---- Access ---- */
+.info-access {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.info-access__map {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    /* faux topo lines */
+    repeating-linear-gradient(45deg, rgba(29,26,22,0.04) 0 1px, transparent 1px 8px),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(94,100,67,0.18), transparent 65%),
+    var(--color-bone);
+  border: 1px solid rgba(29,26,22,0.10);
+}
+.info-access__map::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(29,26,22,0.18);
+  border-radius: var(--radius-md);
+}
+/* Live embedded map: fill the frame, drop the faux placeholder styling */
+.info-access__map--live {
+  background: none;
+}
+.info-access__map--live::before { display: none; }
+.info-access__map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.info-access__map-tag {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray-50);
+  background: rgba(255,255,255,0.7);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.info-access__pin {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.info-access__pin-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  box-shadow: 0 0 0 5px rgba(196,129,74,0.18),
+              0 6px 14px rgba(0,0,0,0.18);
+}
+.info-access__pin-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  background: rgba(255,255,255,0.85);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.info-access__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.info-access__addr {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(29,26,22,0.12);
+}
+.info-access__addr .name {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 19px;
+  color: var(--color-near-black);
+}
+.info-access__addr .line {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--color-gray-70);
+}
+.info-access__addr .tel {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-near-black);
+  letter-spacing: 0.01em;
+}
+/* Map text link — mirrors the Talk-section profile links (dark variant) */
+.info-access__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+.info-access__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-near-black);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(29,26,22,0.30);
+  padding-bottom: 3px;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.info-access__link span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.info-access__link:hover {
+  opacity: 0.72;
+  border-bottom-color: var(--color-near-black);
+}
+.info-access__transport {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.info-access__transport-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--space-3);
+  align-items: baseline;
+}
+.info-access__transport-item .k {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+.info-access__transport-item .v {
+  font-family: var(--font-jp);
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--color-gray-70);
+}
+.info-access__transport-item .v strong {
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+/* ---- Cancellation policy — plain text ---- */
+.info-cancel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 760px;
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+}
+.info-cancel__text {
+  margin: 0;
+}
+.info-cancel__dl {
+  margin: 0;
+  padding: 0;
+}
+.info-cancel__dl-row {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-1) 0;
+}
+.info-cancel__dl-row dt,
+.info-cancel__dl-row dd {
+  margin: 0;
+  padding: 2px 0;
+  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-gray-70);
+}
+.info-cancel__dl-row dt {
+  flex: 0 0 220px;
+}
+.info-cancel__dl-row dd {
+  flex: 1;
+}
+@media (max-width: 720px) {
+  .info-cancel__dl-row dt { flex: 0 0 auto; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 860px) {
+  .info__inner { padding: var(--space-20) 22px var(--space-16); gap: var(--space-12); }
+  .info__header { grid-template-columns: 1fr; gap: var(--space-4); }
+  .info__eyebrow { padding-top: 0; }
+  .info__essentials { grid-template-columns: 1fr; gap: var(--space-5); }
+  .info-card { padding: var(--space-8); }
+  .info-feature { padding: var(--space-8); gap: var(--space-6); }
+  .info-feature__media { aspect-ratio: 4/3; }
+  .info-access__map { aspect-ratio: 4/3; }
+}
+
+/* ---- Smartphone (≤720px) ---- */
+@media (max-width: 720px) {
+  .info__inner {
+    padding: 64px 20px 48px;
+    gap: var(--space-8);
+  }
+
+  /* Section title */
+  .info__title {
+    font-size: clamp(26px, 6.5vw, 34px);
+    line-height: 1.4;
+  }
+
+  /* Block headers (01 持ち物… / 02 アクセス / 03 キャンセル) */
+  .info-block { gap: var(--space-5); }
+  .info-block__head {
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+  .info-block__num {
+    font-size: 19px;
+  }
+  .info-block__title {
+    font-size: 19px;
+    line-height: 1.45;
+  }
+  .info-block__title .en {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* Bring / Bath cards */
+  .info__essentials { gap: var(--space-4); }
+  .info-card {
+    padding: var(--space-5);
+    gap: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  .info-card__kicker {
+    padding-bottom: var(--space-3);
+  }
+  .info-card__icon {
+    width: 28px;
+    height: 28px;
+  }
+  .info-card__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .info-card__title {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .info-card__title .en {
+    font-size: 12.5px;
+    margin-top: 4px;
+  }
+
+  /* Checklist items */
+  .info-checklist li {
+    padding: var(--space-3) 0;
+    font-size: 13.5px;
+    line-height: 1.85;
+  }
+  .info-checklist li strong:first-child {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  /* Bring/Bath note */
+  .info-card__note {
+    padding: var(--space-3) var(--space-4);
+    font-size: 12.5px !important;
+    line-height: 1.85;
+  }
+
+  /* Access */
+  .info-access { gap: var(--space-5); }
+  .info-access__map {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+  .info-access__map-tag {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+  .info-access__pin-label {
+    font-size: 13px;
+  }
+  .info-access__details { gap: var(--space-5); }
+  .info-access__addr .name {
+    font-size: 16px;
+  }
+  .info-access__addr .line {
+    font-size: 14px !important;
+  }
+  .info-access__addr .tel {
+    font-size: 14px;
+  }
+  .info-access__transport-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+  }
+  .info-access__transport-item .k {
+    min-width: 52px;
+    font-size: 10px;
+  }
+  .info-access__transport-item .v {
+    flex: 1;
+    font-size: 14px !important;
+    line-height: 1.85;
+  }
+
+  /* Cancellation Policy */
+  .info-cancel { gap: var(--space-4); }
+  .info-cancel__text {
+    font-size: 13.5px;
+    line-height: 1.9;
+  }
+  .info-cancel__dl {
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+  }
+  .info-cancel__dl-row {
+    padding: var(--space-3) 0;
+    gap: var(--space-3);
+  }
+  .info-cancel__dl-row dt {
+    font-size: 13.5px;
+  }
+  .info-cancel__dl-row dd {
+    font-size: 15px;
+  }
+}
+
+</style>
+</head>
+<body style="font-family: &quot;Noto Sans JP&quot;">
+
+<!-- =========================================================
+     NAV
+     ========================================================= -->
+<nav class="nav" id="nav">
+  <button class="nav__burger" id="nav-burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+  <span class="nav__spacer" aria-hidden="true"></span>
+  <div class="nav__menu">
+    <a href="#top" class="nav__menu-top" aria-label="ページの最上段へ戻る">TOP</a>
+    <a href="#story">Story</a>
+    <a href="#talk">Talk</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#menu">Menu</a>
+    <a href="#plan">Plan</a>
+    <a href="#info">Info</a>
+  </div>
+  <a href="#plan" class="nav__cta">
+    <span class="nav__cta-dot" aria-hidden="true"></span>
+    <span class="nav__cta-label" lang="ja">予約する</span>
+    <span class="nav__cta-en">Reserve</span>
+    <span class="nav__cta-arrow" aria-hidden="true">→</span>
+  </a>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav__drawer" id="nav-drawer" aria-hidden="true">
+  <div class="nav__drawer-inner">
+    <a href="#top">TOP</a>
+    <a href="#story">Story</a>
+    <a href="#talk">Talk</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#menu">Menu</a>
+    <a href="#plan">Plan</a>
+    <a href="#rental">Rental</a>
+    <a href="#info">Info</a>
+  </div>
+</div>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<header class="hero" id="top">
+
+  <div class="hero__media" aria-hidden="true">
+    <img class="hero__photo" src="https://daisukehukuda.github.io/life_evnet_2026/assets/hero-twilight.jpg" alt="" loading="eager" decoding="async">
+  </div>
+  <span class="hero__credit">PHOTO  FROM　2025</span>
+  <div class="hero__scrim-top"  aria-hidden="true"></div>
+  <div class="hero__scrim-bottom" aria-hidden="true"></div>
+
+  <span class="hero__rule-left"  aria-hidden="true"></span>
+  <span class="hero__rule-right" aria-hidden="true"></span>
+  <span class="hero__vlabel hero__vlabel--l">NIKKO &nbsp; / &nbsp; TOCHIGI</span>
+  <span class="hero__vlabel hero__vlabel--r">VOL.04   /   SUMMER 2026</span>
+
+  <div class="hero__inner hero__inner--compact">
+
+    <!-- center title block -->
+    <div class="hero__title-block">
+      <div class="hero__lockup">
+        <img class="hero__logo hero__logo--life"  src="https://daisukehukuda.github.io/life_evnet_2026/assets/logo-life-white.png"  alt="LIFE" style="width: 120px; height: 120px">
+        <img class="hero__logo hero__logo--torch" src="https://daisukehukuda.github.io/life_evnet_2026/assets/logo-torch-white.png" alt="TORCH Camping & Coworking Space" style="height: 140px; width: 140px">
+      </div>
+
+      <h1 class="hero__title" style="font-family: &quot;Noto Sans JP&quot;">Dinner
+in Camp
+Night.</h1>
+
+      <p class="hero__subtitle" lang="ja">東京代々木八幡から始まったイタリアンレストラン、LIFE のオーナーシェフ・相場正一郎氏が、 日光国立公園内にあるTORCH Camping &amp; Coworking Space で開く、一夜限りのキャンプディナー。LIFEのマウンテンディッシュ、ナチュラルワイン、焚き火、そして、余白のある旅のはなし。</p>
+    </div>
+
+    <!-- bottom row -->
+    <div class="hero__bottom">
+      <div class="hero__meta">
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">Date</span>
+          <span class="hero__meta-value" style="font-family: &quot;Helvetica Neue&quot;">2026/7/4 [Sat] Dinner -  7/5 [Sun] Breakfast</span>
+        </div>
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">Venue</span>
+          <span class="hero__meta-value" style="font-family: &quot;Helvetica Neue&quot;">TORCH Camping &amp; Coworking Space</span>
+        </div>
+      </div>
+
+      <div class="hero__ctas">
+        <a href="#plan" class="btn hero__cta">プランを見る&nbsp;→</a>
+        <a href="#story" class="btn btn--ghost">Story</a>
+      </div>
+    </div>
+
+  </div><!-- /.hero__inner -->
+
+  <div class="hero__cue" aria-hidden="true">
+    <span class="line"></span>
+    <span>Scroll</span>
+  </div>
+</header>
+
+<!-- =========================================================
+     ② STORY
+     ========================================================= -->
+<section class="story" id="story" style="color: rgb(29, 26, 22)">
+  <div class="story__inner">
+
+    <!-- Section header -->
+    <header class="story__header reveal">
+      <div class="story__eyebrow">
+        <span class="num">01</span>
+        <span class="rule"></span>
+        <span>Story</span>
+      </div>
+      <h2 class="story__title" lang="ja"><span style="color: rgb(29, 26, 22)">Camping and Mountain Dish</span></h2>
+    </header>
+
+    <!-- Concept: image + copy -->
+    <div class="story__concept reveal">
+      <figure class="story__media">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/hero-table.jpg" alt="" loading="lazy" decoding="async">
+        <figcaption class="story__media-tag">FROM 2026</figcaption>
+      </figure>
+      <div class="story__copy">
+        <p class="story__lead" lang="ja">TORCH Camping &amp; Coworking Spaceに、LIFE のオーナー 相場正一郎氏を迎える一夜。</p>
+        <p class="story__body" lang="ja">
+          LIFEオリジナルのソーセージ、プレミアムポーク、彩り豊かなサラダを盛り付けた「マウンテンディッシュプレート」。相場氏自らが炭火でその場で調理し、自然のなかで香ばしく仕上がる一皿をお楽しみいただけます。
+        </p>
+        <p class="story__body" lang="ja">ご自身のキャンプ用のお皿を持ち寄り、その場で盛り付け。受け取った後はご自身のテントでゆっくり味わうもよし、屋根付きウッドデッキのテーブルや椅子で仲間と囲むもよし。隣には選りすぐりのナチュラルワインバー。あなたらしいスタイルで楽しむ贅沢なキャンプの時間です。</p>
+      </div>
+    </div>
+
+    <!-- Photo gallery: chef at work -->
+    <div class="story__gallery reveal" aria-label="Chef Aiba at work">
+      <figure class="story__gallery-item">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/story-prep.jpg" alt="LIFEのキッチンで仕込みをする相場氏" loading="lazy" decoding="async">
+      </figure>
+      <figure class="story__gallery-item">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/story-plate.jpg" alt="LIFE Mountain Dish" loading="lazy" decoding="async">
+      </figure>
+      <figure class="story__gallery-item">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/story-camp.jpg" alt="キャンプ場での炭火調理" loading="lazy" decoding="async">
+      </figure>
+    </div>
+
+    <!-- Sunday morning subsection -->
+
+  </div>
+</section>
+
+<!-- =========================================================
+     TALK SHOW — by Emi Kawakami
+     ========================================================= -->
+<section class="talk" id="talk">
+  <div class="talk__inner">
+
+    <header class="talk__header reveal">
+      <div class="talk__eyebrow">
+        <span class="num">02</span>
+        <span class="rule"></span>
+        <span>Talk Show</span>
+      </div>
+      <div class="talk__header-body">
+        <p class="talk__kicker">A talk by LIFE's longtime graphic designer.</p>
+        <h2 class="talk__title" lang="ja">環島、だいたい迷子<span class="sub">— 余白だらけの台湾自転車一周旅 —</span></h2>
+
+        <p class="talk__intro" lang="ja">LIFEのクリエイティブを長年支えてきた川上恵美さん。これまでの制作の背景、そして直近で数ヶ月にわたり旅と滞在をしてきた台湾でのお話し。</p>
+
+        <div class="talk__meta" aria-label="開催情報">
+          <div class="talk__meta-item">
+            <span class="k">Time</span>
+            <span class="v" style="font-size: 16px">19:30 –<small lang="ja">ディナーのあとに</small></span>
+          </div>
+          <div class="talk__meta-item">
+            <span class="k">Venue</span>
+            <span class="v" style="font-size: 16px">Wooden Deck<small lang="ja">屋根付きウッドデッキ</small></span>
+          </div>
+          <div class="talk__meta-item">
+            <span class="k">Entry</span>
+            <span class="v" style="font-size: 16px">Open to All<small lang="ja">自由参加・申込み不要</small></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Portrait + profile -->
+    <div class="talk__feature reveal">
+      <figure class="talk__portrait">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-kawakami.png" alt="川上恵美 ポートレート" loading="lazy" decoding="async">
+      </figure>
+
+      <div class="talk__profile">
+        <h3 class="talk__profile-name" lang="ja">
+          <span class="role">Speaker · Graphic Designer</span>
+          川上 恵美
+          <span class="en">Megumi Kawakami</span>
+        </h3>
+        <p class="talk__profile-bio" lang="ja" style="font-size: 15px">東京都出身。幼少期を米国ロサンゼルスで過ごす。楽しかった思い出しかない米国にまた行きたい、と大学卒業後今度は真逆のニューヨークへ。Pratt Institute Communications Design 修士課程卒。NY のデザイン事務所、東京の広告写真制作会社でのデザイナーを経て 2010 年よりフリーランスデザイナー。<br>2014年からSomewhere Studioの屋号で活動。近年は屋号の通り、ときどき海外のどこか(Somewhere)に滞在しながらノマドワークをしている。</p>
+        <div class="talk__profile-links">
+          <a href="https://www.instagram.com/megumik_ss/" target="_blank" rel="noopener" class="talk__profile-link">Instagram <span>@megumik_ss</span> ↗</a>
+          <a href="http://somewherestudio.jp/" target="_blank" rel="noopener" class="talk__profile-link">Web <span>somewherestudio.jp</span> ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Works gallery -->
+    <div class="talk__works reveal">
+      <div class="talk__works-label">
+        <span>WORKS FOR LIFE</span>
+        <span class="rule" aria-hidden="true"></span>
+      </div>
+      <div class="talk__works-grid">
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-poster.png" alt="Taste of the Mountain — exhibition poster for LIFE" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-01.jpg" alt="LIFE 年表ブックレット" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-02.jpg" alt="PARK LIFE — Life of the Mind with Green" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-03.jpg" alt="LIFE Company Limited papers" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-04.png" alt="PARK LIFE — Cycling Holidays Issue" loading="lazy" decoding="async">
+        </figure>
+        <figure class="talk__works-item">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/talk-work-05.jpg" alt="LIFE Timeline — 年表" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <p class="talk__works-credit">Designed by Emi Kawakami / Somewhere Studio</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     ③ SCHEDULE
+     ========================================================= -->
+<section class="schedule" id="schedule">
+  <div class="schedule__inner">
+
+    <header class="schedule__header reveal">
+      <div class="schedule__eyebrow">
+        <span class="num">03</span>
+        <span class="rule"></span>
+        <span>Schedule</span>
+      </div>
+      <h2 class="schedule__title" lang="ja">Schedule</h2>
+    </header>
+
+    <div class="schedule__days">
+
+    <!-- ===== Day 1 — 7.4 Saturday / Dinner ===== -->
+    <article class="schedule__day reveal">
+      <header class="schedule__day-head">
+        <h3 class="schedule__day-date">7.4<span class="sub">Sat</span></h3>
+        <span class="schedule__day-tagline" lang="ja">
+</span>
+        <span class="schedule__day-label">Day 01 / Dinner</span>
+      </header>
+
+      <figure class="schedule__day-media" aria-label="Day 1 photo — to be supplied">
+        <span class="schedule__day-media-tag">Photo · 2025 / Day 1</span>
+        <span class="schedule__day-media-hint" lang="ja">7.4 ディナーの写真<br>後日差し替え</span>
+      </figure>
+
+      <ol class="schedule__items">
+
+        <li class="schedule__item">
+          <div class="schedule__item-time">12:00<span class="ampm">Noon</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">チェックイン / テントの設営</h4>
+            <p class="schedule__item-en">Check-in &amp; pitch your tent.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">12時からチェックイン時間スタート。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">17:30<span class="ampm">Evening</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">LIFEマウンテンディッシュ × ナチュラルワインバー</h4>
+            <p class="schedule__item-en">Mountain Dish, served by chef Aiba.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">メインディッシュをその場でご自身のお気に入りのプレートで受け取ってください。みなさんのテント、または屋根付きウッドデッキでどうぞ。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">19:30<span class="ampm">Night</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">トークショー</h4>
+            <p class="schedule__item-en">Talk show.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">川上恵美氏によるトークショー「環島、だいたい迷子 — 余白だらけの台湾自転車一周旅 —」。屋根付きウッドデッキにて自由参加でお楽しみいただけます。ワインバーもオープンしています。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item">
+          <div class="schedule__item-time">22:00<span class="ampm">Late</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">バー営業終了 / ダウンライトタイム</h4>
+            <p class="schedule__item-en">Quiet hours · sleep under the stars.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">周りのキャンプ泊の方のためにもだんだんと静かに。虫の音と一緒におやすみなさい。</p>
+          </div>
+        </li>
+
+      </ol>
+    </article>
+
+    <div class="schedule__gap" aria-hidden="true"></div>
+
+    <!-- ===== Day 2 — 7.5 Sunday / Morning ===== -->
+    <article class="schedule__day reveal">
+      <header class="schedule__day-head">
+        <h3 class="schedule__day-date">7.5<span class="sub">Sun</span></h3>
+        <span class="schedule__day-tagline" lang="ja">
+</span>
+        <span class="schedule__day-label">Day 02 / Morning</span>
+      </header>
+
+      <figure class="schedule__day-media schedule__day-media--morning" aria-label="Day 2 photo — to be supplied">
+        <span class="schedule__day-media-tag">Photo · 2025 / Day 2</span>
+        <span class="schedule__day-media-hint" lang="ja">7.5 モーニングの写真<br>後日差し替え</span>
+      </figure>
+
+      <ol class="schedule__items">
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">08:00<span class="ampm">Morning</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">Girouette のモーニングスタート</h4>
+            <p class="schedule__item-en">Breakfast by Girouette.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">朝ごはんは、日光市下鉢石町のGirouette（ジルエット）によるサンドイッチ・スープ・サラダ。ご自身のマグをお持ちいただいて、セルフドリップコーヒーもどうぞ。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item">
+          <div class="schedule__item-time">09:30<span class="ampm">Late Morning</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">モーニング終了</h4>
+            <p class="schedule__item-en">Slow time, in your own pace.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">チェックアウトまではまだ余裕があります。テントや屋根の下のスペースでゆっくり過ごしていってください。</p>
+          </div>
+        </li>
+
+        <li class="schedule__item schedule__item--key">
+          <div class="schedule__item-time">11:00<span class="ampm">Noon</span></div>
+          <div class="schedule__item-body">
+            <h4 class="schedule__item-title" lang="ja">チェックアウト</h4>
+            <p class="schedule__item-en">Off to Nikko, Lake Chuzenji, or home.</p>
+            <p class="schedule__item-desc" lang="ja" style="font-size: 14px">チェックアウト後は、日光市内の観光や奥日光・中禅寺湖での SUP（サップ）などもお楽しみいただけます。SUPご参加の場合はご予約時にご連絡ください。</p>
+          </div>
+        </li>
+
+      </ol>
+    </article>
+
+    </div><!-- /.schedule__days -->
+
+  </div>
+</section>
+
+<!-- =========================================================
+     ④ MENU
+     ========================================================= -->
+<section class="menu" id="menu">
+  <div class="menu__inner">
+
+    <!-- Section header -->
+    <header class="menu__header reveal">
+      <div class="menu__eyebrow">
+        <span class="num">04</span>
+        <span class="rule"></span>
+        <span>Menu</span>
+      </div>
+      <h2 class="menu__title" lang="ja">Dinner &amp; Breakfast</h2>
+    </header>
+
+    <!-- Pair of cards: Dinner + Morning -->
+    <div class="menu__pair reveal">
+
+      <!-- DINNER — LIFE -->
+      <article class="menu__card menu--dinner">
+        <div class="menu__card-head">
+          <span class="menu__card-tag"><span class="dot"></span>Saturday Dinner</span>
+          <span class="menu__card-when">7.4 [Sat] · 17:30 –</span>
+        </div>
+
+        <div>
+          <h3 class="menu__card-title" lang="ja">Dinner</h3>
+          <p class="menu__card-subtitle">Mountain Dish, cooked over charcoal on site.</p>
+          <p class="menu__card-by">
+</p>
+        </div>
+
+        <figure class="menu__card-media" aria-label="鹿児島霧島牧場 黒毛和牛の赤ワイン煮込み＆生パスタ">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/menu-dinner.jpg" alt="黒毛和牛の赤ワイン煮込みと生パスタ" loading="lazy" decoding="async">
+        </figure>
+
+        <ol class="menu__list">
+          <li class="menu__item menu__item--solo">
+            <div class="menu__item-body">
+              <p class="menu__item-name" lang="ja">黒毛和牛の赤ワイン煮込み ＆ 生パスタ<span class="en">Wagyu Braised in Red Wine &amp; Fresh Pasta</span></p>
+              <p class="menu__item-desc" lang="ja" style="font-size: 14px">鹿児島霧島牧場の黒毛和牛を赤ワインでじっくり煮込み、バターソースのバジリコ風味の生パスタを添えて。フォカッチャ・パン付き。</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="menu__card-note" lang="ja"><span style="color: rgb(15, 15, 15)">※フルコースではなくメインのみをご提供します。キャンプならではの自由な食事スタイルはそのままに、ご自身のキャンプごはんに「LIFEの一皿」を添えていただくスタイルです。
+
+ ※ ご自身のキャンプ用のお皿をご持参ください。マウンテンディッシュとしてその場で盛り付け、お渡しします。</span></p>
+      </article>
+
+      <!-- MORNING — Girouette -->
+      <article class="menu__card menu--morning">
+        <div class="menu__card-head">
+          <span class="menu__card-tag"><span class="dot"></span>Sunday Morning</span>
+          <span class="menu__card-when">7.5 [Sun] · 8:00 –</span>
+        </div>
+
+        <div>
+          <h3 class="menu__card-title" lang="ja">Breakfast</h3>
+          <p class="menu__card-subtitle">Breakfast served by local restaurant.</p>
+          <p class="menu__card-by">
+</p>
+        </div>
+
+        <figure class="menu__card-media menu__card-media--morning" aria-label="Girouette のモーニングプレート">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/menu-morning.jpg" alt="Girouette のモーニングプレート" loading="lazy" decoding="async">
+        </figure>
+
+        <ol class="menu__list">
+          <li class="menu__item menu__item--solo">
+            <div class="menu__item-body">
+              <p class="menu__item-name" lang="ja">Girouette のモーニングプレート<span class="en">Girouette Morning Plate</span></p>
+              <p class="menu__item-desc" lang="ja" style="font-size: 14px">前日夜のキャンプで飲みすぎても ok な日光湯波入りクラムチャウダー、日光神山水産頂鱒のスモーク、日光野菜たっぷりのサラダとフレンチトースト。セルフドリップコーヒー付き。</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="menu__card-note" lang="ja"><span style="color: rgb(10, 10, 9)">※ お皿・カップはこちらでご用意します。屋根付きウッドデッキ、またはテントサイトでお召し上がりください。</span></p>
+      </article>
+
+    </div>
+
+    <!-- Natural Wine Bar — full-width strip -->
+    <aside class="menu__wine reveal">
+      <figure class="menu__wine-media menu__wine-media--live" aria-label="Natural Wine Bar — クロスをかけた長テーブルに並んだナチュラルワインのボトル">
+        <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/menu-wine.jpg" alt="長テーブルに並んだナチュラルワインのボトル" loading="lazy" decoding="async">
+      </figure>
+      <div class="menu__wine-body-wrap">
+        <div class="menu__wine-tag">Sat Night · Natural Wine Bar</div>
+        <h3 class="menu__wine-title" lang="ja">Natural Wines</h3>
+        <p class="menu__wine-body" lang="ja">ディナーの時間に合わせて、ナチュラルワインバーを設けます。グラスワインと一緒に日光の夜をゆっくりお過ごしください。</p>
+
+        <div class="menu__wine-list">
+          <div class="menu__wine-item">
+            <span class="k">Wine</span>
+            <span class="v" style="font-size: 14px">Natural Wine<small lang="ja">ナチュラルワイン各種</small></span>
+          </div>
+          <div class="menu__wine-item">
+            <span class="k">Beer</span>
+            <span class="v" style="font-size: 14px">Local Craft Beer<small lang="ja">地元クラフトビール</small></span>
+          </div>
+          <div class="menu__wine-item">
+            <span class="k">Soft</span>
+            <span class="v" style="font-size: 14px">Non-alcoholic<small lang="ja">ソフトドリンク各種</small></span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     ⑤ PLANS
+     ========================================================= -->
+<section class="plans" id="plan">
+  <div class="plans__inner">
+
+    <header class="plans__header reveal">
+      <div class="plans__eyebrow">
+        <span class="num">05</span>
+        <span class="rule"></span>
+        <span>Plans</span>
+      </div>
+      <div>
+        <h2 class="plans__title" lang="ja">Plans</h2>
+        <p class="plans__lead" lang="ja">宿泊を伴うプラン A / B は、いずれもキャンプ場利用料とディナープレート、モーニングがついています。ディナープレートのみ、モーニングのみでのご参加も可能です。</p>
+      </div>
+    </header>
+
+    <!-- Plan A & B -->
+    <div class="plans__pair reveal">
+
+      <!-- Plan A — featured (with car) -->
+      <article class="plan plan--featured">
+        <div class="plan__head">
+          <span class="plan__code">
+            <span class="num">A</span>
+            <span>Auto Site</span>
+            <span class="badge">Car-In</span>
+          </span>
+          <h3 class="plan__title" lang="ja">オートサイト宿泊<span class="en">Park car in tent site</span></h3>
+          <div class="plan__price">
+            <span class="plan__price-amount">12,000</span>
+            <span class="plan__price-currency">JPY</span>
+            <span class="plan__price-unit">/ 大人 1 名</span>
+          </div>
+          <p class="plan__price-note" lang="ja">キャンプ場利用料・ディナープレート・モーニング</p>
+        </div>
+
+        <ul class="plan__features" lang="ja">
+          <li>テントサイト内にお車も一緒に駐車できるプラン</li>
+          <li>最大 5名様まで 1つのサイトにご宿泊いただけます</li>
+          <li>サイト内に駐車できるお車は 1台のみ（他に駐車場あり）</li>
+          <li>ご参加の枠数に限りがあります</li>
+        </ul>
+
+        <div class="plan__pricing">
+          <div class="plan__pricing-item">
+            <span class="k">Adult</span>
+            <span class="v" style="font-size: 16px">¥12,000<small lang="ja">大人・税込</small></span>
+          </div>
+          <div class="plan__pricing-item">
+            <span class="k">7–12 yrs</span>
+            <span class="v" style="font-size: 16px">¥6,000<small lang="ja">ジュニア・税込</small></span>
+          </div>
+          <div class="plan__pricing-item">
+            <span class="k">0–6 yrs</span>
+            <span class="v" style="font-size: 16px">FREE<small lang="ja">未就学児·宿泊無料</small></span>
+          </div>
+        </div>
+
+        <a href="#" target="_blank" rel="noopener" class="plan__cta-card">
+          <span class="plan__cta-card-dot" aria-hidden="true"></span>
+          <span class="plan__cta-card-label" lang="ja">このプランで予約する</span>
+          <span class="plan__cta-card-arrow" aria-hidden="true">→</span>
+        </a>
+
+      </article>
+
+      <!-- Plan B — standard -->
+      <article class="plan">
+        <div class="plan__head">
+          <span class="plan__code">
+            <span class="num">B</span>
+            <span>Normal Site</span>
+          </span>
+          <h3 class="plan__title" lang="ja">ノーマルサイト宿泊<span class="en">No park car in tent site</span></h3>
+          <div class="plan__price">
+            <span class="plan__price-amount">9,000</span>
+            <span class="plan__price-currency">JPY</span>
+            <span class="plan__price-unit">/ 大人 1 名</span>
+          </div>
+          <p class="plan__price-note" lang="ja"><span style="color: #1d1a16; background-color: rgb(244, 239, 228)">キャンプ場利用料・ディナープレート・モーニング</span></p>
+        </div>
+
+        <ul class="plan__features" lang="ja">
+          <li style="font-size: 14px">テントサイト内にはお車乗り入れ不可のプラン</li>
+          <li>最大 5名様まで 1つのサイトにご宿泊いただけます</li>
+          <li>駐車できるお車は共用駐車場をご利用ください</li>
+          <li>ご参加の枠数に限りがあります</li>
+        </ul>
+
+        <div class="plan__pricing">
+          <div class="plan__pricing-item">
+            <span class="k">Adult</span>
+            <span class="v" style="font-size: 16px">¥9,000<small lang="ja">大人・税込</small></span>
+          </div>
+          <div class="plan__pricing-item">
+            <span class="k">7–12 yrs</span>
+            <span class="v" style="font-size: 16px">¥4,500<small lang="ja">ジュニア・税込</small></span>
+          </div>
+          <div class="plan__pricing-item">
+            <span class="k">0–6 yrs</span>
+            <span class="v" style="font-size: 16px">FREE<small lang="ja">未就学児·宿泊無料</small></span>
+          </div>
+        </div>
+
+        <a href="#" target="_blank" rel="noopener" class="plan__cta-card">
+          <span class="plan__cta-card-dot" aria-hidden="true"></span>
+          <span class="plan__cta-card-label" lang="ja">このプランで予約する</span>
+          <span class="plan__cta-card-arrow" aria-hidden="true">→</span>
+        </a>
+
+      </article>
+
+    </div>
+
+    <!-- Food-only add-on -->
+    <aside class="plans__addon reveal">
+      <div class="plans__addon-head">
+        <div class="plans__addon-tag">Option · Food Only</div>
+        <h3 class="plans__addon-title" lang="ja">宿泊はしないけれど、食事だけ受け取りたい方へ。</h3>
+        <p class="plans__addon-body" lang="ja" style="font-size: 14px">宿泊はされず、ディナーまたはモーニングのみのご参加も承ります。ご予約は予約フォームよりご記入ください。数に限りがあるため、途中で受付が締切となる可能性がございます。</p>
+      </div>
+
+      <div class="plans__addon-list">
+        <div class="plans__addon-item">
+          <div class="plans__addon-item-head">
+            <span class="day">07.04<small>Sat</small></span>
+            <span class="k">Dinner Only</span>
+          </div>
+          <span class="v" lang="ja">マウンテンディッシュ</span>
+          <p class="plans__addon-item-desc" lang="ja" style="font-size: 14px">相場氏が炭火で仕上げる、LIFE オリジナルのプレート。</p>
+          <div class="plans__addon-item-foot">
+            <span class="price">¥3,000<small lang="ja">税込</small></span>
+            <span class="when" lang="ja">17:30 受け取り</span>
+          </div>
+        </div>
+        <div class="plans__addon-item">
+          <div class="plans__addon-item-head">
+            <span class="day">07.05<small>Sun</small></span>
+            <span class="k">Morning Only</span>
+          </div>
+          <span class="v" lang="ja">Girouette の朝ごはん</span>
+          <p class="plans__addon-item-desc" lang="ja" style="font-size: 14px">日光市 Girouette のサンドイッチ・スープ・サラダ・コーヒー。</p>
+          <div class="plans__addon-item-foot">
+            <span class="price">¥2,000<small lang="ja">税込</small></span>
+            <span class="when" lang="ja">8:00 受け取り</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" target="_blank" rel="noopener" class="plans__addon-cta">
+        <span class="plans__addon-cta-dot" aria-hidden="true"></span>
+        <span class="plans__addon-cta-label" lang="ja">食事のみで予約する</span>
+        <span class="plans__addon-cta-en">Reserve Food Only</span>
+        <span class="plans__addon-cta-arrow" aria-hidden="true">→</span>
+      </a>
+    </aside>
+
+    <!-- Notes -->
+    <ul class="plans__notes" lang="ja">
+      <li style="color: rgb(15, 15, 15)">お子様用プレートのご用意はございません。大人と同じ内容のものを召し上がっていただきます。</li>
+      <li style="color: rgb(21, 21, 20)">キャンプ道具はプランに含まれません。レンタルご希望の場合は次セクションのレンタルご案内をご確認ください。</li>
+      <li style="color: rgb(12, 12, 11)">ナチュラルワインやその他ドリンクのお支払いは、現金または PayPay にてその場で承ります。</li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     ⑦ RENTAL
+     ========================================================= -->
+<section class="rental" id="rental">
+  <div class="rental__inner">
+
+    <header class="rental__header reveal">
+      <div class="rental__eyebrow">
+        <span class="num">06</span>
+        <span class="rule"></span>
+        <span>Rental</span>
+      </div>
+      <div class="rental__header-body">
+        <h2 class="rental__title" lang="ja">Gear Rental</h2>
+      </div>
+    </header>
+
+    <!-- Service pair -->
+    <div class="rental__pair reveal">
+
+      <!-- re-base camp -->
+      <article class="rental-card">
+        <figure class="rental-card__media" aria-label="re-base camp レンタル道具">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/rental-rebase.jpg" alt="re-base camp のレンタル道具" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="rental-card__head">
+          <span class="rental-card__tag"><span class="dot"></span>Gear Only · Online Rental</span>
+          <h3 class="rental-card__brand">re-base camp<span class="ja" lang="ja">オンラインで注文して現地にお届け</span></h3>
+        </div>
+
+        <p class="rental-card__body" lang="ja">TORCH と提携のレンタルサービス。オンラインで道具をご注文いただき、お届け先を TORCH にご指定ください。撤収後は箱に戻していただき、こちらで返送の手配をいたします。
+
+</p>
+
+        <ol class="rental-card__steps">
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">01</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">re-base camp のサイトよりオンラインでご注文。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">02</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">お届け先を <strong>TORCH</strong> にご指定ください。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">03</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">返送は、届いた段ボールに道具を入れていただき、こちらで発送手配をいたします。</div>
+          </li>
+        </ol>
+
+        <div class="rental-card__addr">
+          <div class="rental-card__addr-item">
+            <span class="k">送り先住所</span>
+            <span class="v">TORCH<small lang="ja" style="font-size: 14px"><span style="color: rgb(12, 12, 11)">〒321-1436 栃木県日光市久次良町 242</span></small></span>
+          </div>
+          <div class="rental-card__addr-item">
+            <span class="k">電話場号</span>
+            <span class="v">050-6869-4561<small lang="ja" style="font-size: 14px">
+</small></span>
+          </div>
+        </div>
+
+        <a href="https://www.re-base.camp/" target="_blank" rel="noopener" class="rental-card__cta">re-base camp 公式サイトで注文 ↗</a>
+      </article>
+
+      <!-- Campify -->
+      <article class="rental-card">
+        <figure class="rental-card__media rental-card__media--alt" aria-label="Campify 手ぶらキャンプ">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/rental-campify.jpg" alt="Campify の手ぶらキャンプ" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="rental-card__head">
+          <span class="rental-card__tag">SETUP INCLUDED</span>
+          <h3 class="rental-card__brand">Campify<span class="ja" lang="ja">完全な手ぶらキャンプ。設営と片付けがすべて不要に</span></h3>
+        </div>
+
+        <p class="rental-card__body" lang="ja">初めてのキャンプで気になる設営と撤収作業を、すべてスタッフにお任せ。持ち物は食材のみでキャンプの夜をそのまま楽しめるサービスです。テントはグランピングでも使われるNordisk（ノルディスク）。寝具や椅子、テーブル、キッチン周りなど必要な全てが揃っています。</p>
+
+        <ol class="rental-card__steps">
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">01</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">まずは <strong>Plan A / Plan B</strong> からご希望のサイトをご予約ください。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">02</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">予約備考欄に <strong>「Campify 希望」</strong> とご記入ください。ご案内の連絡をさせていただきます。</div>
+          </li>
+          <li class="rental-card__step">
+            <span class="rental-card__step-num">03</span>
+            <div class="rental-card__step-body" lang="ja" style="font-size: 14px">別途 Campify よりご予約。TORCH 予約サイトのご泊泊料を、当日チェックイン時に現金にてご返金いたします。</div>
+          </li>
+        </ol>
+
+        <a href="https://campify.jp/" target="_blank" rel="noopener" class="rental-card__cta">Campify 公式サイトを見る ↗</a>
+      </article>
+
+    </div>
+
+    <!-- Notes removed -->
+
+  </div>
+</section>
+
+
+<!-- =========================================================
+     ⑦ INFO — Bring / Shower / Access / Cancellation
+     ========================================================= -->
+<section class="info" id="info">
+  <div class="info__inner">
+
+    <header class="info__header reveal">
+      <div class="info__eyebrow">
+        <span class="num">07</span>
+        <span class="rule"></span>
+        <span>Information</span>
+      </div>
+      <h2 class="info__title" lang="ja">Information</h2>
+    </header>
+
+    <!-- ===== Bring + Shower ===== -->
+    <div class="info-block reveal">
+      <header class="info-block__head">
+        <span class="info-block__num">01</span>
+        <h3 class="info-block__title" lang="ja">持ち物・シャワー・入浴</h3>
+      </header>
+
+      <div class="info__essentials">
+        <!-- Bring -->
+        <article class="info-card">
+          <div class="info-card__kicker">
+            <span class="info-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V5a4 4 0 0 1 8 0v2"/><rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 12h6"/></svg>
+            </span>
+            <span class="label">Bring</span>
+          </div>
+          <h4 class="info-card__title" lang="ja">持ち物に関して<span class="en">What to bring.</span></h4>
+          <ul class="info-checklist" lang="ja">
+            <li><span><strong>キャンプ泊の道具</strong>レンタルをご希望の方は上記 Rental セクションをご確認ください</span></li>
+            <li><span><strong>メインディッシュ用のプレート・お皿</strong>ディナーとモーニングを受け取る際に使用します</span></li>
+            <li><span><strong>モーニングコーヒー用のカップ</strong>ご自身のお気に入りをどうぞ</span></li>
+          </ul>
+          <p class="info-card__note" lang="ja" style="font-size: 14px">その他、タオル・換えの服・虫よけなど、夜間は森の住人たちも雑始も多いので、長袖や長ズボンもおすすめします。</p>
+        </article>
+
+        <!-- Shower -->
+        <article class="info-card">
+          <div class="info-card__kicker">
+            <span class="info-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 4-5 6.5-5 9.5a5 5 0 0 0 10 0C17 9.5 15 7 12 3z"/></svg>
+            </span>
+            <span class="label">Bath</span>
+          </div>
+          <h4 class="info-card__title" lang="ja">シャワーや入浴に関して<span class="en">Shower & bathing.</span></h4>
+          <ul class="info-checklist" lang="ja">
+            <li><span>施設内にシャワーブース 4つシャワーブース 4つ
+（ご利用料金に含まれます）</span></li>
+            <li><span><strong>バスタブ付きユニット 1つ</strong>（1,000円 / 回のご予約貸切制・1回1時間）</span></li>
+            <li><span>ご予約希望の場合は到着後スタッフにお声がけください</span></li>
+            <li><span>車で 10 分以内に「温泉 やしおの湯」もございます。
+日光和の代温泉 やしおの湯
+」もござい</span></li>
+          </ul>
+          <p class="info-card__note" lang="ja" style="font-size: 14px">チェックイン後、夜の焚き火の前にひと風呂、という過ごし方もおすすめです。</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- ===== Access ===== -->
+    <div class="info-block reveal">
+      <header class="info-block__head">
+        <span class="info-block__num">02</span>
+        <h3 class="info-block__title" lang="ja">アクセス<span class="en">How to get to TORCH, Nikko.</span></h3>
+      </header>
+
+      <div class="info-access">
+        <figure class="info-access__map info-access__map--live" aria-label="TORCH Camping &amp; Coworking Space の地図">
+          <iframe
+            src="https://www.google.com/maps?q=%E6%A0%83%E6%9C%A8%E7%9C%8C%E6%97%A5%E5%85%89%E5%B8%82%E4%B9%85%E6%AC%A1%E8%89%AF%E7%94%BA242&z=15&output=embed"
+            title="TORCH Camping &amp; Coworking Space — Google Map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </figure>
+
+        <div class="info-access__details">
+          <div class="info-access__addr">
+            <span class="name" lang="ja">TORCH Camping &amp; Coworking Space</span>
+            <span class="line" lang="ja" style="font-size: 14px">〒321-1436 栃木県日光市久次良町 242</span>
+            <span class="tel">TEL : 050-6869-4561</span>
+          </div>
+
+          <div class="info-access__links">
+            <a href="https://share.google/9shxoOkYMCzBehPVC" target="_blank" rel="noopener" class="info-access__link">Map <span>Google マップで開く</span> ↗</a>
+          </div>
+          <div class="info-access__transport">
+            <div class="info-access__transport-item">
+              <span class="k">Car</span>
+              <span class="v" lang="ja" style="font-size: 14px"><strong>敷地内に広い駐車場あり</strong>。首都高・東北高で宇都宮インターを経由して約 2.5 時間。</span>
+            </div>
+            <div class="info-access__transport-item">
+              <span class="k">Train</span>
+              <span class="v" lang="ja" style="font-size: 14px">JR / 東武「<strong>日光駅</strong>」下車、車で約 5 分。ご希望に応じて送迎もご相談ください。</span>
+            </div>
+            <div class="info-access__transport-item">
+              <span class="k">Bus</span>
+              <span class="v" lang="ja" style="font-size: 14px">日光駅から奥日光方面バス、「<strong>植物園前</strong>」付近下車徒歩り。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Cancellation Policy ===== -->
+    <div class="info-block reveal">
+      <header class="info-block__head">
+        <span class="info-block__num">03</span>
+        <h3 class="info-block__title" lang="ja">キャンセルポリシー<span class="en">Cancellation policy.</span></h3>
+      </header>
+
+      <div class="info-cancel">
+        <p class="info-cancel__text" lang="ja">Dinner in Camp Night のご予約をキャンセルされる場合、下記のキャンセル料金が発生いたします。雨天の場合もキャンセル料は発生いたしますのでご注意ください。</p>
+
+        <dl class="info-cancel__dl" lang="ja">
+          <div class="info-cancel__dl-row">
+            <dt>ご利用日の 3 日前から</dt>
+            <dd>料金の 30%</dd>
+          </div>
+          <div class="info-cancel__dl-row">
+            <dt>ご利用日の前日</dt>
+            <dd>料金の 50%</dd>
+          </div>
+          <div class="info-cancel__dl-row">
+            <dt>ご利用日の当日</dt>
+            <dd>料金の 100%</dd>
+          </div>
+        </dl>
+
+        <p class="info-cancel__text" lang="ja">ただし、台風や警報発令時など、安全にご利用いただけないと判断した場合はキャンセル料は発生いたしません。気象状況の影響が心配される場合は、7月1日 15:00 までに実施の可否、及びキャンセル料の有無を判断させていただきます。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+<script>
+  // Nav: stays dark over the hero, switches to light when scrolled past it.
+  (function () {
+    const nav  = document.getElementById('nav');
+    const hero = document.querySelector('.hero');
+    if (!nav || !hero) return;
+
+    const onScroll = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      // switch to light when the hero is mostly out of view
+      if (heroBottom < 80) nav.classList.add('is-light');
+      else nav.classList.remove('is-light');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // Mobile drawer (hamburger)
+  (function () {
+    const burger = document.getElementById('nav-burger');
+    const drawer = document.getElementById('nav-drawer');
+    if (!burger || !drawer) return;
+
+    const close = () => {
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'メニューを開く');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('nav-drawer-open');
+    };
+    const open = () => {
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'メニューを閉じる');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('nav-drawer-open');
+    };
+
+    burger.addEventListener('click', () => {
+      const expanded = burger.getAttribute('aria-expanded') === 'true';
+      if (expanded) close(); else open();
+    });
+
+    // Close when any drawer link is clicked
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', close);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  })();
+
+  // Reveal on scroll
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !els.length) {
+      els.forEach(e => e.classList.add('is-in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(e => io.observe(e));
+  })();
+</script>
+
+</body>
+</html>
