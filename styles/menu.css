@@ -324,6 +324,17 @@
   border-radius: var(--radius-md);
   pointer-events: none;
 }
+/* Real photo in place — drop the placeholder styling and fill the frame */
+.menu__wine-media--live { background: none; }
+.menu__wine-media--live::before { display: none; }
+.menu__wine-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .menu__wine-media-tag {
   position: absolute;
   top: 22px; left: 22px;
