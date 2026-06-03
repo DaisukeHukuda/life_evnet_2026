@@ -3125,12 +3125,25 @@ body.nav-drawer-open {
     line-height: 1.85;
   }
   .plan__features li { padding-left: 22px; }
-  .plan__pricing { gap: var(--space-3); }
+  /* コンパクト表示: ラベル｜金額｜注記 を1行に */
+  .plan__pricing { grid-template-columns: 1fr; gap: 0; }
   .plan__pricing-item {
-    padding: var(--space-3) var(--space-4);
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(29,26,22,0.10);
   }
+  .plan--featured .plan__pricing-item { border-bottom-color: rgba(236,230,216,0.14); }
+  .plan__pricing-item .k { padding-top: 0; }
   .plan__pricing-item .v {
-    font-size: 15px;
+    font-size: 16px;
+  }
+  .plan__pricing-item .v small {
+    display: inline;
+    margin-left: 8px;
+    font-size: 11px;
   }
 
   /* Reservation CTA */
@@ -4966,7 +4979,6 @@ Night.</h1>
         <span>Talk Show</span>
       </div>
       <div class="talk__header-body">
-        <p class="talk__kicker">A talk by LIFE's longtime graphic designer.</p>
         <h2 class="talk__title" lang="ja">環島、だいたい迷子<span class="sub">— 余白だらけの台湾自転車一周旅 —</span></h2>
 
         <p class="talk__intro" lang="ja">LIFEのクリエイティブを長年支えてきた川上恵美さん。これまでの制作の背景、そして直近で数ヶ月にわたり旅と滞在をしてきた台湾でのお話し。</p>
@@ -4979,10 +4991,6 @@ Night.</h1>
           <div class="talk__meta-item">
             <span class="k">Venue</span>
             <span class="v" style="font-size: 16px">Wooden Deck<small lang="ja">屋根付きウッドデッキ</small></span>
-          </div>
-          <div class="talk__meta-item">
-            <span class="k">Entry</span>
-            <span class="v" style="font-size: 16px">Open to All<small lang="ja">自由参加・申込み不要</small></span>
           </div>
         </div>
       </div>
@@ -5179,7 +5187,6 @@ Night.</h1>
 
         <div>
           <h3 class="menu__card-title" lang="ja">Dinner</h3>
-          <p class="menu__card-subtitle">Mountain Dish, cooked over charcoal on site.</p>
           <p class="menu__card-by">
 </p>
         </div>
@@ -5211,7 +5218,6 @@ Night.</h1>
 
         <div>
           <h3 class="menu__card-title" lang="ja">Breakfast</h3>
-          <p class="menu__card-subtitle">Breakfast served by local restaurant.</p>
           <p class="menu__card-by">
 </p>
         </div>
@@ -5278,7 +5284,6 @@ Night.</h1>
       </div>
       <div>
         <h2 class="plans__title" lang="ja">Plans</h2>
-        <p class="plans__lead" lang="ja">宿泊を伴うプラン A / B は、いずれもキャンプ場利用料とディナープレート、モーニングがついています。ディナープレートのみ、モーニングのみでのご参加も可能です。</p>
       </div>
     </header>
 
