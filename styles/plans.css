@@ -617,9 +617,9 @@
 }
 .plans__addon-item-foot {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   margin-top: auto;
   padding-top: var(--space-3);
   border-top: 1px solid rgba(29,26,22,0.08);
@@ -644,7 +644,7 @@
   font-size: 12px;
   line-height: 1.5;
   color: var(--color-gray-50);
-  text-align: right;
+  text-align: left;
 }
 
 /* CTA for Food Only — same family as plans__reserve-cta but a touch lighter */

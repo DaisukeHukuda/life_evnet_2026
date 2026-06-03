@@ -1064,9 +1064,9 @@ body.nav-drawer-open {
 }
 .plans__addon-item-foot {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   margin-top: auto;
   padding-top: var(--space-3);
   border-top: 1px solid rgba(29,26,22,0.08);
@@ -1091,7 +1091,7 @@ body.nav-drawer-open {
   font-size: 12px;
   line-height: 1.5;
   color: var(--color-gray-50);
-  text-align: right;
+  text-align: left;
 }
 
 /* CTA for Food Only — same family as plans__reserve-cta but a touch lighter */
@@ -1511,8 +1511,7 @@ body.nav-drawer-open {
             <span class="day">07.04<small>Sat</small></span>
             <span class="k">Dinner Only</span>
           </div>
-          <span class="v" lang="ja">マウンテンディッシュ</span>
-          <p class="plans__addon-item-desc" lang="ja" style="font-size: 14px">相場氏が炭火で仕上げる、LIFE オリジナルのプレート。</p>
+          <span class="v" lang="ja">ディナープレート</span>
           <div class="plans__addon-item-foot">
             <span class="price">¥3,000<small lang="ja">税込</small></span>
             <span class="when" lang="ja">17:30 受け取り</span>
@@ -1524,7 +1523,6 @@ body.nav-drawer-open {
             <span class="k">Morning Only</span>
           </div>
           <span class="v" lang="ja">Girouette の朝ごはん</span>
-          <p class="plans__addon-item-desc" lang="ja" style="font-size: 14px">日光市 Girouette のサンドイッチ・スープ・サラダ・コーヒー。</p>
           <div class="plans__addon-item-foot">
             <span class="price">¥2,000<small lang="ja">税込</small></span>
             <span class="when" lang="ja">8:00 受け取り</span>
