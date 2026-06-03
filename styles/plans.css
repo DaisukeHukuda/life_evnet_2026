@@ -915,5 +915,9 @@
 
 
 /* === 説明文サイズ統一: PC 15px / SP 13px (Storyと統一) === */
-.plans__lead, .plans__reserve-body, .plans__addon-body { font-size: 15px !important; }
-@media (max-width: 720px) { .plans__lead, .plans__reserve-body, .plans__addon-body { font-size: 13px !important; } }
+.plans__lead, .plans__reserve-body, .plans__addon-body,
+.plan__features li { font-size: 15px !important; }
+@media (max-width: 720px) {
+  .plans__lead, .plans__reserve-body, .plans__addon-body,
+  .plan__features li { font-size: 13px !important; }
+}
