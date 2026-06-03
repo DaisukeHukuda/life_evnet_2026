@@ -1012,3 +1012,23 @@
   .plans__howto-media { max-width: 260px; margin: 0 auto; }
   .plans__howto-steps div { font-size: 13px; }
 }
+
+
+/* === Food Only 各アイテムの申し込みテキストリンク === */
+.plans__addon-item-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-ember);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity .2s ease;
+}
+.plans__addon-item-link:hover { opacity: 0.7; }
