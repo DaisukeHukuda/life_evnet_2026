@@ -176,8 +176,8 @@
 
 .schedule__item-time {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 400;
+  font-size: clamp(17px, 1.7vw, 21px);
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--color-on-dark);
@@ -202,8 +202,8 @@
 }
 .schedule__item-title {
   font-family: var(--font-display-jp);
-  font-weight: 500;
-  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 400;
+  font-size: clamp(13px, 1.2vw, 15px);
   line-height: 1.45;
   color: var(--color-on-dark);
   margin: 0;
@@ -285,7 +285,7 @@
     gap: var(--space-3);
     padding: var(--space-3) 0;
   }
-  .schedule__item-time { font-size: 23px; }
+  .schedule__item-time { font-size: 18px; }
   .schedule__item--key {
     margin: 0 calc(-1 * var(--space-3));
     padding: var(--space-3);
@@ -345,14 +345,14 @@
     padding: var(--space-3) 0;
   }
   .schedule__item-time {
-    font-size: 21px;
+    font-size: 17px;
   }
   .schedule__item-time .ampm {
     font-size: 9px;
     letter-spacing: 0.18em;
   }
   .schedule__item-title {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.5;
   }
   .schedule__item-en {
