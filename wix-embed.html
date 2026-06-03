@@ -3229,6 +3229,83 @@ body.nav-drawer-open {
 }
 
 
+/* === How to reserve（予約システムの使い方） === */
+.plans__howto {
+  margin-top: var(--space-8);
+  padding: var(--space-8);
+  background: var(--color-white);
+  border: 1px solid rgba(29,26,22,0.10);
+  border-radius: var(--radius-lg);
+}
+.plans__howto-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-6);
+}
+.plans__howto-grid {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+.plans__howto-media {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(29,26,22,0.12);
+  background: var(--color-cream-soft);
+}
+.plans__howto-media img { width: 100%; height: auto; display: block; }
+.plans__howto-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.plans__howto-steps li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+.plans__howto-steps .n {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+}
+.plans__howto-steps div {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray-70);
+}
+.plans__howto-steps strong {
+  display: block;
+  font-weight: 700;
+  color: var(--color-near-black);
+  margin-bottom: 2px;
+}
+@media (max-width: 720px) {
+  .plans__howto { padding: var(--space-5); }
+  .plans__howto-title { font-size: 16px; line-height: 1.6; margin-bottom: var(--space-4); }
+  .plans__howto-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .plans__howto-media { max-width: 260px; margin: 0 auto; }
+  .plans__howto-steps div { font-size: 13px; }
+}
+
+
 /* ===== schedule.css ===== */
 /* ============================================================
    SCHEDULE — Compact two-column timeline
@@ -5431,6 +5508,34 @@ Night.</h1>
       <li style="color: rgb(21, 21, 20)">キャンプ道具はプランに含まれません。レンタルご希望の場合は次セクションのレンタルご案内をご確認ください。</li>
       <li style="color: rgb(12, 12, 11)">ナチュラルワインやその他ドリンクのお支払いは、現金または PayPay にてその場で承ります。</li>
     </ul>
+
+    <!-- How to reserve -->
+    <div class="plans__howto reveal">
+      <h3 class="plans__howto-title" lang="ja">イベント開催日を入力すると、予約可能なテントサイト一覧が表示されます</h3>
+      <div class="plans__howto-grid">
+        <figure class="plans__howto-media">
+          <img src="https://daisukehukuda.github.io/life_evnet_2026/assets/reserve-howto.png" alt="予約システムの入力画面の例" loading="lazy" decoding="async">
+        </figure>
+        <ol class="plans__howto-steps" lang="ja">
+          <li>
+            <span class="n" aria-hidden="true">1</span>
+            <div><strong>開催日を入力</strong>チェックインを「2026/7/4」、チェックアウトを「2026/7/5」に設定します。</div>
+          </li>
+          <li>
+            <span class="n" aria-hidden="true">2</span>
+            <div><strong>人数・サイト数を選択</strong>ご利用人数とサイト数を入力してください。</div>
+          </li>
+          <li>
+            <span class="n" aria-hidden="true">3</span>
+            <div><strong>「検索する」を押す</strong>予約可能なテントサイトの一覧が表示されます。</div>
+          </li>
+          <li>
+            <span class="n" aria-hidden="true">4</span>
+            <div><strong>プランを選んで予約</strong>ご希望のサイトの「予約する」から、お申し込み手続きへお進みください。</div>
+          </li>
+        </ol>
+      </div>
+    </div>
 
   </div>
 </section>

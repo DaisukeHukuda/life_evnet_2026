@@ -934,3 +934,80 @@
   .plans__lead, .plans__reserve-body, .plans__addon-body,
   .plan__features li { font-size: 13px !important; }
 }
+
+
+/* === How to reserve（予約システムの使い方） === */
+.plans__howto {
+  margin-top: var(--space-8);
+  padding: var(--space-8);
+  background: var(--color-white);
+  border: 1px solid rgba(29,26,22,0.10);
+  border-radius: var(--radius-lg);
+}
+.plans__howto-title {
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--color-near-black);
+  margin: 0 0 var(--space-6);
+}
+.plans__howto-grid {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+.plans__howto-media {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(29,26,22,0.12);
+  background: var(--color-cream-soft);
+}
+.plans__howto-media img { width: 100%; height: auto; display: block; }
+.plans__howto-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.plans__howto-steps li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+.plans__howto-steps .n {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+}
+.plans__howto-steps div {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-gray-70);
+}
+.plans__howto-steps strong {
+  display: block;
+  font-weight: 700;
+  color: var(--color-near-black);
+  margin-bottom: 2px;
+}
+@media (max-width: 720px) {
+  .plans__howto { padding: var(--space-5); }
+  .plans__howto-title { font-size: 16px; line-height: 1.6; margin-bottom: var(--space-4); }
+  .plans__howto-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .plans__howto-media { max-width: 260px; margin: 0 auto; }
+  .plans__howto-steps div { font-size: 13px; }
+}
