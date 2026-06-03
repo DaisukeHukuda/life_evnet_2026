@@ -447,3 +447,8 @@
     text-align: left;
   }
 }
+
+
+/* === 説明文サイズ統一: PC 15px / SP 13px (Storyと統一) === */
+.talk__intro, .talk__profile-bio { font-size: 15px !important; }
+@media (max-width: 720px) { .talk__intro, .talk__profile-bio { font-size: 13px !important; } }

@@ -606,3 +606,8 @@
     margin-top: 2px;
   }
 }
+
+
+/* === 説明文サイズ統一: PC 15px / SP 13px (Storyと統一) === */
+.menu__item-desc, .menu__wine-body { font-size: 15px !important; }
+@media (max-width: 720px) { .menu__item-desc, .menu__wine-body { font-size: 13px !important; } }

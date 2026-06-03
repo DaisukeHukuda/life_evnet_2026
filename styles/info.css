@@ -717,3 +717,8 @@
     font-size: 15px;
   }
 }
+
+
+/* === 説明文サイズ統一: PC 15px / SP 13px (Storyと統一) === */
+.info-cancel__text { font-size: 15px !important; }
+@media (max-width: 720px) { .info-cancel__text { font-size: 13px !important; } }
