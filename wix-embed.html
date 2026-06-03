@@ -784,10 +784,12 @@ body.nav-drawer-open {
 /* ---- Mobile (≤720px) ---- */
 @media (max-width: 720px) {
   .hero__inner {
-    padding: 88px 20px 40px;
+    padding: 64px 20px 40px;
     gap: var(--space-8);
     grid-template-rows: 1fr auto;
   }
+  /* ヘッダー直下にロゴを寄せ、余白を詰める */
+  .hero__title-block { align-self: start; }
 
   /* Logo lockup — keep side by side, sized to read clearly */
   .hero__lockup {
@@ -4890,8 +4892,7 @@ Night.</h1>
       </div>
 
       <div class="hero__ctas">
-        <a href="#plan" class="btn hero__cta">プランを見る&nbsp;→</a>
-        <a href="#story" class="btn btn--ghost">Story</a>
+        <a href="#plan" class="btn hero__cta">予約プランを見る&nbsp;→</a>
       </div>
     </div>
 
