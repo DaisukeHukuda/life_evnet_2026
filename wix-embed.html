@@ -122,6 +122,9 @@ html, body {
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 [lang="ja"], .lang-ja { font-family: var(--font-jp); line-height: 1.7; }
@@ -196,12 +199,12 @@ img { max-width: 100%; display: block; }
 .nav__drawer-inner {
   position: absolute;
   inset: 0;
-  padding: 96px 24px 48px;
+  padding: 88px 24px 48px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .nav__drawer a {
   display: block;
