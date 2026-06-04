@@ -455,8 +455,7 @@ body.nav-drawer-open {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 720px;
   background: var(--bg-hero-dark);
   color: var(--color-on-dark);
   overflow: hidden;
@@ -551,8 +550,7 @@ body.nav-drawer-open {
   max-width: var(--content-max);
   margin: 0 auto;
   padding: 120px var(--content-gutter) var(--space-16);
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 720px;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: var(--space-12);
@@ -783,10 +781,12 @@ body.nav-drawer-open {
 
 /* ---- Mobile (≤720px) ---- */
 @media (max-width: 720px) {
+  .hero { min-height: 600px; }
   .hero__inner {
     padding: 64px 20px 40px;
     gap: var(--space-8);
     grid-template-rows: 1fr auto;
+    min-height: 600px;
   }
   /* ヘッダー直下にロゴを寄せ、余白を詰める */
   .hero__title-block { align-self: start; }
