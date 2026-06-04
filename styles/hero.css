@@ -176,13 +176,14 @@
 .hero__title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 0.95;
+  font-size: clamp(48px, 9vw, 120px);
+  line-height: 0.98;
   letter-spacing: -0.025em;
   color: var(--color-cream);
   margin: 0;
   font-variation-settings: "opsz" 48;
   text-shadow: 0 2px 30px rgba(0,0,0,0.45), 0 1px 3px rgba(0,0,0,0.35);
+  overflow-wrap: break-word;
 }
 .hero__title .it {
   font-style: italic;
