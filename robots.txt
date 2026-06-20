@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daisukehukuda.github.io/life_evnet_2026/sitemap.xml

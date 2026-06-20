@@ -1,0 +1,101 @@
+═══════════════════════════════════════════════════════════════
+ Wix SEO 設定用シート（コピペで使えます）
+ 対象ページ: https://www.torchnikko.jp/life-torch-dinner-in-camp-night
+═══════════════════════════════════════════════════════════════
+
+このページは Wix が本番です。検索順位に効くのは「Wix側の設定」なので、
+下記の①〜③を Wix の管理画面に貼り付けてください。
+（コードを書く作業は不要。コピペするだけです）
+
+
+───────────────────────────────────────────────────────────────
+ ① ページのタイトル・説明文
+   貼る場所： Wixエディタ → 該当ページの「…」メニュー → 「SEO」パネル
+            →「基本」タブ
+───────────────────────────────────────────────────────────────
+
+▼ タイトルタグ（「タイトル」欄に貼る）
+LIFE × TORCH｜Dinner in Camp Night 2026｜相場正一郎 × 川上恵美 in 日光
+
+▼ メタディスクリプション（「説明」欄に貼る）
+2026年7月4日(土)・5日(日)、日光のTORCH Camping & Coworking Spaceで開催。LIFE 相場正一郎によるイタリアンディナーと、グラフィックデザイナー川上恵美のトークショー。キャンプ泊と食を楽しむ特別な一夜限りのイベント。
+
+
+───────────────────────────────────────────────────────────────
+ ② SNS・LINEで共有したときのサムネ画像・タイトル
+   貼る場所： 同じ「SEO」パネル →「ソーシャルシェア」タブ
+───────────────────────────────────────────────────────────────
+
+▼ 共有画像 … 「ディナーの料理写真」をアップロード
+   （手元の画像： assets/hero-dinner.jpg を使ってください）
+   ※Wixに直接アップロードするのが確実です
+
+▼ ソーシャルタイトル
+LIFE × TORCH｜Dinner in Camp Night 2026
+
+▼ ソーシャル説明文
+日光のTORCHで開催。LIFE 相場正一郎のイタリアンディナーと、川上恵美のトークショー。キャンプ泊と食を楽しむ特別な一夜。
+
+
+───────────────────────────────────────────────────────────────
+ ③ イベント構造化データ（Google検索でイベント情報を出すため）
+   貼る場所： Wix管理画面 → 「設定」→「カスタムコード」
+            → 「+ カスタムコードを追加」
+            → コードを下記に貼り、配置は「ヘッド（Head）」、
+              適用ページは「このページのみ（該当イベントページ）」を選択
+───────────────────────────────────────────────────────────────
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEvent",
+  "name": "LIFE × TORCH — Dinner in Camp Night 2026",
+  "startDate": "2026-07-04T12:00:00+09:00",
+  "endDate": "2026-07-05T11:00:00+09:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "description": "日光のTORCH Camping & Coworking Spaceで開催。LIFE 相場正一郎によるイタリアンディナーと、グラフィックデザイナー川上恵美のトークショー。キャンプ泊と食を楽しむ特別な一夜限りのイベント。",
+  "image": ["https://daisukehukuda.github.io/life_evnet_2026/assets/hero-dinner.jpg"],
+  "url": "https://www.torchnikko.jp/life-torch-dinner-in-camp-night",
+  "location": {
+    "@type": "Place",
+    "name": "TORCH Camping & Coworking Space",
+    "telephone": "+81-50-6869-4561",
+    "address": {
+      "@type": "PostalAddress",
+      "postalCode": "321-1436",
+      "addressRegion": "栃木県",
+      "addressLocality": "日光市",
+      "streetAddress": "久次良町242",
+      "addressCountry": "JP"
+    }
+  },
+  "performer": [
+    { "@type": "Person", "name": "相場正一郎" },
+    { "@type": "Person", "name": "川上恵美" },
+    { "@type": "Person", "name": "緑川千寿子" }
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "TORCH Camping & Coworking Space",
+    "url": "https://www.torchnikko.jp/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.torchnikko.jp/life-torch-dinner-in-camp-night",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "JPY"
+  }
+}
+</script>
+
+
+───────────────────────────────────────────────────────────────
+ 仕上げ（任意・あとでやればOK）
+───────────────────────────────────────────────────────────────
+・公開後、Google Search Console でこのURLを「インデックス登録をリクエスト」
+・「リッチリザルト テスト」(https://search.google.com/test/rich-results)
+  に上記URLを入れると、③のイベント情報が正しく認識されたか確認できます
+
+※ ①②③ の貼り付け作業は、難しければ一緒に進めます。
+   「どこをクリックするか分からない」場合は画面のスクショを送ってください。
